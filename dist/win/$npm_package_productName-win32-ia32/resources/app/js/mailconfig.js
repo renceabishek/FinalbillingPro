@@ -1,1 +1,0 @@
-var mailto='ibssupportlrpv2@solverminds.com';
