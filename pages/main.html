@@ -44,6 +44,7 @@
 	<script src="../js/jquery-3.3.1.js"></script>
 	<script src="../js/lowdb.js"></script>
 	<script src="../js/main.js"></script>
+	<script src="../js/common.js"></script>
 
 	<!-- <script src="/path/to/shared/js/modernizr.com/Modernizr-2.5.3.forms.js"> </script> -->
 
@@ -69,14 +70,14 @@
 	</div>
 
 	<div class="pull-right" style=" margin-top: 10px; margin-right:5px">
-		<!-- <img src="../img/user.png"style="width:32px" />
-					  <span class="Logout" style="margin-right:20px; color:blue">UserName</span> -->
-		<!--					  <a href="login.html" style="margin-right: 10px;"><i class="fa fa-sign-out" aria-hidden="true" style="color:blue; ma"></i> <span class="Logout" style=" color:blue">Logout</span></a>-->
-		<!-- <a href="login.html" class="btn btn-danger confirmation" style="margin-right: 10px;">
+		<!-- <img src="../img/user.png"style="width:32px" /> -->
+					  <!-- <span class="Logout" style="margin-right:20px; color:blue">UserName</span> -->
+							  <!-- <a href="login.html" style="margin-right: 10px;"><i class="fa fa-sign-out" aria-hidden="true" style="color:blue; ma"></i> <span class="Logout" style=" color:blue">Logout</span></a> -->
+		<a href="login.html" class="btn btn-danger confirmation" style="margin-right: 10px;">
 		<i class="fa fa-sign-out fa-lg" aria-hidden="true" style="color:#fff !important;"></i>
 			<span class="Logout" style=" color:blue">Logout</span>
 
-		</a> hiden due to login page removed -->
+		</a>
 	</div>
 </nav>
 
@@ -140,23 +141,23 @@
 					<a class="confirmation">
 						<img class="imgmenu" src="../img/menuicons/BunkerROB.svg" /> Bunker ROB - Month End Report</a>
 				</li> -->
-				<li id="settingFrom" role="presentation"  style="cursor: pointer" onclick="load_home('settings.html')">
+				<li id="settingFrom" role="presentation"  style="cursor: pointer;display:none;" onclick="load_home('settings.html')">
 					<a class="confirmation">
 							<i class="glyphicon glyphicon-cog" aria-hidden="true" style="font-size:21px;padding:10px"></i>
 						<!-- <img class="imgmenu" src="../img/menuicons/departure.svg" />  -->
 						Settings </a>
 				</li>
-				<li id="drop" class="dropdown " role="presentation">
-					<a class="confirmation" role="presentation" aria-expanded=false>
-					<img class="imgmenu" src="../img/menuicons/setting.svg" /> Reports
+				<li id="drop1" class="dropdown" style="display:none;"  role="presentation">
+					<a class="confirmation" role="presentation" onclick="ondropup(this)"   aria-expanded=false>
+						<img class="imgmenu" src="../img/menuicons/setting.svg" /> Reports
 					</a>
 					<ul class="dropdown-menu dropdown-menu-form " style="background-color:initial !important;padding-top:0 !important;margin-top:0 !important;font-size: 12px !important;font-family:Segoe UI,Trebuchet MS;font-weight: 700;">
 
-						<li id=dailyreportFrom style="cursor: pointer" role="presentation"><a onclick="load_home('vslinfo.html')"  class="confirmation"> <img class="imgmenu" src="../img/menuicons/info.svg" /> Daily Reports</a></li>
+						<li id=stockreportFrom style="cursor: pointer" role="presentation"><a onclick="load_home('stock.html')"  class="confirmation"> <img class="imgmenu" src="../img/menuicons/info.svg" /> Stock Reports</a></li>
 
-						<li id=weeklyreportFrom style="cursor: pointer" role="presentation" ><a  onclick="load_home('ports.html')" class="confirmation"> <img class="imgmenu" src="../img/menuicons/ports.svg" /> Weekly Reports</a></li>
+						<li id=productreportFrom style="cursor: pointer" role="presentation" ><a  onclick="load_home('proReport.html')" class="confirmation"> <img class="imgmenu" src="../img/menuicons/ports.svg" /> Product Reports</a></li>
 
-						<li id=monthlyreportFrom style="cursor: pointer" role="presentation" ><a onclick="load_home('sysconfig.html')" class="confirmation">  <img class="imgmenu" src="../img/menuicons/sys config.svg" /> Monthly Reports</a></li>
+						<li id=revenuereportFrom style="cursor: pointer" role="presentation" ><a onclick="load_home('revenue.html')" class="confirmation">  <img class="imgmenu" src="../img/menuicons/sys config.svg" /> Revenue Reports</a></li>
 <!--
 						<li id=mailhistory style="cursor: pointer" role="presentation" ><a onclick="load_home('mailhistory.html')" class="confirmation">  <img class="imgmenu" src="../img/menuicons/bunker delicvery note.svg" /> Mail History</a></li>
 
@@ -228,22 +229,17 @@
     </script>
 
 	<script type="text/javascript">
+
     $("document").ready(function() {
-    $('.dropdown-menu').on('click', function(e) {
-      if($(this).hasClass('dropdown-menu-form')) {
-          e.stopPropagation();
-      }
-  });
+
+	    $('.dropdown-menu').on('click', function(e) {
+	      if($(this).hasClass('dropdown-menu-form')) {
+	          e.stopPropagation();
+	      }
+	  	});
 
 
-   $('#drop').on('click', function(e) {
-    if($(this).hasClass('open')) {
-       $('#drop').removeClass('open')
-     }
-	  else{
-       $('#drop').toggleClass('open')
-	  }
- });
+
 });
 
  $(document).ready(function () {

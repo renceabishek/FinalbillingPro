@@ -353,43 +353,48 @@ function wgetdates(){
   document.getElementById('wp_date').innerHTML=today;
 }
 
-function wprintFunc() {
+function wprintFunc(times) {
+    if(times<=20) {
+      console.log('--------->'+document.getElementById('hidecusId').innerHTML);
+      var cuscity=db.get('customer').find({"customerid":document.getElementById('hidecusId').innerHTML}).value().cusarea;
+      var setting =db2.get('settings').value();
 
-    console.log('--------->'+document.getElementById('hidecusId').innerHTML);
-    var cuscity=db.get('customer').find({"customerid":document.getElementById('hidecusId').innerHTML}).value().cusarea;
-    var setting =db2.get('settings').value();
+      document.getElementById('wp_customershopname').innerHTML=document.getElementById('myCustomer').value;
+      document.getElementById('wp_customercity').innerHTML=cuscity;
+      document.getElementById('wp_tin').innerHTML=document.getElementById('c_custin').innerHTML;
+      document.getElementById('wp_ph').innerHTML=setting[0].ownerphone;
+      wgetdates();
 
-    document.getElementById('wp_customershopname').innerHTML=document.getElementById('myCustomer').value;
-    document.getElementById('wp_customercity').innerHTML=cuscity;
-    document.getElementById('wp_tin').innerHTML=document.getElementById('c_custin').innerHTML;
-    document.getElementById('wp_ph').innerHTML=setting[0].ownerphone;
-    wgetdates();
+      document.getElementById('wp_ownername').innerHTML=setting[0].ownername;
+      document.getElementById('wp_no').innerHTML=setting[0].sequencenoAlpha+"/"+setting[0].sequenceno;
+      if(!(setting[0].owneraddress=='')){
+        var address=setting[0].owneraddress;
+        var fields = address.split('~');
+        document.getElementById('wp_address1').innerHTML=fields[0];
+        document.getElementById('wp_address2').innerHTML=fields[1];
+        document.getElementById('wp_address3').innerHTML=fields[2];
+      }
+      wsetPrinttablevalues();
+      document.getElementById("wprintmeMultiple").style.display="none";
+      document.getElementById("wp_totalvalue").innerHTML="&#8377;"+document.getElementById('wprodTotalGrand').innerHTML;
+      document.getElementById("nettvalue").innerHTML="&#8377;"+document.getElementById('wprodTotalGrand').innerHTML;
+      var printContents = document.getElementById('wprintme').innerHTML;
+      var originalContents = document.body.innerHTML;
 
-    document.getElementById('wp_ownername').innerHTML=setting[0].ownername;
-    document.getElementById('wp_no').innerHTML=setting[0].sequencenoAlpha+"/"+setting[0].sequenceno;
-    if(!(setting[0].owneraddress=='')){
-      var address=setting[0].owneraddress;
-      var fields = address.split('~');
-      document.getElementById('wp_address1').innerHTML=fields[0];
-      document.getElementById('wp_address2').innerHTML=fields[1];
-      document.getElementById('wp_address3').innerHTML=fields[2];
+      document.body.innerHTML = printContents;
+
+      window.print();
+
+      document.body.innerHTML = originalContents;
+      var objset={"sequenceno": ++setting[0].sequenceno};
+
+      db2.get('settings').nth(0).assign(objset).value();
+      db2.write();
+
+      document.getElementById('wprodTotalGrand').innerHTML="0.00";
+      document.getElementById('prodTotalGrand').innerHTML="0.00";
+    } else {
+      document.getElementById("wprintmeMultiple").style.display="";
+      wprintMultiple(times);
     }
-    wsetPrinttablevalues();
-    document.getElementById("wp_totalvalue").innerHTML="₹"+document.getElementById('wprodTotalGrand').innerHTML;
-    document.getElementById("nettvalue").innerHTML="₹"+document.getElementById('wprodTotalGrand').innerHTML;
-    var printContents = document.getElementById('wprintme').innerHTML;
-    var originalContents = document.body.innerHTML;
-
-    document.body.innerHTML = printContents;
-
-    window.print();
-
-    document.body.innerHTML = originalContents;
-    var objset={"sequenceno": ++setting[0].sequenceno};
-
-    db2.get('settings').nth(0).assign(objset).value();
-    db2.write();
-
-    document.getElementById('wprodTotalGrand').innerHTML="0.00";
-    document.getElementById('prodTotalGrand').innerHTML="0.00";
 }

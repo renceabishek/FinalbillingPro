@@ -59,9 +59,9 @@ input[type=submit] {
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
-#p_table table tbody tr td {
+/* #p_table table tbody tr td {
     border:1px solid black;
-}
+} */
 
 
 #table-wrapper {
@@ -111,6 +111,14 @@ input[type=submit] {
 #table-wrapper table tfoot td .text2 {
   position:absolute;
   top:400px;
+  z-index:2;
+  height:20px;
+  /* width:35%;
+  border:1px solid red; */
+}
+#table-wrapper table tfoot td .text3 {
+  position:absolute;
+  top:420px;
   z-index:2;
   height:20px;
   /* width:35%;

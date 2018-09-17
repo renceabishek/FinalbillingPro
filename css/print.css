@@ -1,0 +1,7 @@
+.printBreak {page-break-after: always;}
+
+table.roundedCorners td, 
+table.roundedCorners th {
+  border-right: 1px solid DarkOrange;
+  padding: 10px;
+  }

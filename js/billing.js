@@ -63,7 +63,7 @@ var gst="no";
    var cell3 = row.insertCell(2);
    var cell4 = row.insertCell(3);
    var cell5 = row.insertCell(4);
-   // var cell6 = row.insertCell(5);
+   var cell6 = row.insertCell(5);
    // var cell7 = row.insertCell(6);
 
    var snno=rowCount1;
@@ -88,31 +88,42 @@ var gst="no";
    cell2.width="400px";
    cell2.appendChild(element);
 
+   var element = document.createElement("input");
+   element.setAttribute("class", "inpTextPname");
+   element.setAttribute("style", "height: 30px !important; text-align:right");
+   element.setAttribute("onfocusout","gstcalculation();");
+   element.setAttribute("onkeypress","return isNumberKeyFloat(event,this.id)");
+   element.setAttribute("id", "productgst0"+rowCount1);
+   cell3.width="150px";
+   cell3.appendChild(element);
+
 
    var element = document.createElement("input");
    element.setAttribute("class", "rightalign inpText");
    element.setAttribute("style", "text-align:right");
    element.setAttribute("onfocusout","calculatePerAMT(this)");
+   element.setAttribute("onkeypress","return isNumberKey(event,this.id)");
    element.setAttribute("id", "productqty0" + rowCount1);
-   cell3.width="150px";
-   cell3.appendChild(element);
-
-   var element = document.createElement("input");
-   element.setAttribute("class", "rightalign inpText");
-   element.setAttribute("style", "text-align: right; height: 30px !important;");
-   element.setAttribute("id", "productrate0" + rowCount1);
-   element.setAttribute("onfocusout","onFocust(this);");
    cell4.width="150px";
    cell4.appendChild(element);
 
    var element = document.createElement("input");
    element.setAttribute("class", "rightalign inpText");
    element.setAttribute("style", "text-align: right; height: 30px !important;");
+   element.setAttribute("id", "productrate0" + rowCount1);
+   element.setAttribute("onkeypress","return isNumberKeyFloat(event,this.id)");
+   element.setAttribute("onfocusout","onFocust(this);");
+   cell5.width="150px";
+   cell5.appendChild(element);
+
+   var element = document.createElement("input");
+   element.setAttribute("class", "rightalign inpText");
+   element.setAttribute("style", "text-align: right;");
    element.setAttribute("id", "prodval0" + rowCount1);
    element.setAttribute("readonly","true");
 
-   cell5.width="150px";
-   cell5.appendChild(element);
+   cell6.width="150px";
+   cell6.appendChild(element);
    ii--;
    }
  }
@@ -236,9 +247,9 @@ var gst="no";
    document.getElementById("customerFrom").setAttribute("class", "");
    document.getElementById("productFrom").setAttribute("class", "");
    document.getElementById("billingFrom").setAttribute("class", "active");
-   document.getElementById("dailyreportFrom").setAttribute("class", "");
-   document.getElementById("weeklyreportFrom").setAttribute("class", "");
-   document.getElementById("monthlyreportFrom").setAttribute("class", "");
+   document.getElementById("stockreportFrom").setAttribute("class", "");
+   document.getElementById("productreportFrom").setAttribute("class", "");
+   document.getElementById("revenuereportFrom").setAttribute("class", "");
    document.getElementById("settingFrom").setAttribute("class", "");
 
 }
@@ -265,7 +276,7 @@ function onbillAdd(event){
    var cell3 = row.insertCell(2);
    var cell4 = row.insertCell(3);
    var cell5 = row.insertCell(4);
-   // var cell6 = row.insertCell(5);
+   var cell6 = row.insertCell(5);
    // var cell7 = row.insertCell(6);
 
    var snno=rowCount1;
@@ -278,6 +289,7 @@ function onbillAdd(event){
    element.setAttribute("class", "inpTextsno");
    element.setAttribute("id", "prodsn0" + rowCount1);
    element.setAttribute("readonly","true");
+   cell1.width="50px";
    cell1.appendChild(element);
 
 
@@ -286,45 +298,45 @@ function onbillAdd(event){
    element.setAttribute("style", "height: 30px !important;");
    element.setAttribute("onfocusout","focusproductName(this);");
    element.setAttribute("id", "productname0"+rowCount1);
+   cell2.width="400px";
    cell2.appendChild(element);
+
+   var element = document.createElement("input");
+   element.setAttribute("class", "inpTextPname");
+   element.setAttribute("style", "height: 30px !important; text-align:right");
+   element.setAttribute("onfocusout","gstcalculation();");
+   element.setAttribute("onkeypress","return isNumberKeyFloat(event,this.id)");
+   element.setAttribute("id", "productgst0"+rowCount1);
+   cell3.width="150px";
+   cell3.appendChild(element);
 
 
    var element = document.createElement("input");
    element.setAttribute("class", "rightalign inpText");
    element.setAttribute("style", "text-align:right");
    element.setAttribute("onfocusout","calculatePerAMT(this)");
+   element.setAttribute("onkeypress","return isNumberKey(event,this.id)");
    element.setAttribute("id", "productqty0" + rowCount1);
-   cell3.appendChild(element);
-
-   var element = document.createElement("input");
-   element.setAttribute("class", "rightalign inpText");
-   element.setAttribute("style", "text-align: right; height: 30px !important;");
-   element.setAttribute("id", "productrate0" + rowCount1);
-   element.setAttribute("onfocusout","onFocust(this);");
+   cell4.width="150px";
    cell4.appendChild(element);
 
    var element = document.createElement("input");
    element.setAttribute("class", "rightalign inpText");
    element.setAttribute("style", "text-align: right; height: 30px !important;");
-   element.setAttribute("id", "prodval0" + rowCount1);
-   element.setAttribute("readonly","true");
+   element.setAttribute("id", "productrate0" + rowCount1);
+   element.setAttribute("onkeypress","return isNumberKeyFloat(event,this.id)");
+   element.setAttribute("onfocusout","onFocust(this);");
+   cell5.width="150px";
    cell5.appendChild(element);
 
-   // var element = document.createElement("button");
-   // element.setAttribute("class", "btn btn-primary glyphicon glyphicon-plus");
-   // element.setAttribute("onclick","onbillAdd(event)");
-   // element.setAttribute("type","button");
-   // element.setAttribute("style", "height: 30px !important;");
-   // element.setAttribute("id", "bdn_productaction" + rowCount1);
-   // cell6.appendChild(element);
-   //
-   // var element = document.createElement("button");
-   // element.setAttribute("class", "btn btn-danger glyphicon glyphicon-remove");
-   // element.setAttribute("onclick","onbillRemove(event)");
-   // element.setAttribute("type","button");
-   // element.setAttribute("style", "height: 30px !important;");
-   // element.setAttribute("id", "bdn_productremaction" + rowCount1);
-   // cell7.appendChild(element);
+   var element = document.createElement("input");
+   element.setAttribute("class", "rightalign inpText");
+   element.setAttribute("style", "text-align: right;");
+   element.setAttribute("id", "prodval0" + rowCount1);
+   element.setAttribute("readonly","true");
+
+   cell6.width="150px";
+   cell6.appendChild(element);
 
 
 }
@@ -346,28 +358,37 @@ function onFocust(event){
   }
 
   var rate=document.getElementById(event.id).value;
-  if(tr==0){
-      var qty=document.getElementById('productqty0').value;
-      document.getElementById('prodval0').value=qty*rate;
-  } else {
-      var qty=document.getElementById('productqty0'+tr).value;
-      document.getElementById('prodval0'+tr).value=qty*rate;
-  }
-   calculatTotalSum();
+  if(document.getElementById(event.id).value!=null &&document.getElementById(event.id).value.length>0) {
+    document.getElementById(event.id).value=parseFloat(document.getElementById(event.id).value).toFixed(2);
+    if(tr==0){
+        var qty=document.getElementById('productqty0').value;
+        document.getElementById('prodval0').value=parseFloat(qty*rate).toFixed(2);
+        gstcalculation();
+    } else {
+        var qty=document.getElementById('productqty0'+tr).value;
+        document.getElementById('prodval0'+tr).value=parseFloat(qty*rate).toFixed(2);
+        gstcalculation();
+    }
+     calculatTotalSum();
+ }
 }
 
 function calculatePerAMT(event){
   var tr=$(event).closest('tr').attr('id');
 
   var qty=document.getElementById(event.id).value;
-  if(tr==0){
-      var rate=document.getElementById('productrate0').value;
-      document.getElementById('prodval0').value=qty*rate;
-  } else {
-      var rate=document.getElementById('productrate0'+tr).value;
-      document.getElementById('prodval0'+tr).value=qty*rate;
+  if(qty!=null && qty.length>0){
+    if(tr==0){
+        var rate=document.getElementById('productrate0').value;
+        document.getElementById('prodval0').value=qty*rate;
+          gstcalculation();
+    } else {
+        var rate=document.getElementById('productrate0'+tr).value;
+        document.getElementById('prodval0'+tr).value=qty*rate;
+          gstcalculation();
+    }
+    calculatTotalSum();
   }
- calculatTotalSum();
 }
 
 function onbillRemove(event){
@@ -454,8 +475,13 @@ function calculatTotalSum() {
     document.getElementById('prodTotalGrand').innerHTML="0.00";
   } else{
     console.log('not zero');
-    document.getElementById('prodTotal').innerHTML=sum;
-    document.getElementById('prodTotalGrand').innerHTML=sum;
+    document.getElementById('prodTotal').innerHTML=parseFloat(sum).toFixed(2);
+    console.log('val--->'+document.getElementById("prodsgst").innerHTML);
+    var gst=(+document.getElementById("prodsgst").innerHTML + +document.getElementById("prodcgst").innerHTML);
+    var tottal=sum + +gst;
+    console.log('gst--->'+tottal);
+    document.getElementById('prodTotalGrand').innerHTML=Math.round(parseFloat(tottal).toFixed(2))+".00";
+    document.getElementById("prodrn").innerHTML=parseFloat(document.getElementById('prodTotalGrand').innerHTML - tottal).toFixed(2);
   }
 
 
@@ -532,40 +558,314 @@ function setPrinttablevalues(){
   var qty=0;
   console.log('count '+rowCount);
   $("#p_tablebody tr:gt(0)").remove();
-  for(var i=0;rowCount>i;i++){
+  for(var i=0;18>i;i++){
 
     var table1 = document.getElementById("p_tablebody");
      var rowCount1 = table1.rows.length;
      var row = table1.insertRow(rowCount1);
      row.id = rowCount;
+     row.rowspan="20";
+
 
      var cell1 = row.insertCell(0);
      var cell2 = row.insertCell(1);
      var cell3 = row.insertCell(2);
      var cell4 = row.insertCell(3);
      var cell5 = row.insertCell(4);
+     var cell6 = row.insertCell(5);
+     var cell7 = row.insertCell(6);
+     var cell8 = row.insertCell(7);
      if(i==0) {
        console.log('1 value'+$('#prodsn0').val()) ;
        cell1.innerHTML=obj;
+       cell1.style.borderRight="1px solid";
+       cell1.style.borderLeft="1px solid";
+       cell1.id="tbsno0";
+
+
        cell2.innerHTML=$('#productname0').val();
-       cell3.innerHTML=$('#productqty0').val();
-       cell4.innerHTML=$('#productrate0').val();
-       cell5.innerHTML=$('#prodval0').val();
+       cell2.style.borderRight="1px solid";
+       cell2.id="tbprname0";
+
+       cell3.innerHTML=db1.get('product').find({"productname":$('#productname0').val()}).value().producthsn;
+       cell3.style.borderRight="1px solid";
+       cell3.id="tbprhsnno0";
+
+       cell4.innerHTML=$('#productgst0').val();
+       cell4.style.borderRight="1px solid";
+       cell4.id="tbgst0";
+       cell4.align="right";
+
+       cell5.innerHTML=" ";
+       cell5.style.borderRight="1px solid";
+       cell5.id="tbmrp0";
+       cell5.align="right";
+
+       cell6.innerHTML=$('#productqty0').val();
+       cell6.style.borderRight="1px solid";
+       cell6.id="tbprqty0";
+       cell6.align="right";
+
+       cell7.innerHTML=$('#productrate0').val();
+       cell7.style.borderRight="1px solid";
+       cell7.id="tbprrate0";
+       cell7.align="right";
+
+       cell8.innerHTML=$('#prodval0').val();
+       cell8.style.borderRight="1px solid";
+       cell8.id="tbprval0";
+       cell8.align="right";
+
        qty=+qty+ +$('#productqty0').val();
+
+       var productvalues = (db1.get('product').value());
+       var index;
+       var proqty;
+       var productid,productname,mrp,rate,producthsn,prodtamil;
+       for(var i=0;i<productvalues.length;i++) {
+
+         if(productvalues[i].productname==$('#productname0').val()){
+            console.log('after '+productvalues[i].quantity);
+            proqty=productvalues[i].quantity;
+            productid=productvalues[i].productid;
+            productname=productvalues[i].productname;
+            mrp=productvalues[i].mrp;
+            rate=productvalues[i].rate;
+            producthsn=productvalues[i].producthsn;
+            prodtamil=productvalues[i].prodtamil;
+           index=i;
+           break;
+         }
+       }
+       var c=proqty-$('#productqty0').val();
+        obj={"productid":productid,"productname":productname,"producthsn":producthsn,  "mrp":mrp,"rate":rate,
+        "quantity":c.toString(),"prodtamil":prodtamil };
+
+       console.log('obj-->'+JSON.stringify(obj));
+       console.log('index-->'+index);
+       db1.get('product').nth(index).assign(obj).value();
+       db1.write();
+       console.log('print-->'+db1.get('product').find({"productid":productid}).value().quantity);
      } else{
-     console.log('1 value'+$('#prodsn0'+i).val()) ;
-     cell1.innerHTML=obj;
-     cell2.innerHTML=$('#productname0'+i).val();
-     cell3.innerHTML=$('#productqty0'+i).val();
-     cell4.innerHTML=$('#productrate0'+i).val();
-     cell5.innerHTML=$('#prodval0'+i).val();
-     qty=+qty+ +$('#productqty0'+i).val();
+
+         if(i==15 || i==16 || i==17) {
+           cell1.innerHTML="";
+           cell1.style.borderRight="1px solid";
+           cell1.style.borderLeft="1px solid";
+
+           if(i==15){
+              cell2.innerHTML="CGST"
+           } else if(i==16){
+             cell2.innerHTML="SGST"
+           } else{
+             cell2.innerHTML="ROUNDED OFF"
+           }
+           cell2.style.borderRight="1px solid";
+           cell2.align="right";
+           cell2.style.fontWeight="bold";
+
+           cell3.innerHTML=" ";
+           cell3.style.borderRight="1px solid";
+
+           cell4.innerHTML=" ";
+           cell4.style.borderRight="1px solid";
+
+           cell5.innerHTML=" ";
+           cell5.style.borderRight="1px solid";
+
+           cell6.innerHTML=" ";
+           cell6.style.borderRight="1px solid";
+
+           cell7.innerHTML=" ";
+           cell7.style.borderRight="1px solid";
+
+           if(i==15){
+              cell8.innerHTML=document.getElementById("prodcgst").innerHTML;
+           } else if(i==16){
+             cell8.innerHTML=document.getElementById("prodsgst").innerHTML;
+           } else{
+             cell8.innerHTML=document.getElementById("prodrn").innerHTML;
+           }
+           cell8.style.borderRight="1px solid";
+           cell8.style.fontWeight="bold";
+           cell8.align="right";
+
+
+         } else {
+         if($('#prodval0'+i).val() !=null && $('#prodval0'+i).val()>0){
+            cell1.innerHTML=obj;
+         }   else{
+           console.log('--->none');
+             cell1.innerHTML=" ";
+          }
+         cell1.style.borderRight="1px solid";
+         cell1.style.borderLeft="1px solid";
+         cell1.id="tbsno0"+i;
+
+         cell2.innerHTML=$('#productname0'+i).val();
+         cell2.style.borderRight="1px solid";
+         cell2.id="tbprname0"+i;
+
+         if($('#productname0'+i).val() !=null && $('#productname0'+i).val().length>0){
+            cell3.innerHTML=db1.get('product').find({"productname":$('#productname0'+i).val()}).value().producthsn;
+         } else{
+           cell3.innerHTM="";
+         }
+         cell3.style.borderRight="1px solid";
+         cell3.id="tbprhsnno0"+i;
+
+         if($('#prodval0'+i).val() !=null && $('#prodval0'+i).val()>0){
+            cell4.innerHTML=$('#productgst0'+i).val();
+          } else{
+            cell4.innerHTML="&nbsp";
+          }
+         cell4.style.borderRight="1px solid";
+         cell4.id="tbgst0"+i;
+         cell4.align="right";
+
+         cell5.innerHTML=" ";
+         cell5.style.borderRight="1px solid";
+         cell5.id="tbmrp0"+i;
+         cell5.align="right";
+
+         cell6.innerHTML=$('#productqty0'+i).val();
+         cell6.style.borderRight="1px solid";
+         cell6.id="tbprqty0"+i;
+         cell6.align="right";
+
+         cell7.innerHTML=$('#productrate0'+i).val();
+         cell7.style.borderRight="1px solid";
+         cell7.id="tbprrate0"+i;
+         cell7.align="right";
+
+         cell8.innerHTML=$('#prodval0'+i).val();
+         cell8.style.borderRight="1px solid";
+         cell8.id="tbprval0"+i;
+         cell8.align="right";
+         qty=+qty+ +$('#productqty0'+i).val();
+       }
+       if($('#productname0'+i).val() !=null && $('#productname0'+i).val().length>0) {
+           var productvalues = (db1.get('product').value());
+           var index;
+           var proqty;
+           for(var i=0;i<productvalues.length;i++) {
+             if(productvalues[i].productname==$('#productname0'+i).val()){
+                proqty=productvalues[i].quantity;
+               index=i;
+               break;
+             }
+           }
+           var c=proqty-$('#productqty0'+i).val();
+           var obj={"quantity":c.toString()};
+           db1.get('product').nth(index).assign(obj).value();
+           db1.write();
+       }
      }
-     document.getElementById("p_totalitems").innerHTML=obj;
+     //document.getElementById("p_totalitems").innerHTML=obj;
      console.log('print qty'+qty);
    obj++;
   }
-document.getElementById("p_totalqty").innerHTML=qty;
+
+  document.getElementById("tbodytotalQty").innerHTML=qty;
+  document.getElementById("tobodytotalAmt").innerHTML="&#8377;"+document.getElementById("prodTotalGrand").innerHTML;
+}
+
+function setPrinttablevaluesTAX(){
+  var table = document.getElementById("p_tablebody");
+  var rowCount = table.rows.length;
+  var total=0;
+  console.log('count '+rowCount);
+  for(var i=0;15>i;i++){
+
+    var table1 = document.getElementById("p_tablebodyTax");
+     var rowCount1 = table1.rows.length;
+     var row = table1.insertRow(rowCount1);
+     row.id = rowCount;
+     row.rowspan="20";
+
+
+     var cell1 = row.insertCell(0);
+     var cell2 = row.insertCell(1);
+     var cell3 = row.insertCell(2);
+     var cell4 = row.insertCell(3);
+     var cell5 = row.insertCell(4);
+     var cell6 = row.insertCell(5);
+     var cell7 = row.insertCell(6);
+
+     if(i==0) {
+
+       cell1.innerHTML=$('#tbprhsnno0').text();
+       cell1.style.borderRight="1px solid";
+       cell1.style.borderLeft="1px solid";
+
+       cell2.innerHTML=$('#tbprval0').text();
+       cell2.style.borderRight="1px solid";
+       cell2.align="right";
+
+       var gst=($('#tbgst0').text() / 2);
+       cell3.innerHTML=parseFloat(gst).toFixed(2);
+       cell3.style.borderRight="1px solid";
+       cell3.align="right";
+
+       var final1=($('#tbprval0').text() * parseFloat(gst).toFixed(2) )/100;
+       cell4.innerHTML=parseFloat(final1).toFixed(2);
+       cell4.style.borderRight="1px solid";
+       cell4.align="right";
+
+       cell5.innerHTML=parseFloat(gst).toFixed(2);
+       cell5.style.borderRight="1px solid";
+       cell5.align="right";
+
+       cell6.innerHTML=parseFloat(final1).toFixed(2);
+       cell6.style.borderRight="1px solid";
+       cell6.align="right";
+
+       var final=(final1*2);
+       cell7.innerHTML=parseFloat(final).toFixed(2);
+       cell7.style.borderRight="1px solid";
+       cell7.align="right";
+       total=+total + +parseFloat(final).toFixed(2);
+     } else{
+
+        if($('#tbprhsnno0'+i).text()!=null && $.trim($('#tbprhsnno0'+i).text()).length>0) {
+           cell1.innerHTML=$('#tbprhsnno0'+i).text();
+           cell1.style.borderRight="1px solid";
+           cell1.style.borderLeft="1px solid";
+
+           cell2.innerHTML=$('#tbprval0'+i).text();
+           cell2.style.borderRight="1px solid";
+           cell2.align="right";
+
+           var gst=($('#tbgst0'+i).text() / 2);
+           cell3.innerHTML=parseFloat(gst).toFixed(2);
+           cell3.style.borderRight="1px solid";
+           cell3.align="right";
+
+           var final1=($('#tbprval0'+i).text() * parseFloat(gst).toFixed(2) )/100;
+           cell4.innerHTML=parseFloat(final1).toFixed(2);
+           cell4.style.borderRight="1px solid";
+           cell4.align="right";
+
+           cell5.innerHTML=parseFloat(gst).toFixed(2);
+           cell5.style.borderRight="1px solid";
+           cell5.align="right";
+
+           cell6.innerHTML=parseFloat(final1).toFixed(2);
+           cell6.style.borderRight="1px solid";
+           cell6.align="right";
+
+           var final=(final1*2);
+           cell7.innerHTML=parseFloat(final).toFixed(2);
+           cell7.style.borderRight="1px solid";
+           cell7.align="right";
+           total=+total + +parseFloat(final).toFixed(2);
+       }
+  }
+}
+document.getElementById('taxablevalue').innerHTML=document.getElementById('prodTotal').innerHTML;
+document.getElementById('sgstamount').innerHTML=document.getElementById('prodsgst').innerHTML;
+document.getElementById('cgstamount').innerHTML=document.getElementById('prodcgst').innerHTML;
+document.getElementById('ttamount').innerHTML=total;
 }
 
 function getdates(){
@@ -584,26 +884,45 @@ function getdates(){
 
   today = mm + '/' + dd + '/' + yyyy;
   document.getElementById('p_dated').innerHTML=today;
+  return today;
 }
 
 function resetaction() {
   // document.getElementById('billingForm').reset();
-  document.getElementById('wprodTotalGrand').innerHTML="0.00";
-  document.getElementById('prodTotalGrand').innerHTML="0.00";
-  document.getElementById('myCustomer').value="";
+  var r = confirm("Do you want to reset ?");
+  if(r==true){
+    document.getElementById('wprodTotalGrand').innerHTML="0.00";
+    document.getElementById('prodTotalGrand').innerHTML="0.00";
+    document.getElementById('myCustomer').value="";
+    document.getElementById('prodTotal').innerHTML="0.00";
+    document.getElementById('prodsgst').innerHTML="0.00";
+    document.getElementById('prodcgst').innerHTML="0.00";
+    document.getElementById('prodrn').innerHTML="0.00";
+    cleartableFields();
+  } else {
+
+  }
+
 
 }
 
+
+var originalContents="";
 function printFuntion(){
   console.log('gst values ---->'+gst);
   if(printValidation()){
+    var times="";
     if(gst=='yes'){
-      printFunc();
+      originalContents = document.body.innerHTML;
+      times=printpagesize(gst);
+      masterSaveGST();
+      printFunc(times);
+
     } else {
-      wprintFunc();
+      times=printpagesize(gst);
+      wprintFunc(times);
     }
   }
-
 }
 
 function printValidation(){
@@ -626,27 +945,85 @@ function printValidation(){
   }
 }
 
-function printFunc()
-{
-
-  var customervalues = db.get('customer').value();
-
-  for(var i=0;i<customervalues.length;i++) {
-    if(customervalues[i].customerid==document.getElementById('myCustomer').value) {
-      document.getElementById('p_customername').innerHTML=customervalues[i].customername;
-      break;
+function gstcalculation(){
+  var table = document.getElementById("dataTableBill");
+  var rowCount = table.rows.length;
+  var obj=1;
+  var qty=0;
+  var totalgst=0.00;
+  console.log('count '+rowCount);
+  for(var i=0;rowCount>i;i++){
+    if(i==0) {
+      if($('#prodval0').val()!=null && $('#prodval0').val()>0) {
+        console.log('1 value'+$('#prodsn0').val()) ;
+        var val=($('#productgst0').val() * $('#prodval0').val())/100;
+        console.log('total gst '+val);
+        totalgst=+totalgst+  +val;
+      }
+    } else{
+      if($('#prodval0'+i).val()!=null && $('#prodval0'+i).val()>0) {
+      var val=($('#productgst0'+i).val() * $('#prodval0'+i).val())/100;
+      console.log('total gst '+val);
+      totalgst=+totalgst+  +val;
+    }
     }
   }
+  var splitgst=totalgst/2;
+  document.getElementById("prodsgst").innerHTML=parseFloat(splitgst).toFixed(2);
+  document.getElementById("prodcgst").innerHTML=parseFloat(splitgst).toFixed(2);
+  calculatTotalSum();
+}
+
+function cleartableFields(){
+  var table = document.getElementById("dataTableBill");
+  var rowCount = table.rows.length;
+  for(var i=0;rowCount>i;i++){
+    if(i==0) {
+      $('#prodval0').val('');
+      $('#productgst0').val('');
+      $('#productname0').val('');
+      $('#productqty0').val('');
+      $('#productrate0').val('');
+
+    } else{
+      $('#prodval0'+i).val('');
+      $('#productgst0'+i).val('');
+      $('#productname0'+i).val('');
+      $('#productqty0'+i).val('');
+      $('#productrate0'+i).val('');
+    }
+}
+}
+
+function printFunc(times)
+{
+  if(times<=15){
+
+  document.getElementById('prodgsttiin').innerHTML=db.get('customer').find({"customername":document.getElementById('myCustomer').value}).value().custin;
+
+  document.getElementById('prodst').innerHTML=db.get('customer').find({"customername":document.getElementById('myCustomer').value}).value().cusstate;
+  document.getElementById('byuersorderno').innerHTML=db.get('customer').
+  find({"customername":document.getElementById('myCustomer').value}).value().buyerscode;
+
   getdates();
   document.getElementById('p_customername').innerHTML=document.getElementById('myCustomer').value;
+  document.getElementById('p_invoiceno').innerHTML=db2.get('settings').value()[0].gstinvoiceno;
+
   setPrinttablevalues();
-  document.getElementById("p_totalvalue").innerHTML=document.getElementById('prodTotal').value;
+  setPrinttablevaluesTAX();
+  console.log('---->'+document.getElementById("tobodytotalAmt").innerHTML);
+
+  document.getElementById("wordings").innerHTML=withDecimal(document.getElementById("prodTotalGrand").innerHTML);
   var printContents = document.getElementById('printme').innerHTML;
-  var originalContents = document.body.innerHTML;
+
 
   document.body.innerHTML = printContents;
 
   window.print();
 
   document.body.innerHTML = originalContents;
+
+} else{
+  printMultiple(times);
+}
 }

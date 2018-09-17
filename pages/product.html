@@ -27,6 +27,8 @@
 	<link href="../css/datatable.css" rel="stylesheet" type="text/css">
 	<link href="../css/productcss.css" rel="stylesheet" type="text/css">
 	<script src="../js/product.js"></script>
+	<script src="../js/common.js"></script>
+
 
 
 </head>
@@ -57,8 +59,10 @@
 				            	<tr>
 							             <th class="text-center">Product ID</th>
 							             <th class="text-center">Product Name </th>
-							             <th class="text-center">M.R.P </th>
-							             <th class="text-center">RATE </th>
+										  <th class="text-center">HSN Code</th>
+							             <th class="text-center">M.R.P</th>
+							             <th class="text-center">RATE</th>
+													 <th class="text-center">Total Product Quantity</th>
 													 <th class="text-center">Product Name in Tamil</th>
 													 <th class="text-center">Edit </th>
 							             <th class="text-center">Delete </th>
@@ -130,8 +134,10 @@
 													<thead>
 														<th style="padding:10px !important;text-align:center;" id="info_fuelrequirement">Product ID</th>
 														<th style="padding:10px !important;text-align:center;" id="info_bunstem">Product Name</th>
+															<th style="padding:10px !important;text-align:center;" id="info_bunstem">HSN Code</th>
 														<th style="padding:10px !important;text-align:center;" id="info_bunstem">M.R.P</th>
 														<th style="padding:10px !important;text-align:center;" id="info_bunstem">RATE</th>
+														<th style="padding:10px !important;text-align:center;" id="info_bunstem">Total Product Quantity</th>
 														<th style="padding:10px !important;text-align:center;" id="info_bunstem">Product Name(தமிழ்)</th>
 														<th style="padding:10px !important;text-align:center;" id="info_maxintake">Action</th>
 														<a>
@@ -141,19 +147,26 @@
 													<tbody id="dataTablePro">
 														<td>
 															<input style="text-align: left; height: 30px !important;" class="form-control rightalign"
-															id="productid0">
+
+															disabled id="productid0">
 														</td>
 														<td>
-															<input style="text-align: right; height: 30px !important;" class="form-control rightalign" id="productval0">
+															<input style="text-align: left; height: 30px !important;" class="form-control rightalign" id="productval0" onkeypress="return isalphabetsKey(event)">
 														</td>
 														<td>
-															<input style="text-align: left; height: 30px !important;" class="form-control rightalign" id="prodmrp0">
+															<input style="text-align: left; height: 30px !important;" class="form-control rightalign" id="producthsn0" onkeypress="return isNumberKey(event)">
 														</td>
 														<td>
-															<input style="text-align: right; height: 30px !important;" class="form-control rightalign" id="prodrate0">
+															<input style="text-align: right; height: 30px !important;" class="form-control rightalign" id="prodmrp0" onkeypress="return isNumberKey(event)">
 														</td>
 														<td>
-															<input style="text-align: right; height: 30px !important;" class="form-control rightalign" id="prodtamil0">
+															<input style="text-align: right; height: 30px !important;" class="form-control rightalign" id="prodrate0" onkeypress="return isNumberKey(event)">
+														</td>
+														<td>
+															<input style="text-align: right; height: 30px !important;" class="form-control rightalign" id="prodquan0" onkeypress="return isNumberKey(event)">
+														</td>
+														<td>
+															<input style="text-align: left; height: 30px !important;" class="form-control rightalign" id="prodtamil0" onkeypress="return isalphabetsKey(event)">
 														</td>
 														<td>
 															 <button style="text-align: right; height: 30px !important;" onclick="onProdremove(event)"
@@ -165,7 +178,7 @@
 
 											   </div>
 											   <div class="col-sm-1" style="margin-top:15px; margin-left: 5px">
-												   <button type="button" style="padding: 4px;" class="btn btn-primary" onclick="addRowproduct('dataTablePro')">
+												   <button type="button"  style="padding: 4px;" class="btn btn-primary" onclick="addRowproduct('dataTablePro')">
 													<i class="fa fa-plus-circle "> </i> ADD</button>
 											   </div>
 											</div>
@@ -210,8 +223,10 @@
 														<thead>
 															<th style="padding:5px !important;text-align:center;" id="info_fuelrequirement">Product ID</th>
 															<th style="padding:5px !important;text-align:center;" id="info_bunstem">Product Name</th>
+															<th style="padding:5px !important;text-align:center;" id="info_bunstem">HSN Code</th>
 															<th style="padding:5px !important;text-align:center;" id="info_bunstem">M.R.P</th>
 															<th style="padding:5px !important;text-align:center;" id="info_bunstem">RATE</th>
+																<th style="padding:5px !important;text-align:center;" id="info_bunstem">Total Product Quantity</th>
 
 															<a>
 																<i class="fa fa-plus-circle "> </i>
@@ -220,16 +235,22 @@
 														<tbody id="dataTablePro">
 															<td>
 																<input style="text-align: left; height: 30px !important;" readonly class="form-control rightalign"
-																id="productide0">
+																disabled id="productide0">
 															</td>
 															<td>
-																<input style="text-align: right; height: 30px !important;" class="form-control rightalign" id="productvale0">
+																<input style="text-align: left; height: 30px !important;" class="form-control rightalign" id="productvale0" onkeypress="return isalphabetsKey(event)">
+																</td>
+															<td>
+																<input style="text-align: left; height: 30px !important;" class="form-control rightalign" id="producthsne0"  onkeypress="return isNumberKey(event)">
 															</td>
 															<td>
-																<input style="text-align: left; height: 30px !important;" class="form-control rightalign" id="prodmrpe0">
+																<input style="text-align: right; height: 30px !important;" class="form-control rightalign" id="prodmrpe0">
 															</td>
 															<td>
 																<input style="text-align: right; height: 30px !important;" class="form-control rightalign" id="prodratee0">
+															</td>
+															<td>
+																<input style="text-align: left; height: 30px !important;" class="form-control rightalign" id="prodquane0"  onkeypress="return isNumberKey(event)">
 															</td>
 
 														</tbody>
@@ -242,7 +263,7 @@
 	                </div>
 	                <div class="modal-footer">
 	                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-	                    <button type="button" id="ModelSend" class="btn btn-primary" onclick="saveEditProduct()">Save
+	                    <button type="button" id="ModelSend" class="btn btn-primary" onclick="saveEditProductVal()">Save
 	                        <i class="fa fa-arrow-circle-right fa-lg"></i>
 	                    </button>
 	                </div>

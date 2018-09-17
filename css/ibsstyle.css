@@ -442,18 +442,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#37507a', end
     background: #611140 !important;
     transition: 2s;
 }
-#wrapper.toggled #sidebar-wrapper #vslinfo{
-    background: #8fac0f !important;
+#wrapper.toggled #sidebar-wrapper #stockreportFrom{
+    background: white !important;
     transition: 2s;
     margin-left: -25px;
 }
-#wrapper.toggled #sidebar-wrapper #ports {
-    background: #9bb7e0 !important;
+#wrapper.toggled #sidebar-wrapper #productreportFrom {
+    background: white !important;
     transition: 2s;
     margin-left: -25px;
 }
-#wrapper.toggled #sidebar-wrapper #sysconfig {
-    background: #8a2d09 !important;
+#wrapper.toggled #sidebar-wrapper #revenuereportFrom {
+    background: white !important;
     transition: 2s;
     margin-left: -25px;
 }
@@ -569,7 +569,7 @@ thead th {
 
 tbody > tr > td:first-child  {
     font-family: "Segoe UI", "Trebuchet MS";
-    font-weight: 700;
+
 }
 .btn-danger {
     background-color: #cf0a2c !important;
@@ -626,7 +626,7 @@ tbody > tr > td:first-child  {
 }
 .dropdown-menu>.active>a {
      background: #c6cfd2 !important;
-     //color: #000 !important;
+     color: #000 !important;
 }
 
 #product td {

@@ -1,6 +1,6 @@
-const low = require('lowdb')
-const path = require('path')
-const FileSync = require('lowdb/adapters/FileSync')
+const low = require('lowdb');
+const path = require('path');
+const FileSync = require('lowdb/adapters/FileSync');
 //const adapter = new FileSync('lowdb.json')
 
 var paths = document.location.pathname;
@@ -18,11 +18,12 @@ db.defaults({ customer: [
 {
       "customerid": "CC001",
       "customername": "RELIANCE RETAIL LTD",
+      "buyerscode" : "GK001235",
       "cusarea": "SALEM JN",
       "cusmobile": "",
       "custin": "33AABCR17",
       "cusaddress": "JN MAIN ROAD",
-      "cusstate": "TAMILNADU",
+      "cusstate": "Tamil Nadu",
       "cuspincode": "636001",
       "cusemail": "",
       "cusremarks": ""
@@ -38,6 +39,8 @@ db1.defaults({ product: [
       "productname": "Lemon",
       "mrp": "0",
       "rate": "0",
+			"quantity":"35",
+			"producthsn" : "1413",
       "prodtamil": "லெமன்"
     },
     {
@@ -45,6 +48,8 @@ db1.defaults({ product: [
       "productname": "Coconut",
       "mrp": "0",
       "rate": "0",
+			"quantity":"53",
+			"producthsn" : "46462",
       "prodtamil": "தேங்காய்"
     },
     {
@@ -52,6 +57,8 @@ db1.defaults({ product: [
       "productname": "Big Onion",
       "mrp": "0",
       "rate": "0",
+			"quantity":"33",
+			"producthsn" : "24624",
       "prodtamil": "பெரிய வெங்காயம்"
     },
     {
@@ -59,6 +66,8 @@ db1.defaults({ product: [
       "productname": "Small Onion",
       "mrp": "0",
       "rate": "0",
+			"quantity":"25",
+			"producthsn" : "5452",
       "prodtamil": "சின்ன வெங்காயம்"
     },
     {
@@ -66,6 +75,8 @@ db1.defaults({ product: [
       "productname": "Potato",
       "mrp": "0",
       "rate": "0",
+			"quantity":"252",
+			"producthsn" : "45246",
       "prodtamil": "உருளைக்கிழங்கு"
     },
     {
@@ -73,6 +84,8 @@ db1.defaults({ product: [
       "productname": "Green Chilly",
       "mrp": "0",
       "rate": "0",
+			"quantity":"58",
+			"producthsn" : "4624",
       "prodtamil": "பச்சை மிளகாய்"
     },
     {
@@ -80,6 +93,8 @@ db1.defaults({ product: [
       "productname": "Capsicaum",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "78767",
       "prodtamil": "குடை மிளகாய்"
     },
     {
@@ -87,6 +102,8 @@ db1.defaults({ product: [
       "productname": "Color Capsicum",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "8657",
       "prodtamil": "க.குடைமிளகாய்"
     },
     {
@@ -94,6 +111,8 @@ db1.defaults({ product: [
       "productname": "Country Tomato",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "857",
       "prodtamil": "நா.தக்காளி"
     },
     {
@@ -101,6 +120,8 @@ db1.defaults({ product: [
       "productname": "Bangalore Tomato",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "87985",
       "prodtamil": "பெ.தக்காளி"
     },
     {
@@ -108,6 +129,8 @@ db1.defaults({ product: [
       "productname": "Ginger",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "8675",
       "prodtamil": "இஞ்சி"
     },
     {
@@ -115,6 +138,8 @@ db1.defaults({ product: [
       "productname": "Carrot",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "39353",
       "prodtamil": "கேரட்"
     },
     {
@@ -122,6 +147,8 @@ db1.defaults({ product: [
       "productname": "Beans",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "2222",
       "prodtamil": "பீன்ஸ்"
     },
     {
@@ -129,6 +156,8 @@ db1.defaults({ product: [
       "productname": "Beetroot",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "246357",
       "prodtamil": "பீட்ரூட்"
     },
     {
@@ -136,6 +165,8 @@ db1.defaults({ product: [
       "productname": "Turnip",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "86746",
       "prodtamil": "நூக்கோல்"
     },
     {
@@ -143,6 +174,8 @@ db1.defaults({ product: [
       "productname": "Cabbage",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "46957",
       "prodtamil": "கோஸ்"
     },
     {
@@ -150,6 +183,8 @@ db1.defaults({ product: [
       "productname": "Colour Cabbage",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "3695",
       "prodtamil": "கலர்கோஸ்"
     },
     {
@@ -157,6 +192,8 @@ db1.defaults({ product: [
       "productname": "Cucumber",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "795674",
       "prodtamil": "வெள்ளாரி"
     },
     {
@@ -164,6 +201,8 @@ db1.defaults({ product: [
       "productname": "Green Peas",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "358",
       "prodtamil": "பச்.பட்டானி"
     },
     {
@@ -171,6 +210,8 @@ db1.defaults({ product: [
       "productname": "Cauli Flower",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "35735",
       "prodtamil": "காளிப்பிளவர்"
     },
     {
@@ -178,6 +219,8 @@ db1.defaults({ product: [
       "productname": "Baby Corn",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "0766",
       "prodtamil": "பேபிக்கார்ன்"
     },
     {
@@ -185,6 +228,8 @@ db1.defaults({ product: [
       "productname": "Mushroom",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "68000",
       "prodtamil": "காளான்"
     },
     {
@@ -192,6 +237,8 @@ db1.defaults({ product: [
       "productname": "White Radish",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "08686",
       "prodtamil": "வெ.முள்ளங்கி"
     },
     {
@@ -199,6 +246,8 @@ db1.defaults({ product: [
       "productname": "Red Radish",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "68686",
       "prodtamil": "சி.முள்ளங்கி"
     },
     {
@@ -206,6 +255,8 @@ db1.defaults({ product: [
       "productname": "Chow Chow",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "77777",
       "prodtamil": "சௌசௌ"
     },
     {
@@ -213,6 +264,8 @@ db1.defaults({ product: [
       "productname": "Yam",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "5555",
       "prodtamil": "சேனைக்கிழங்கு"
     },
     {
@@ -220,6 +273,8 @@ db1.defaults({ product: [
       "productname": "Brinjal",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "25975",
       "prodtamil": "கத்திரிக்கை"
     },
     {
@@ -227,6 +282,8 @@ db1.defaults({ product: [
       "productname": "Ladies Finger",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "95685",
       "prodtamil": "வெண்டைகாய்"
     },
     {
@@ -234,6 +291,8 @@ db1.defaults({ product: [
       "productname": "Snake Gourd",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "6957",
       "prodtamil": "புடலங்காய்"
     },
     {
@@ -241,6 +300,8 @@ db1.defaults({ product: [
       "productname": "Brood Beans",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "5785",
       "prodtamil": "பட்டை அவரை"
     },
     {
@@ -248,6 +309,8 @@ db1.defaults({ product: [
       "productname": "Bitter Ground",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "பாவக்காய்"
     },
     {
@@ -255,6 +318,8 @@ db1.defaults({ product: [
       "productname": "Bottle Gourd",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "சுரைக்காய்"
     },
     {
@@ -262,6 +327,8 @@ db1.defaults({ product: [
       "productname": "Ridge Gourd",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "பீக்கங்காய்"
     },
     {
@@ -269,6 +336,8 @@ db1.defaults({ product: [
       "productname": "Cluster Beans",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "கொத்தவரங்காய்"
     },
     {
@@ -276,6 +345,8 @@ db1.defaults({ product: [
       "productname": "Extra",
       "mrp": "1",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "இதர பொருட்கள்"
     },
     {
@@ -283,6 +354,8 @@ db1.defaults({ product: [
       "productname": "Chips Potato",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "சி.உருளைக்கிழங்கு"
     },
     {
@@ -290,6 +363,8 @@ db1.defaults({ product: [
       "productname": "Batji Chilly",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "பஜ்ஜி மிளகாய்"
     },
     {
@@ -297,6 +372,8 @@ db1.defaults({ product: [
       "productname": "Ma Ginger",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "மா.இஞ்சி"
     },
     {
@@ -304,6 +381,8 @@ db1.defaults({ product: [
       "productname": "Double Beans",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "டபுள் பீன்ஸ்"
     },
     {
@@ -311,6 +390,8 @@ db1.defaults({ product: [
       "productname": "Karamani",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "காராணி"
     },
 		{
@@ -318,6 +399,8 @@ db1.defaults({ product: [
       "productname": "Ash Gourd",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "வெ.பூசனிக்காய்"
     },
     {
@@ -325,6 +408,8 @@ db1.defaults({ product: [
       "productname": "Red Gourd",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "சி.பூசனிக்காய்"
     },
     {
@@ -332,6 +417,8 @@ db1.defaults({ product: [
       "productname": "Country Garlic",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "நாட்டு பூண்டு"
     },
     {
@@ -339,6 +426,8 @@ db1.defaults({ product: [
       "productname": "Drum Stick",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "முருங்கை"
     },
     {
@@ -346,6 +435,8 @@ db1.defaults({ product: [
       "productname": "Raw Plaintain",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "மாங்காய்"
     },
     {
@@ -353,6 +444,8 @@ db1.defaults({ product: [
       "productname": "Coriander Leaf",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "மல்லி"
     },
     {
@@ -360,6 +453,8 @@ db1.defaults({ product: [
       "productname": "Mint",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "பொதினா"
     },
     {
@@ -367,6 +462,8 @@ db1.defaults({ product: [
       "productname": "Curry Leaves",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "கருவேப்பில்லை"
     },
     {
@@ -374,6 +471,8 @@ db1.defaults({ product: [
       "productname": "Sping Onion",
       "mrp": "0",
       "rate": "0",
+			"quantity":"89",
+			"producthsn" : "",
       "prodtamil": "வெ.தாள்"
     },
     {
@@ -381,6 +480,8 @@ db1.defaults({ product: [
       "productname": "Pala Keerai",
       "mrp": "0",
       "rate": "0",
+			"quantity":"100",
+			"producthsn" : "",
       "prodtamil": "பாலக்கீரை"
     },
     {
@@ -388,6 +489,8 @@ db1.defaults({ product: [
       "productname": "Celery",
       "mrp": "0",
       "rate": "0",
+			"quantity":"43",
+			"producthsn" : "",
       "prodtamil": "செல்லரி"
     },
     {
@@ -395,6 +498,8 @@ db1.defaults({ product: [
       "productname": "Leeks",
       "mrp": "0",
       "rate": "0",
+			"quantity":"38",
+			"producthsn" : "",
       "prodtamil": "லீக்ஸ்"
     },
     {
@@ -402,6 +507,8 @@ db1.defaults({ product: [
       "productname": "Keerai",
       "mrp": "0",
       "rate": "0",
+			"quantity":"92",
+			"producthsn" : "",
       "prodtamil": "கீரை"
     },
     {
@@ -409,6 +516,8 @@ db1.defaults({ product: [
       "productname": "Lettuce",
       "mrp": "0",
       "rate": "0",
+			"quantity":"36",
+			"producthsn" : "",
       "prodtamil": "லெட்யூஸ்"
     },
     {
@@ -416,6 +525,8 @@ db1.defaults({ product: [
       "productname": "Mango",
       "mrp": "0",
       "rate": "0",
+			"quantity":"88",
+			"producthsn" : "",
       "prodtamil": "மாங்காய்"
     },
     {
@@ -423,6 +534,8 @@ db1.defaults({ product: [
       "productname": "Cdocasia",
       "mrp": "0",
       "rate": "0",
+			"quantity":"44",
+			"producthsn" : "",
       "prodtamil": "சேப்பக்கிழங்கு"
     },
     {
@@ -430,6 +543,8 @@ db1.defaults({ product: [
       "productname": "Elephant Yam",
       "mrp": "0",
       "rate": "0",
+			"quantity":"55",
+			"producthsn" : "",
       "prodtamil": "கருனைக்கிழங்கு"
     },
     {
@@ -437,6 +552,8 @@ db1.defaults({ product: [
       "productname": "Hill Garlic",
       "mrp": "0",
       "rate": "0",
+			"quantity":"40",
+			"producthsn" : "",
       "prodtamil": "மலைபூண்டு"
     },
     {
@@ -444,6 +561,8 @@ db1.defaults({ product: [
       "productname": "American Sweet Corn",
       "mrp": "0",
       "rate": "0",
+			"quantity":"50",
+			"producthsn" : "",
       "prodtamil": "அமெரிக்க ஸ்வீட்கான்"
     },
     {
@@ -451,6 +570,8 @@ db1.defaults({ product: [
       "productname": "Fresh Cream",
       "mrp": "0",
       "rate": "0",
+			"quantity":"60",
+			"producthsn" : "",
       "prodtamil": "ப்ரஷ் க்ரீம்"
     },
     {
@@ -458,6 +579,8 @@ db1.defaults({ product: [
       "productname": "Panner",
       "mrp": "0",
       "rate": "0",
+			"quantity":"70",
+			"producthsn" : "",
       "prodtamil": "பன்னிர்"
     },
     {
@@ -465,6 +588,8 @@ db1.defaults({ product: [
       "productname": "Butter",
       "mrp": "0",
       "rate": "0",
+			"quantity":"80",
+			"producthsn" : "",
       "prodtamil": "பட்டர்"
     },
     {
@@ -472,6 +597,8 @@ db1.defaults({ product: [
       "productname": "Khova",
       "mrp": "0",
       "rate": "0",
+			"quantity":"90",
+			"producthsn" : "",
       "prodtamil": "கோவா"
     },
     {
@@ -479,6 +606,8 @@ db1.defaults({ product: [
       "productname": "Cheese",
       "mrp": "0",
       "rate": "0",
+			"quantity":"89",
+			"producthsn" : "",
       "prodtamil": "சீஸ்"
     },
     {
@@ -486,6 +615,8 @@ db1.defaults({ product: [
       "productname": "Curd",
       "mrp": "0",
       "rate": "0",
+			"quantity":"12",
+			"producthsn" : "",
       "prodtamil": "தயிர்"
     },
     {
@@ -493,6 +624,8 @@ db1.defaults({ product: [
       "productname": "Banana",
       "mrp": "0",
       "rate": "0",
+			"quantity":"22",
+			"producthsn" : "",
       "prodtamil": "வாழைப்பழம்"
     },
     {
@@ -500,6 +633,8 @@ db1.defaults({ product: [
       "productname": "Apple",
       "mrp": "0",
       "rate": "0",
+			"quantity":"22",
+			"producthsn" : "",
       "prodtamil": "ஆப்பிள்"
     },
     {
@@ -507,6 +642,8 @@ db1.defaults({ product: [
       "productname": "Orange",
       "mrp": "0",
       "rate": "0",
+			"quantity":"44",
+			"producthsn" : "",
       "prodtamil": "ஆரஞ்ச்"
     },
     {
@@ -514,6 +651,8 @@ db1.defaults({ product: [
       "productname": "Mosambi",
       "mrp": "0",
       "rate": "0",
+			"quantity":"24",
+			"producthsn" : "",
       "prodtamil": "சாத்துக்குடி"
     },
     {
@@ -521,6 +660,8 @@ db1.defaults({ product: [
       "productname": "Pomogranate",
       "mrp": "0",
       "rate": "0",
+			"quantity":"42",
+			"producthsn" : "",
       "prodtamil": "மாதுளை"
     },
     {
@@ -528,6 +669,8 @@ db1.defaults({ product: [
       "productname": "Graps",
       "mrp": "0",
       "rate": "0",
+			"quantity":"46",
+			"producthsn" : "",
       "prodtamil": "திராட்சை"
     },
     {
@@ -535,6 +678,8 @@ db1.defaults({ product: [
       "productname": "Chikoo",
       "mrp": "0",
       "rate": "0",
+			"quantity":"65",
+			"producthsn" : "",
       "prodtamil": "சப்போட்டா"
     },
     {
@@ -542,6 +687,8 @@ db1.defaults({ product: [
       "productname": "Pineapple",
       "mrp": "0",
       "rate": "0",
+			"quantity":"80",
+			"producthsn" : "",
       "prodtamil": "அன்னாசி"
     },
     {
@@ -549,6 +696,8 @@ db1.defaults({ product: [
       "productname": "Watermelon",
       "mrp": "0",
       "rate": "0",
+			"quantity":"33",
+			"producthsn" : "",
       "prodtamil": "தர்பூசணி"
     },
     {
@@ -556,6 +705,8 @@ db1.defaults({ product: [
       "productname": "Muskmelon",
       "mrp": "0",
       "rate": "0",
+			"quantity":"45",
+			"producthsn" : "",
       "prodtamil": "மொழாம்பழம்"
     },
     {
@@ -563,6 +714,8 @@ db1.defaults({ product: [
       "productname": "Pappaya",
       "mrp": "0",
       "rate": "0",
+			"quantity":"45",
+			"producthsn" : "",
       "prodtamil": "பப்பாளி"
     },
     {
@@ -570,6 +723,8 @@ db1.defaults({ product: [
       "productname": "Banana Red",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "59",
       "prodtamil": "செவ்வாழை"
     },
     {
@@ -577,6 +732,8 @@ db1.defaults({ product: [
       "productname": "Banana Flower",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "வாழைப்பூ"
     },
     {
@@ -584,6 +741,8 @@ db1.defaults({ product: [
       "productname": "Rasthali",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "ரஸ்தாளி"
     },
     {
@@ -591,6 +750,8 @@ db1.defaults({ product: [
       "productname": "Sweet Banana",
       "mrp": "0",
       "rate": "0",
+			"quantity":"",
+			"producthsn" : "",
       "prodtamil": "தேன் வாழை"
     }
 ]}).write();
@@ -604,5 +765,230 @@ db2.defaults({ settings: [{
 	"owneraddress" : "",
 	"sequencenoAlpha":"A",
 	"sequenceno":"1000",
-	"ownerphone" :""
+	"ownerphone" :"",
+	"gststreetname":"",
+	"gstcity" :"",
+	"gststate" : "",
+	"gstpinno" : "",
+	"gstphno" : "",
+	"gsttinno": "",
+	"gstmail" : "",
+	"gstinvoiceno":"1000"
 }]}).write();
+
+
+var spath;
+var mastersavepath = process.env.APPDATA+'/VEGFRUIT/savedata.json';
+spath = new FileSync(mastersavepath);
+
+const db3 = low(spath);
+db3.defaults({ savemaster: [
+	{
+      "customerid": "RELIANCE RETAIL LTD",
+      "productList": [
+        {
+          "productname": "Brinjal",
+          "prodqty": "24",
+          "prodvalue": "53.76"
+        },
+        {
+          "productname": "Lemon",
+          "prodqty": "22",
+          "prodvalue": "44.00"
+        },
+        {
+          "productname": "Small Onion",
+          "prodqty": "244",
+          "prodvalue": "5856.00"
+        }
+      ],
+      "totalAmount": "6073.00",
+      "invoiceno": "1000",
+      "date": "09/13/2018"
+    },
+    {
+      "customerid": "RELIANCE RETAIL LTD",
+      "productList": [
+        {
+          "productname": "Lemon",
+          "prodqty": "24",
+          "prodvalue": "576.00"
+        }
+      ],
+      "totalAmount": "588.00",
+      "invoiceno": "1000",
+      "date": "09/14/2018"
+    },
+    {
+      "customerid": "RELIANCE RETAIL LTD",
+      "productList": [
+        {
+          "productname": "Lemon",
+          "prodqty": "2",
+          "prodvalue": "4.00"
+        }
+      ],
+      "totalAmount": "4.00",
+      "invoiceno": "1000",
+      "date": "09/14/2018"
+    },
+    {
+      "customerid": "RELIANCE RETAIL LTD",
+      "productList": [
+        {
+          "productname": "Brinjal",
+          "prodqty": "24",
+          "prodvalue": "576.00"
+        },
+        {
+          "productname": "Lemon",
+          "prodqty": "24",
+          "prodvalue": "528.00"
+        },
+        {
+          "productname": "Small Onion",
+          "prodqty": "2",
+          "prodvalue": "4.00"
+        }
+      ],
+      "totalAmount": "1130.00",
+      "invoiceno": "1000",
+      "date": "09/14/2018"
+    },
+    {
+      "customerid": "RELIANCE RETAIL LTD",
+      "productList": [
+        {
+          "productname": "Snake Gourd",
+          "prodqty": "24",
+          "prodvalue": "48.00"
+        },
+        {
+          "productname": "Capsicaum",
+          "prodqty": "42",
+          "prodvalue": "1008.00"
+        }
+      ],
+      "totalAmount": "1077.00",
+      "invoiceno": "1000",
+      "date": "09/14/2018"
+    },
+    {
+      "customerid": "RELIANCE RETAIL LTD",
+      "productList": [
+        {
+          "productname": "Lemon",
+          "prodqty": "7",
+          "prodvalue": "63.00"
+        }
+      ],
+      "totalAmount": "67.00",
+      "invoiceno": "1000",
+      "date": "09/14/2018"
+    },
+    {
+      "customerid": "RELIANCE RETAIL LTD",
+      "productList": [
+        {
+          "productname": "Potato",
+          "prodqty": "24",
+          "prodvalue": "5808.00"
+        },
+        {
+          "productname": "Lemon",
+          "prodqty": "21",
+          "prodvalue": "42.00"
+        }
+      ],
+      "totalAmount": "5967.00",
+      "invoiceno": "1000",
+      "date": "09/11/2018"
+    },
+    {
+      "customerid": "RELIANCE RETAIL LTD",
+      "productList": [
+        {
+          "productname": "Potato",
+          "prodqty": "90",
+          "prodvalue": "270.00"
+        },
+        {
+          "productname": "Lemon",
+          "prodqty": "24",
+          "prodvalue": "48.00"
+        },
+        {
+          "productname": "Brinjal",
+          "prodqty": "142",
+          "prodvalue": "3408.00"
+        }
+      ],
+      "totalAmount": "3854.00",
+      "invoiceno": "1000",
+      "date": "09/12/2018"
+    },
+    {
+      "customerid": "RELIANCE RETAIL LTD",
+      "productList": [
+        {
+          "productname": "Lemon",
+          "prodqty": "3",
+          "prodvalue": "93.39"
+        }
+      ],
+      "totalAmount": "96.00",
+      "invoiceno": "1000",
+      "date": "09/14/2018"
+    },
+    {
+      "customerid": "RELIANCE RETAIL LTD",
+      "productList": [
+        {
+          "productname": "Lemon",
+          "prodqty": "24",
+          "prodvalue": "576.00"
+        },
+        {
+          "productname": "Yam",
+          "prodqty": "24",
+          "prodvalue": "48.00"
+        }
+      ],
+      "totalAmount": "763.00",
+      "invoiceno": "1000",
+      "date": "09/14/2018"
+    },
+    {
+      "customerid": "RELIANCE RETAIL LTD",
+      "productList": [
+        {
+          "productname": "Coconut",
+          "prodqty": "24",
+          "prodvalue": "53.28"
+        },
+        {
+          "productname": "Small Onion",
+          "prodqty": "90",
+          "prodvalue": "810.00"
+        },
+        {
+          "productname": "Brinjal",
+          "prodqty": "24",
+          "prodvalue": "528.00"
+        },
+        {
+          "productname": "Colour Cabbage",
+          "prodqty": "44",
+          "prodvalue": "176.00"
+        },
+        {
+          "productname": "Bangalore Tomato",
+          "prodqty": "4",
+          "prodvalue": "176.00"
+        }
+      ],
+      "totalAmount": "1803.00",
+      "invoiceno": "1000",
+      "date": "09/15/2018"
+    }
+]}).write();

@@ -11,7 +11,8 @@
     <script src="../vendor/jquery/jquery.js"></script>
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="../js/settings.js"></script>
-    <script src="/path/to/shared/js/modernizr.com/Modernizr-2.5.3.forms.js"> </script>
+    <script src="../js/common.js"></script>
+
 
 
 </head>
@@ -26,59 +27,127 @@
                         <div style="margin-top: 50px">
 
 
-                              <div class="col-sm-12 ">
-                                <form>
-                                  <fieldset >
-                                   <legend style="width:228px">Billing Type</legend>
-                                        <input type="radio" name="am" id="GST" value="GST" onclick=savetoLowdb() checked> Billing with GST
-                                        <input type="radio" name="am" id="WoutGST" value="WoutGST" onclick=savetoLowdb()> Billing without GST
-                                      </fieldset>
-                                     </form>
-                              </div>
+                                <div class="col-sm-12 ">
+                                  <form>
+                                    <fieldset >
+                                     <legend style="width:228px">Billing Type</legend>
+                                          <input type="radio" name="am" id="GST" value="GST" onclick=savetoLowdb() checked> Billing with GST
+                                          <input type="radio" name="am" id="WoutGST" value="WoutGST" onclick=savetoLowdb()> Billing without GST
+                                        </fieldset>
+                                       </form>
+                                </div>
+                                <div id="settingwithoutgst">
+                                 <div class="col-sm-12">
+                                   <form>
+                                     <fieldset >
+                                      <legend style="width:228px">Billing Name</legend>
+                                      <input style="height: 30px !important;" style="text-transform:uppercase"  id="Ownersname">
+                                      <button style="height: 30px !important;" onclick="onSaveAction()"  type="button"
+                           					      class="btn btn-primary " id="setting_btn"> save </button>
+                                     </fieldset>
+                                    </form>
+                                 </div>
+                                 <div class="col-sm-12">
+                                   <form>
+                                     <fieldset >
+                                      <legend style="width:228px">Billing Address</legend>
+                                      SHOP NAME<input maxlength="150" id="set_name" style="text-transform:uppercase"  >
+                                      STREET NAME<input  maxlength="150" id="set_stname" style="text-transform:uppercase" >
+                                      CITY<input  maxlength="150" id="set_city" style="text-transform:uppercase"  >
+                                      <button style="height: 30px !important; margin-top:0px" onclick="onSaveActionAddress()"  type="button"
+                           					      class="btn btn-primary " id="setting_btn" > save </button>
+                                     </fieldset>
+                                    </form>
+                                 </div>
+                                 <div class="col-sm-12">
+                                   <form>
+                                     <fieldset >
+                                      <legend style="width:228px">Billing No</legend>
+                                      <input maxlength="3" id="sq_noalpha" style="text-transform:uppercase; width:40px"  >
+                                      <input maxlength="150" type="number" id="sq_no" style="text-transform:uppercase"  >
+                                      <button style="height: 30px !important; margin-top:0px" onclick="onSaveActionNumber()"  type="button"
+                           					      class="btn btn-primary " id="setting_no" > save </button>
+                                     </fieldset>
+                                    </form>
+                                 </div>
+                                 <div class="col-sm-12">
+                                   <form>
+                                     <fieldset >
+                                      <legend style="width:228px">Phone NO</legend>
+                                      <input maxlength="30" id="ownerphon" style="text-transform:uppercase;"  >
 
-                             <div class="col-sm-12">
-                               <form>
-                                 <fieldset >
-                                  <legend style="width:228px">Billing Name</legend>
-                                  <input style="height: 30px !important;" style="text-transform:uppercase"  id="Ownersname">
-                                  <button style="height: 30px !important;" onclick="onSaveAction()"  type="button"
-                       					      class="btn btn-primary " id="setting_btn"> save </button>
-                                 </fieldset>
-                                </form>
+                                      <button style="height: 30px !important; margin-top:0px" onclick="onSaveActionphNumber()"  type="button"
+                           					      class="btn btn-primary " id="setting_phno" > save </button>
+                                     </fieldset>
+                                    </form>
+                                 </div>
                              </div>
-                             <div class="col-sm-12">
-                               <form>
-                                 <fieldset >
-                                  <legend style="width:228px">Billing Address</legend>
-                                  SHOP NAME<input maxlength="150" id="set_name" style="text-transform:uppercase"  >
-                                  STREET NAME<input  maxlength="150" id="set_stname" style="text-transform:uppercase" >
-                                  CITY<input  maxlength="150" id="set_city" style="text-transform:uppercase"  >
-                                  <button style="height: 30px !important; margin-top:0px" onclick="onSaveActionAddress()"  type="button"
-                       					      class="btn btn-primary " id="setting_btn" > save </button>
-                                 </fieldset>
-                                </form>
-                             </div>
-                             <div class="col-sm-12">
-                               <form>
-                                 <fieldset >
-                                  <legend style="width:228px">Billing No</legend>
-                                  <input maxlength="3" id="sq_noalpha" style="text-transform:uppercase; width:40px"  >
-                                  <input maxlength="150" type="number" id="sq_no" style="text-transform:uppercase"  >
-                                  <button style="height: 30px !important; margin-top:0px" onclick="onSaveActionNumber()"  type="button"
-                       					      class="btn btn-primary " id="setting_no" > save </button>
-                                 </fieldset>
-                                </form>
-                             </div>
-                             <div class="col-sm-12">
-                               <form>
-                                 <fieldset >
-                                  <legend style="width:228px">Phone NO</legend>
-                                  <input maxlength="30" id="ownerphon" style="text-transform:uppercase;"  >
-
-                                  <button style="height: 30px !important; margin-top:0px" onclick="onSaveActionphNumber()"  type="button"
-                       					      class="btn btn-primary " id="setting_phno" > save </button>
-                                 </fieldset>
-                                </form>
+                             <div id="settingwithgst">
+                               <div class="col-sm-12">
+                                 <form>
+                                   <fieldset >
+                                    <div class="col-sm-12" style="margin-top:13px">
+                                      <div class="col-sm-1">
+                                        ST.NAME
+                                      </div>
+                                       <div class="col-sm-2">
+                                         <input  maxlength="150" id="set_stnamegst" style="text-transform:uppercase" >
+                                      </div>
+                                      <div class="col-sm-1">
+                                         CITY
+                                      </div>
+                                      <div class="col-sm-2">
+                                         <input  maxlength="150" id="set_citygst" style="text-transform:uppercase"  >
+                                      </div>
+                                     <div class="col-sm-1">
+                                       STATE
+                                     </div>
+                                     <div class="col-sm-2">
+                                       <input  maxlength="150" id="set_stategst" style="text-transform:uppercase"  >
+                                     </div>
+                                     <div class="col-sm-1">
+                                       PIN NO
+                                     </div>
+                                     <div class="col-sm-2">
+                                       <input  maxlength="150" id="set_pingst" style="text-transform:uppercase"  >
+                                     </div>
+                                   </div>
+                                     <div class="col-sm-12" style="margin-top:6px">
+                                       <div class="col-sm-1">
+                                        PH NO
+                                      </div>
+                                      <div class="col-sm-2">
+                                        <input maxlength="30" id="ownerphongst" style="text-transform:uppercase;"  >
+                                      </div>
+                                        <div class="col-sm-1">
+                                         GSTIN
+                                       </div>
+                                       <div class="col-sm-2">
+                                         <input maxlength="30" id="gstinno_gst" style="text-transform:uppercase;"  >
+                                       </div>
+                                       <div class="col-sm-1">
+                                        EMAIL
+                                      </div>
+                                      <div class="col-sm-2">
+                                        <input maxlength="30" id="gstemailgst" style="text-transform:uppercase;"  >
+                                      </div>
+                                    </div>
+                                    <div  class="col-sm-12" style="margin-top:6px">
+                                      <div class="col-sm-1">INVOICE NO</div>
+                                      <div class="col-sm-2">
+                                        <input maxlength="30" id="gstinvoiceno" style="text-transform:uppercase;"  >
+                                      </div>
+                                    </div>
+                                    <div  class="col-sm-12" style="margin-top:6px">
+                                      <div class="col-sm-9"></div>
+                                      <div class="col-sm-3" style="text-align: right">
+                                        <button style="height: 30px !important; margin-top:0px" onclick="settinggstSave()"  type="button"
+                                            class="btn btn-primary " id="settinggstSave1" > save </button>
+                                      </div>
+                                    </div>
+                                   </fieldset>
+                                  </form>
+                               </div>
                              </div>
                         </div>
 
@@ -91,9 +160,7 @@
     <script type="text/javascript">
 
     </script>
-    <script type="text/javascript" src="../../shared/js/html5Forms.js" data-webforms2-support="date" data-webforms2-force-js-validation="true"
-        data-webforms2-force-js-date-picker="true" data-lang="en">
-    </script>
+
 
     <!-- /#wrapper -->
 

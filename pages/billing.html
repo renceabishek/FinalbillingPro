@@ -19,8 +19,9 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="../css/progressbar.css" rel="stylesheet" type="text/css">
+		<!-- <link rel="stylesheet" href="../css/print.css"> -->
 		<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="../css/ibsstyle.css" rel="stylesheet" type="text/css">
+		<!-- <link href="../css/ibsstyle.css" rel="stylesheet" type="text/css"> -->
 		<link href="../css/billing.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="../css/jquery-ui.css">
 		<link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -31,26 +32,33 @@
 <script src="../js/jquery-ui.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-	<script src="../js/billing.js"></script>
-	<script src="../js/wbilling.js"></script>
-	<script src="../js/common.js"></script>
-	<!-- <script src="../js/jquery.jkey.min.js"></script>
-  <script src="../js/jquery.jkey.js"></script> -->
+	<script src="../js/billing.js"></script> <script
+	src="../js/wbilling.js"></script> <script src="../js/common.js"></script>
+	<script src="../js/print.js"></script>
 
 
 
 
 
 <script>
-
-
-/*An array containing all the country names in the world:*/
-
-
-/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-// autocomplete(document.getElementById("myInput"), customers);
+    $("document").ready(function() {
+			$('#drop').on('click', function(e) {
+			 if($(this).hasClass('open')) {
+					$('#drop').removeClass('open')
+				}
+			 else{
+					$('#drop').toggleClass('open')
+			 }
+			 });
+		 });
 </script>
-
+<style type="text/css">
+         /* .pageBreak {page-break-after: always;} */
+		.pageBreak {
+				 page-break-after: always;
+        page-break-inside: avoid;
+			}
+</style>
 </head>
 	<div class="col-sm-12">
 		<div id="page-content-wrapper" class="col-sm-12">
@@ -94,6 +102,7 @@
 											<tr>
 												<th ><span  class="text" id="info_fuelrequirement">S.NO</span></th>
 												<th style="text-align:center"><span  class="text" id="info_bunstem">Product Name</span></th>
+												<th style="text-align:center"><span  class="text" id="info_bunstem">GST (%)</span></th>
 												<th style="text-align:center"><span  class="text" id="info_bunstem">Qty</span></th>
 												<th style="text-align:center"><span  class="text" id="info_bunstem">RATE</span></th>
 												<th style="text-align:center"><span  class="text" id="info_bunstem">VALUE</span></th>
@@ -109,38 +118,52 @@
 														<input   onfocusout="focusproductName(this);" style="height: 30px !important;"  class="inpTextPname searchInput" id="productname0">
 												</td>
 												<td width="150px">
-													<input type="number"  style="text-align: right;" onfocusout="calculatePerAMT(this)" class="inpText rightalign" id="productqty0">
+														<input maxlength="2" onkeypress="return isNumberKeyFloat(event,this.id)"  onfocusout="gstcalculation()" style="height: 30px !important; text-align: right;"  class="inpTextPname" id="productgst0">
 												</td>
 												<td width="150px">
-													<input type="number"  style="text-align: right; " class="inpText rightalign" onfocusout="onFocust(this);" id="productrate0">
+													<input maxlength="15"  onkeypress="return isNumberKey(event,this.id)" style="text-align: right;" onfocusout="calculatePerAMT(this)" class="inpText rightalign" id="productqty0">
 												</td>
 												<td width="150px">
-													<input type="number"  style="text-align: right;" placeholder="0.00" readonly class="inpText rightalign" id="prodval0">
+													<input maxlength="10"   onkeypress="return isNumberKeyFloat(event,this.id)" style="text-align: right; " class="inpText rightalign" onfocusout="onFocust(this);" id="productrate0">
+												</td>
+												<td width="150px">
+													<input  style="text-align: right;"  readonly class="inpText rightalign" id="prodval0">
 												</td>
 										</tr>
 										</tbody>
 										<tfoot>
 											<tr>
-												<td><span  class="text" id="info_fuelrequirement"></span></td>
+												<td><label  class="text" id="info_fuelrequirement"></span></td>
+												<td><span  class="text" id="info_bunstem"></span></td>
 												<td><span  class="text" id="info_bunstem"></span></td>
 												<td><span  class="text" id="info_bunstem"></span></td>
 												<td><span  class="text" id="info_bunstem">Sub Total</span></td>
-												<td align="center"><span  class="text" id="prodTotal">1</span></td>
+												<td align="center"><span  class="text" id="prodTotal">0.00</span></td>
 											</tr>
 											<tr>
 												<td><span  class="text1" id="info_fuelrequirement"></span></td>
 												<td><span  class="text1" id="info_bunstem"></span></td>
+												<td><span  class="text" id="info_bunstem"></span></td>
 												<td><span  class="text1" id="info_bunstem">SGST</span></td>
 												<td><span  class="text1" id="info_bunstem"></span></td>
-												<td align="center"><span  class="text1" id="prodsgst">1</span></td>
+												<td align="center"><span  class="text1" id="prodsgst">0.00</span></td>
 											</tr>
 											<tr>
 												<td><span  class="text2" id="info_fuelrequirement"></span></td>
 												<td><span  class="text2" id="info_bunstem"></span></td>
+												<td><span  class="text" id="info_bunstem"></span></td>
 												<td><span  class="text2" id="info_bunstem">CGST</span></td>
 												<td><span  class="text2" id="info_bunstem"></span></td>
-												<td align="center"><span  class="text2" id="prodcgst">1</span></td>
+												<td align="center"><span  class="text2" id="prodcgst">0.00</span></td>
 											</tr>
+											<tr>
+												<td><span  class="text3" id="info_fuelrequirement"></span></td>
+												<td><span  class="text3" id="info_bunstem"></span></td>
+												<td><span  class="text" id="info_bunstem"></span></td>
+												<td><span  class="text3" id="info_bunstem">ROUND OFF</span></td>
+												<td><span  class="text3" id="info_bunstem"></span></td>
+												<td align="center"><span  class="text3" id="prodrn">0.00</span></td>
+											</tr
 										</tfoot>
 								</table>
 
@@ -191,7 +214,7 @@
 									</div>
 									<div class="col-lg-4" style="text-align: right;">
 										<span style="font-size:30px">TOTAL: </span>
-										<span style=" font-weight:bold;font-size:30px" >₹</span>
+										<span style=" font-weight:bold;font-size:30px" >&#8377;</span>
 										<span id="prodTotalGrand" style="color: red; font-weight:bold;font-size:30px">0.00</span>
 										<span id="wprodTotalGrand" style="color: red; font-weight:bold;font-size:30px">0.00</span>
 										<span id="productqty" style="color: red; font-weight:bold;font-size:30px;display:none"></span>
@@ -199,7 +222,7 @@
 									<div class="col-lg-4" style="text-align: right;">
 										<button type="button" class="btn btn-success" onclick="onbillAdd(event)"> 	<i class="fa fa-plus-circle "> </i> Add Product</button>
 										<button type="button" class="btn btn-success" onclick="printFuntion()"> <i class="glyphicon glyphicon-print"> </i> Print</button>
-										<button type="reset" class="btn btn-danger" onclick="resetaction()" > <i class="fa fa-undo"> </i> Reset</button>
+										<button type="button" class="btn btn-danger" onclick="resetaction()" > <i class="fa fa-undo"> </i> Reset</button>
 									</div>
 
 
@@ -318,33 +341,29 @@
             </div>
         </div>
     </div>
-		<div id='printme' style="display: none" > <!--style="display: none"-->
+		<div id='printme' style="display: none"  > <!--style="display: none"-->
 			<!-- <div style="border:1px solid">
 				<span id="p_customername" style="text-align:center"></span>
 			</div> -->
 
-			<table border="1" id="p_table">
+			<table border="1" id="p_table" style="width: 800px !important;">
     	 	<tbody>
 					<tr>
-						<td align="center" colspan="8">
-							<span id="p_customername" ></span>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="4" rowspan="3">
-							<b><span>MARIYAMMAL FOOD PRODUCTS</span></b><br>
+						<td colspan="4"  rowspan="3">
+							<span><b>MARIYAMMAL FOOD PRODUCTS</b></span><br>
 							<span>55/10-B,Kuppusamy Street</span><br>
 							<span>Shevapet,Salem - 636 002</span><br>
 							<span>GSTIN/UIN: 33AWXPM0330N1Z6</span><br>
 							<span>State Name: Tamil Nadu, Code: 33</span><br>
 							<span>E-Mail: prakash.7984@gmail.com</span>
 						</td>
-						<td colspan="2">
-							Invoice No
+						<td  colspan="2">
+							Invoice No <br>
+							<span id="p_invoiceno" style="font-weight:bold"></span>
 						</td>
-						<td colspan="2">
+						<td  colspan="2">
 							Dated</br>
-							<span id="p_dated"></span>
+							<span id="p_dated" style="font-weight:bold"></span>
 						</td>
 					</tr>
 					<tr>
@@ -357,7 +376,8 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							Buyer's Order No
+							Buyer's Order No <br>
+							<span id="byuersorderno" style="font-weight:bold"></span>
 						</td>
 						<td colspan="2">
 							Dated
@@ -365,7 +385,10 @@
 					</tr>
 					<tr>
 						<td colspan="4" rowspan="3">
-							<span>Buyer</span></br>
+							<span >Buyer</span></br>
+							<span id="p_customername" style="font-weight:bold" ></span><br>
+							GSTIN/UIN: <span id="prodgsttiin"></span>  <Br>
+							STATE NAME: <span id="prodst"></span> <BR>
 						</td>
 						<td colspan="4" rowspan="3">
 
@@ -373,81 +396,173 @@
 					</tr>
 				</tbody>
 			</table>
-			<table border="1">
-				<thead>
+			<table    style="width: 800px !important; border-right: 1px solid">
+				<thead style="border:1px solid" >
 					<tr>
-						<th>Sl No</th>
-						<th>Description of Goods</th>
-						<th>HSN/SAC</th>
-						<th>GST Rate</th>
-						<th>MRP/Marginal</th>
-						<th>Quantity</th>
-						<th>Rate</th>
-						<th>per</th>
-						<th>Amount</th>
+						<th style="border-right:1px solid;text-align: center;" width="30px">Sl No</th>
+						<th style="border-right:1px solid;text-align: center;" width="250px">Description of Goods</th>
+						<th style="border-right:1px solid;text-align: center;" width="150px">HSN/SAC</th>
+						<th style="border-right:1px solid;text-align: center;" width="60px">GST Rate % </th>
+						<th  style="border-right:1px solid;text-align: center;" width="100px">MRP/Marginal</th>
+						<th  style="border-right:1px solid;text-align: center;" width="60px">Quantity</th>
+						<th style="border-right:1px solid;text-align: center;" width="100px">Rate</th>
+						<th style="border-right:1px solid;text-align: center;" width="148px">Amount</th>
 					</tr>
 				</thead>
-				<tbody id="p_tablebody" >
+				<tbody class="roundedCorners" id="p_tablebody"  >
 				</tbody>
-				<tfoot>
+				<tfoot style="border:1px solid">
+					<tr colspan="5" style="font-weight:bold">
+						<td style="border-right:1px solid;border-bottom:1px solid" width="30px" ></td>
+
+						<td style="border-right:1px solid;border-bottom:1px solid" width="250px" align="right">Total</td>
+						<td style="border-right:1px solid;border-bottom:1px solid" width="150px"></td>
+						<td style="border-right:1px solid;border-bottom:1px solid" width="60px"></td>
+						<td  style="border-right:1px solid;border-bottom:1px solid" width="100px"></td>
+						<td  style="border-right:1px solid;border-bottom:1px solid" align="right" width="60px"><span id="tbodytotalQty"></span></td>
+						<td style="border-right:1px solid;border-bottom:1px solid" width="100px"></td>
+						<td style="border-right:1px solid;border-bottom:1px solid" align="right" width="148px"><span id="tobodytotalAmt" style="font-size:20px"></span></td>
+					</tr>
+					<tr>
+						<th width="30px" style="height:32px"></th>
+						<th width="250px">Tax Chargeable (in words)</th>
+						<th width="520px" colspan="6"><span id="wordings"></span></th>
+					</tr>
+				</tfoot>
+			</table>
+			<table style="width: 800px !important; border-right: 1px solid">
+				<thead  style="border:1px solid">
 					<tr colspan="5">
-						<td rowspan="3">
- 						<span> Total Items: </span>
-						<span id="p_totalitems"></span>
-						<span>Total Qty: </span>
-						<span id="p_totalqty"></span>
-						<span id="p_totalvalue"></span>
+						<td style="border-right:1px solid" align="center"  width="280px" rowspan="2" > HSN/SAC</td>
+						<td  style="border-right:1px solid" width="150px" align="center" rowspan="2">Taxable Value</td>
+						<td style="border-right:1px solid;border-bottom:1px solid" align="center" width="140px" rowspan="1" colspan="2">Central Tax</td>
+						<td style="border-right:1px solid;border-bottom:1px solid" width="170px" align="center" rowspan="1" colspan="2">State Tax</td>
+						<td style="border-right:1px solid" width="160px" rowspan="2" align="center">Total Tax Amount</td>
+					</tr>
+					<tr>
+						<td style="border-right:1px solid" align="center" width="70px">Rate</td>
+						<td style="border-right:1px solid" align="center" width="70px">Amount</td>
+						<td style="border-right:1px solid" align="center" width="85px">Rate</td>
+						<td style="border-right:1px solid" align="center" width="85px">Amount</td>
+					</tr>
+				</thead>
+				<tbody class="roundedCorners" id="p_tablebodyTax"  >
+				</tbody>
+				<tfoot style="border:1px solid;">
+					<tr colspan="5" style="font-weight:bold">
+						<td width="280px" style="border-right:1px solid;border-bottom:1px solid"
+								align="right">Total
+					  </td>
+						<td width="150px" style="border-right:1px solid;border-bottom:1px solid" align="right">
+							<span id="taxablevalue"></span>
+						</td>
+						<td width="70px" style="border-right:1px solid;border-bottom:1px solid"></td>
+						<td width="70px" style="border-right:1px solid;border-bottom:1px solid" align="right">
+							<span id="cgstamount"></span>
+						</td>
+						<td width="85px" style="border-right:1px solid;border-bottom:1px solid"></td>
+						<td width="85px" style="border-right:1px solid;border-bottom:1px solid" align="right">
+							<span id="sgstamount"></span>
+						</td>
+						<td width="160px" style="border-right:1px solid;border-bottom:1px solid" align="right">
+							<span id="ttamount"></span>
 						</td>
 					</tr>
-					<tr colspan="5">
-						<td rowspan="3">
-								Nett value:
-						</td>
+					<tr>
+						<td width="280px" style="border-bottom:1px solid;height:32px">Tax Amount (in words)</td>
+						<td width="520px"  style="border-bottom:1px solid;border-right:1px solid" colspan="6"><span id="wordingstax"></span></td>
+					</tr>
+					<tr>
+						<td width="280px" style="border-bottom:1px solid;border-right:1px" colspan="4" >&nbsp;</td>
+						<td width="520px" style="border-bottom:1px solid;border-right:1px " colspan="4">Company's Bank details<br>
+							Bank Name: <span style="font-weight:bold"></span> <br>
+							A/C No: <span style="font-weight:bold">629014000000166</span><br>
+							Branch & IFSC Code: <span style="font-weight:bold">SEVAPET & SYNB0006290</span></td>
+					</tr>
+					<tr>
+						<td width="280px" style="border-bottom:1px solid; border-right:1px solid" colspan="4" rowspan="4">Declaration:<br>We Hereby certify that the foods mentioned in <br>
+						this invoice is/are warranted to be of the <br>nature and which these purport to be</td>
+						<td width="520px" style="border-bottom:1px solid;border-right:1px;text-align:right;padding-top:38px" colspan="4" rowspan="4">
+
+							<span id="sign">
+							Authorised Signature</span></td>
 					</tr>
 				</tfoot>
 			</table>
 		</div>
 
 
-		<div id='wprintme' style="display: none" > <!--style="display: none"-->
+		<div id='wprintme' style="display: none"  > <!--style="display: none"-->
 			<!-- <div style="border:1px solid">
 				<span id="p_customername" style="text-align:center"></span>
 			</div> -->
+			<div>
+				<table border="1" id="wp_table" >
+	    	 	<thead>
+						<tr>
+							<td align="center" colspan="8">
+								<span id="wp_ownername" style="font-size:21px" ></span>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" >
+								<span id="wp_address1" style="text-transform:uppercase">VEGETABLE SHOP</span><br>
+								<span  id="wp_address2" style="text-transform:uppercase">142,PAL MARKET,SHEVAPET</span><br>
+								<span  id="wp_address3" style="text-transform:uppercase" >SALEM-636002</span><br>
+							</td>
+							<td colspan="6" >
+								<span>TIN :</span> <span id="wp_tin"></span><br>
+								<span>CGT :</span> <span id="wp_cgt"></span><br>
+								<span>PH: </span> <span id="wp_ph">93621-10739 / 0427-2212917</span><br>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" >
+								<span id="wp_customershopname"></span><br><br>
+								<span id="wp_customercity"></span><br>
+							</td>
+							<td colspan="6">
+								<span><b>No : </b></span><span id="wp_no"></span><br>
+	 						 <span><b>Date : </b></span><span id="wp_date"></span><br>
+							 <span><b>Term : </b></span><span id="wp_term"></span><br>
+							 <span><b>PO No : </b></span><span id="wp_pono"></span><br>
+							</td>
+						</tr>
 
-			<table border="1" id="wp_table" >
-    	 	<thead>
-					<tr>
-						<td align="center" colspan="8">
-							<span id="wp_ownername" style="font-size:21px" ></span>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" >
-							<span id="wp_address1" style="text-transform:uppercase">VEGETABLE SHOP</span><br>
-							<span  id="wp_address2" style="text-transform:uppercase">142,PAL MARKET,SHEVAPET</span><br>
-							<span  id="wp_address3" style="text-transform:uppercase" >SALEM-636002</span><br>
-						</td>
-						<td colspan="6" >
-							<span>TIN :</span> <span id="wp_tin"></span><br>
-							<span>CGT :</span> <span id="wp_cgt"></span><br>
-							<span>PH: </span> <span id="wp_ph">93621-10739 / 0427-2212917</span><br>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" >
-							<span id="wp_customershopname"></span><br><br>
-							<span id="wp_customercity"></span><br>
-						</td>
-						<td colspan="6">
-							<span><b>No : </b></span><span id="wp_no"></span><br>
- 						 <span><b>Date : </b></span><span id="wp_date"></span><br>
-						 <span><b>Term : </b></span><span id="wp_term"></span><br>
-						 <span><b>PO No : </b></span><span id="wp_pono"></span><br>
-						</td>
-					</tr>
+						</thead>
+						<tbody  id="wp_tablebody" >
+							<tr>
+								<th>S No</th>
+								<th width="180px">Product name</th>
+								<th>Qty</th>
+								<th>Rate</th>
+								<th>Value</th>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr >
+								<td colspan="8" rowspan="1">
+		 						<span> Total Items: </span>
+								<span id="wp_totalitems"></span>
+								<span style="padding-left:75px">Total Qty: </span>
+								<span id="wp_totalqty"></span>
+								<span id="wp_totalvalue" style="padding-left:114px;font-weight: bold"></span>
+								</td>
+							</tr>
+							<tr id="wprintNettvalue">
+								<td colspan="5" rowspan="1" align="right">
+										Nett value:
+									<!-- <span style=" font-weight:bold;font-size:15px" >₹</span> -->
+									<span id="nettvalue" style="font-size:20px; font-weight:bold"></span>
+								</td>
+							</tr>
+						</tfoot>
 
-					</thead>
-					<tbody  id="wp_tablebody" >
+				</table>
+			</div>
+			<div id='wprintmeMultiple'>
+				<table border="1" id="wp_table1" >
+					<tbody  id="wp_tablebody1" >
 						<tr>
 							<th>S No</th>
 							<th width="180px">Product name</th>
@@ -459,25 +574,25 @@
 					<tfoot>
 						<tr >
 							<td colspan="8" rowspan="1">
-	 						<span> Total Items: </span>
-							<span id="wp_totalitems"></span>
+							<span> Total Items: </span>
+							<span id="wp_totalitems1"></span>
 							<span style="padding-left:75px">Total Qty: </span>
-							<span id="wp_totalqty"></span>
-							<span id="wp_totalvalue" style="padding-left:114px;font-weight: bold"></span>
+							<span id="wp_totalqty1"></span>
+							<span id="wp_totalvalue1" style="padding-left:114px;font-weight: bold"></span>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="5" rowspan="1" align="right">
 									Nett value:
 								<!-- <span style=" font-weight:bold;font-size:15px" >₹</span> -->
-								<span id="nettvalue" style="font-size:20px; font-weight:bold"></span>
+								<span id="nettvalue1" style="font-size:20px; font-weight:bold"></span>
 							</td>
 						</tr>
 					</tfoot>
-
-			</table>
-
+				</table>
+			</div>
 		</div>
+
 
 
 <!-- /#wrapper -->

@@ -7,16 +7,20 @@
     // setpagination();
 
     myReadyFilter();
+
  });
 
   function makeActiveSidebar(){
     document.getElementById("customerFrom").setAttribute("class", "");
     document.getElementById("productFrom").setAttribute("class", "active");
     document.getElementById("billingFrom").setAttribute("class", "");
-    document.getElementById("dailyreportFrom").setAttribute("class", "");
-    document.getElementById("weeklyreportFrom").setAttribute("class", "");
-    document.getElementById("monthlyreportFrom").setAttribute("class", "");
+    document.getElementById("stockreportFrom").setAttribute("class", "");
+    document.getElementById("productreportFrom").setAttribute("class", "");
+    document.getElementById("revenuereportFrom").setAttribute("class", "");
+    document.getElementById("settingFrom").setAttribute("class", "");
 }
+
+
 
 function getProductTable(){
 
@@ -27,6 +31,7 @@ function getProductTable(){
     var rowCount = table.rows.length;
     var row = table.insertRow(rowCount);
     row.id = rowCount;
+    row.style="text-align:center;"
 
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
@@ -35,6 +40,8 @@ function getProductTable(){
     var cell5 = row.insertCell(4);
     var cell6 = row.insertCell(5);
     var cell7 = row.insertCell(6);
+    var cell8 = row.insertCell(7);
+    var cell9 = row.insertCell(8);
 
 
 
@@ -77,8 +84,10 @@ function getProductTable(){
     // element.setAttribute("id", "PROD_MRP" + i);
     // element.setAttribute("readonly","true");
     // cell3.appendChild(element);
-    cell3.innerHTML=productvalues[i].mrp;
-    cell3.id="PROD_MRP" + i;
+  cell3.innerHTML=productvalues[i].producthsn;
+    cell3.id="PROD_HSN" + i;
+    cell4.innerHTML=productvalues[i].mrp;
+    cell4.id="PROD_MRP" + i;
 
     // var element = document.createElement("input");
     // element.setAttribute("class", "form-control");
@@ -93,11 +102,14 @@ function getProductTable(){
     // element.setAttribute("readonly","true");
     // cell4.appendChild(element);
 
-    cell4.innerHTML=productvalues[i].rate;
-    cell4.id="PROD_RATE" + i;
+    cell5.innerHTML=productvalues[i].rate;
+    cell5.id="PROD_RATE" + i;
 
-    cell5.innerHTML=productvalues[i].prodtamil;
-    cell5.id="PROD_TAMIL" + i;
+    cell6.innerHTML=productvalues[i].quantity;
+    cell6.id="PROD_QUAN" + i;
+
+    cell7.innerHTML=productvalues[i].prodtamil;
+    cell7.id="PROD_TAMIL" + i;
 
     var element = document.createElement("button");
     element.setAttribute("class", "fa fa-edit  prod_edit");
@@ -105,7 +117,7 @@ function getProductTable(){
     element.setAttribute("id", i);
     element.setAttribute("type", "button");
     element.setAttribute("onclick", "btnEditaction(this);");
-    cell6.appendChild(element);
+    cell8.appendChild(element);
 
     var element = document.createElement("button");
     element.setAttribute("class", "fa fa-trash prod_trash");
@@ -113,7 +125,7 @@ function getProductTable(){
     element.setAttribute("id", i);
     element.setAttribute("type", "button");
     element.setAttribute("onclick", "btnDeleteAction(this);");
-    cell7.appendChild(element);
+    cell9.appendChild(element);
 
 
     }
@@ -129,15 +141,20 @@ function addRowproduct() {
     var rowCount = table.rows.length;
     var row = table.insertRow(rowCount);
     row.id = rowCount;
+    var idcount=1300 + rowCount;
+    idcount++;
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
     var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
+      var cell8 = row.insertCell(7);
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
+    element.setAttribute("value", idcount);
     element.setAttribute("style", "text-align:left");
     element.setAttribute("class", "form-control");
     element.setAttribute("id", "productid" + rowCount);
@@ -152,24 +169,38 @@ function addRowproduct() {
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
-    element.setAttribute("style", "text-align:left");
+    element.setAttribute("style", "text-align:right");
     element.setAttribute("class", "form-control");
-    element.setAttribute("id", "prodmrp" + rowCount);
+    element.setAttribute("id", "producthsn" + rowCount);
     cell3.appendChild(element);
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
-    element.setAttribute("style", "text-align:right");
+    element.setAttribute("style", "text-align:left");
     element.setAttribute("class", "form-control");
-    element.setAttribute("id", "prodrate" + rowCount);
+    element.setAttribute("id", "prodmrp" + rowCount);
     cell4.appendChild(element);
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
     element.setAttribute("style", "text-align:right");
     element.setAttribute("class", "form-control");
-    element.setAttribute("id", "prodtamil" + rowCount);
+    element.setAttribute("id", "prodrate" + rowCount);
     cell5.appendChild(element);
+
+    var element = document.createElement("input");
+    element.setAttribute("type", "text");
+    element.setAttribute("style", "text-align:right");
+    element.setAttribute("class", "form-control");
+    element.setAttribute("id", "prodquan" + rowCount);
+    cell6.appendChild(element);
+
+    var element = document.createElement("input");
+    element.setAttribute("type", "text");
+    element.setAttribute("style", "text-align:right");
+    element.setAttribute("class", "form-control");
+    element.setAttribute("id", "prodtamil" + rowCount);
+    cell7.appendChild(element);
 
     var element = document.createElement("button");
     element.setAttribute("style", "text-align:right;height: 30px !important;");
@@ -177,7 +208,7 @@ function addRowproduct() {
     element.setAttribute("class", "btn btn-danger fa fa fa-remove");
     element.setAttribute("id", "prodaction" + rowCount);
     element.setAttribute("onclick","onProdremove(event)");
-    cell6.appendChild(element);
+    cell8.appendChild(element);
 
 }
 
@@ -198,21 +229,30 @@ function savenewprodValidation(){
   var table = document.getElementById("dataTablePro");
   var rowCount = table.rows.length;
   for(var i=0;rowCount>i;i++){
-    if($.trim($('#productid'+i).val())==''){
-      alert('Product Id should not be Empty');
+    // if($.trim($('#productid'+i).val())==''){
+    //   alert('Product Id should not be Empty');
+    //   return false;
+    // } else
+    if($.trim($('#productval'+i).val())=='') {
+      alert('Product Name should not be Empty');
+      document.getElementById('productval0').focus();
       return false;
-    } else if($.trim($('#productval'+i).val())=='') {
-      alert('Product value should not be Empty');
-      return false;
-    } else if($.trim($('#prodmrp'+i).val())=='') {
-      alert('Product M.R.P should not be Empty');
-      return false;
+    //  } else if($.trim($('#producthsn'+i).val())=='') {
+    //   alert('Product HSN Code should not be Empty');
+    //   return false;
+    }
+     else if($.trim($('#prodmrp'+i).val())=='') {
+     alert('Product M.R.P should not be Empty');
+     document.getElementById('prodmrp0').focus();
+    return false;
     } else if($.trim($('#prodrate'+i).val())=='') {
-      alert('Product Rate should not be Empty');
-      return false;
+       alert('Product Rate should not be Empty');
+       document.getElementById('prodrate0').focus();
+       return false;
     }
     else if($.trim($('#prodtamil'+i).val())=='') {
       alert('Product Name in Tamil should not be Empty');
+      document.getElementById('prodtamil0').focus();
       return false;
     }
   }
@@ -231,12 +271,14 @@ function addintoProduct() {
 
     var val1="<span id=PRO_ID"+count+">"+$('#productid'+i).val()+"</span>";
     var val2="<span id=PROD_NAME"+count+">"+$('#productval'+i).val()+"</span>";
-    var val3="<span id=PROD_MRP"+count+">"+$('#prodmrp'+i).val()+"</span>";
-    var val4="<span id=PROD_RATE"+count+">"+$('#prodrate'+i).val()+"</span>";
-    var val5="<span id=PROD_TAMIL"+count+">"+$('#prodtamil'+i).val()+"</span>"
+  var val3="<span id=PROD_HSN"+count+">"+$('#producthsn'+i).val()+"</span>";
+    var val4="<span id=PROD_MRP"+count+">"+$('#prodmrp'+i).val()+"</span>";
+    var val5="<span id=PROD_RATE"+count+">"+$('#prodrate'+i).val()+"</span>";
+      var val6="<span id=PROD_QUAN"+count+">"+$('#prodquan'+i).val()+"</span>";
+    var val7="<span id=PROD_TAMIL"+count+">"+$('#prodtamil'+i).val()+"</span>"
 
-    var val6="<button id="+count+" type='button' class='fa fa-edit prod_edit' onclick=btnEditaction(this);></button>";
-    var val7="<span id="+count+" type='button' class='fa fa-trash prod_trash' onclick=btnDeleteAction(this);></button>";
+    var val8="<button id="+count+" type='button' class='fa fa-edit prod_edit' onclick=btnEditaction(this);></button>";
+    var val9="<span id="+count+" type='button' class='fa fa-trash prod_trash' onclick=btnDeleteAction(this);></button>";
     console.log(val1);
      t.row.add( [
            val1,
@@ -245,12 +287,15 @@ function addintoProduct() {
            val4,
            val5,
            val6,
-           val7
+           val7,
+           val8,
+           val9
        ] ).draw( false );
 
 
-     var obj = { "productid": $('#productid'+i).val(), "productname": $('#productval'+i).val(),"mrp":$('#prodmrp'+i).val(),
-   "rate":$('#prodrate'+i).val(), "prodtamil":$('#prodtamil'+i).val() };
+     var obj = { "productid": $('#productid'+(i-1)).val(), "productname": $('#productval'+i).val(),
+    "producthsn": $('#producthsn'+i).val(),"mrp":$('#prodmrp'+i).val(),
+   "rate":$('#prodrate'+i).val(),"quantity":$('#prodquan'+i).val(), "prodtamil":$('#prodtamil'+i).val() };
      db1.get('product').push(obj).write();
   }
 //  $("#proDTableBody").empty();
@@ -259,8 +304,10 @@ function addintoProduct() {
   $('#dataTablePro').find("tr:gt(0)").remove();
   $('#productid0').val('');
   $('#productval0').val('');
+    $('#producthsn0').val('');
   $('#prodmrp0').val('');
   $('#prodrate0').val('');
+    $('#prodquan0').val('');
   $('#prodtamil0').val('');
   $('#modalCompose').modal('hide');
 }
@@ -299,6 +346,47 @@ function prodAddAction() {
 
   $('#modalCompose').modal('show');
 }
+
+
+//Validation for empty
+function saveEditProductVal(){
+  if(saveEditprodValidation()){
+    saveEditProduct();
+  }
+}
+
+
+function saveEditprodValidation(){
+  var table = document.getElementById("dataTablePro");
+  var rowCount = table.rows.length;
+  for(var i=0;rowCount>i;i++){
+    // if($.trim($('#productid'+i).val())==''){
+    //   alert('Product Id should not be Empty');
+    //   return false;
+    // } else
+    if($.trim($('#productvale'+i).val())=='') {
+      alert('Product Name should not be Empty');
+      document.getElementById('productvale0').focus();
+      return false;
+    //  } else if($.trim($('#producthsn'+i).val())=='') {
+    //   alert('Product HSN Code should not be Empty');
+    //   return false;
+    }
+     else if($.trim($('#prodmrpe'+i).val())=='') {
+     alert('Product M.R.P should not be Empty');
+     document.getElementById('prodmrpe0').focus();
+    return false;
+  } else if($.trim($('#prodratee'+i).val())=='') {
+       alert('Product Rate should not be Empty');
+       document.getElementById('prodratee0').focus();
+       return false;
+    }
+
+  }
+  return true;
+}
+//End of validation
+
 function saveEditProduct(){
   var productvalues = (db1.get('product').value());
   var index;
@@ -308,7 +396,9 @@ function saveEditProduct(){
       break;
     }
   }
-  var obj={"productid":$('#productide0').val(),"productname":$('#productvale0').val(),"mrp":$('#prodmrpe0').val(),"rate":$('#prodratee0').val() };
+  var obj={"productid":$('#productide0').val(),"productname":$('#productvale0').val(),
+  "producthsn":$('#producthsne0').val(),
+  "mrp":$('#prodmrpe0').val(),"rate":$('#prodratee0').val(),"quantity":$('#prodquane0').val()  };
   db1.get('product').nth(index).assign(obj).value();
   db1.write();
 
@@ -316,14 +406,16 @@ function saveEditProduct(){
   var rows = document.getElementById("proDTableBody").rows.length;
   var y;
   for(i = 0; i <  rows; i++)
-  {    for(j = 0; j < 4; j++)
+  {    for(j = 0; j < 5; j++)
        {
            y = table[i].cells;
            //do something with cells in a row
            if(y[0].innerHTML==$('#productide0').val()){
              y[1].innerHTML = $('#productvale0').val();
-             y[2].innerHTML = $('#prodmrpe0').val();
-             y[3].innerHTML = $('#prodratee0').val();
+             y[2].innerHTML = $('#producthsne0').val();
+             y[3].innerHTML = $('#prodmrpe0').val();
+             y[4].innerHTML = $('#prodratee0').val();
+             y[5].innerHTML = $('#prodquane0').val();
              break;
            }
            //console.log(y[0].innerHTML);
@@ -351,8 +443,10 @@ function btnEditaction(event){
 
                  $('#productide0').val(cells[0].innerHTML);
                 $('#productvale0').val(cells[1].innerHTML);
-                $('#prodmrpe0').val(cells[2].innerHTML);
-                $('#prodratee0').val(cells[3].innerHTML);
+                $('#producthsne0').val(cells[2].innerHTML);
+                $('#prodmrpe0').val(cells[3].innerHTML);
+                $('#prodratee0').val(cells[4].innerHTML);
+                $('#prodquane0').val(cells[5].innerHTML);
             };
           }
    $('#modalEditCompose').modal('show');
@@ -385,7 +479,7 @@ function DelteProduct(){
   var index;
   var obj;
   for(i = 0; i <  rows; i++)
-  {    for(j = 0; j < 4; j++)
+  {    for(j = 0; j < 5; j++)
        {
            y = table[i].cells;
            //do something with cells in a row
@@ -393,8 +487,10 @@ function DelteProduct(){
              obj={
              "productid":y[0].innerHTML,
              "productname":y[1].innerHTML,
-             "mrp":y[2].innerHTML,
-             "rate":y[3].innerHTML };
+               "producthsn":y[2].innerHTML,
+             "mrp":y[3].innerHTML,
+             "rate":y[4].innerHTML,
+           "quantity":y[5].innerHTML };
              index=i;
 
              break;

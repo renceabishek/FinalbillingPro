@@ -5,6 +5,7 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const url = require('url')
+const fs = require('fs')
 
 const nativeImage=electron.nativeImage;
 let demoIcon=nativeImage.createFromPath(path.join(__dirname, 'img','gk1.ico'));
