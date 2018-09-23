@@ -11,6 +11,7 @@ function makeActiveSidebar(){
  document.getElementById("productreportFrom").setAttribute("class", "");
  document.getElementById("revenuereportFrom").setAttribute("class", "active");
  document.getElementById("settingFrom").setAttribute("class", "");
+ document.getElementById("ViewbillingFrom").setAttribute("class", "");
 }
 
 function custom_sort(a, b) {
@@ -41,6 +42,97 @@ function dailyshow(){
   console.log(JSON.stringify(array));
   showchart(array);
 
+}
+
+function getTopN(arr, prop, n) {
+    // clone before sorting, to preserve the original array
+    var clone = arr.slice(0);
+
+    // sort descending
+    clone.sort(function(x, y) {
+        if (x[prop] == y[prop]) return 0;
+        else if (parseInt(x[prop]) < parseInt(y[prop])) return 1;
+        else return -1;
+    });
+
+    return clone.slice(0, n || 1);
+}
+function monthlyshow(){
+
+    var da=getdatesrev();
+    var arry=[];
+    var arr=db3.get('savemaster').value();
+    for(var i=0;i<arr.length;i++){
+      if(arr[i].date==da){
+        arry.push(arr);
+      }
+    }
+
+    //showTopCustomerChart(vari);
+
+}
+
+
+
+function showTopCustomerChart(charvalues1){
+  console.log(JSON.stringify(charvalues1));
+    var chart = AmCharts.makeChart( "revdiv", {
+      "type": "serial",
+      "theme": "light",
+      "dataProvider": charvalues1,
+      "valueAxes": [ {
+        "gridColor": "#FFFFFF",
+        "gridAlpha": 0.2,
+        "dashLength": 0,
+        "title":"Product Qty"
+      } ],
+      "gridAboveGraphs": true,
+      "startDuration": 1,
+      "graphs": [ {
+        "balloonText": "Customer <b> [[category]] </b>: Amount of purchase <b>[[value]]</b>",
+        "fillAlphas": 0.8,
+        "lineAlpha": 0.2,
+        "type": "column",
+        "valueField": "totalAmount"
+      } ],
+      "chartCursor": {
+        "categoryBalloonEnabled": false,
+        "cursorAlpha": 0,
+        "zoomable": false
+      },
+      "categoryField": "customerid",
+      "categoryAxis": {
+        "gridPosition": "start",
+        "gridAlpha": 0,
+        "tickPosition": "start",
+        "tickLength": 20,
+        "labelRotation": 45
+      },
+      "export": {
+        "enabled": true
+      }
+
+    } );
+}
+
+
+function getdatesrev(){
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if(dd<10) {
+      dd = '0'+dd
+  }
+
+  if(mm<10) {
+      mm = '0'+mm
+  }
+
+  today = mm + '/' + dd + '/' + yyyy;
+
+  return today;
 }
 
 function showchart(value){
@@ -113,7 +205,3 @@ if(chart.zoomChart){
 function zoomChart(){
     chart.zoomToIndexes(Math.round(chart.dataProvider.length * 0.4), Math.round(chart.dataProvider.length * 0.55));
   }
-
-function monthlyshow(){
-
-}

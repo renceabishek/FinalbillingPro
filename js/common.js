@@ -14,16 +14,17 @@ function isNumberKeyFloat(evt,id)
             }
         }
         var values=document.getElementById(id).value;
-        console.log('---->'+values);
+
         if(values.includes('.')) {
           var dotVal=values.split('.');
           if(dotVal[1].length<=1){
             if (charCode > 31 && (charCode < 48 || charCode > 57) )
                 return false;
-            console.log('indi'+dotVal[1].length);
+
             return true;
           }
-          return false;
+
+          return true;
         }
         if (charCode > 31 && (charCode < 48 || charCode > 57) )
             return false;
@@ -54,7 +55,7 @@ function isNumberKey(evt,id)
 }
 
 function ondropup(obj){
-	console.log('this--->'+obj.getAttribute('class'));
+	
 	if($(obj).hasClass('open')) {
 		 //$('#drop1').removeClass('open');
 		 document.getElementById("drop1").classList.remove("open");
@@ -69,9 +70,14 @@ function ondropup(obj){
 function withDecimal(n){
 	var nums = n.toString().split('.')
 	 var whole = convertNumberToWords(nums[0])
-	 if (nums.length == 2) {
+	 if (nums.length == 2 && nums[1]!=00) {
 			 var fraction = convertNumberToWords(nums[1])
-			 return whole + 'and ' + fraction;
+			 if(whole.length>0){
+				 	return whole + 'and ' + fraction;
+			 } else{
+				 return fraction;
+			 }
+
 	 } else {
 			 return whole;
 	 }

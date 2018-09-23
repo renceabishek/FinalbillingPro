@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/billing.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../css/jquery-ui.css">
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <script src="../js/jquery-3.3.1.js"></script>
+  <script src="../js/jquery-ui.js"></script>
+  <script src="../js/jspdf.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/viewbilling.js"></script>
+
+
+
+</head>
+<body>
+
+  <div class="col-sm-12" style="top:20px">
+    <form id="ViewbillingFrom">
+      <div class="container-fluid col-sm-12">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="col-sm-3">
+    					 <input id="myInvoice" type="text"  class="searchInvoice"
+    					 placeholder="ENTER THE INVOICE NO">
+    				</div>
+    				<div class="col-sm-4" style="margin-left: -24px;margin-top: 5px;">
+    					 <!-- <button style="height: 30px !important;" onclick="onViewCustomer('nofocus')"  type="button"
+    					class="btn btn-primary " id="bdn_productremaction0"> View Customer</button> -->
+              <button type="button" class="btn btn-primary " onclick="ongetView()">
+                <i class="fa fa-eye"></i> View</button>
+              <button type="button" class="btn btn-primary " onclick="onget()">
+                <i class="glyphicon glyphicon-print"></i> Print</button>
+              <button type="button" class="btn btn-danger"  onclick="onClear()">
+                <i class="fa fa-undo"> </i>Clear</button>
+    				</div>
+          </div>
+          <div class="col-sm-12" style="margin-top:10px">
+            <div id="content"  >
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</body>

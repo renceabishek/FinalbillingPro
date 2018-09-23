@@ -27,7 +27,20 @@ db.defaults({ customer: [
       "cuspincode": "636001",
       "cusemail": "",
       "cusremarks": ""
-    }
+    },
+		{
+		      "customerid": "CC002",
+		      "customername": "GK Fruits",
+		      "buyerscode" : "GK001236",
+		      "cusarea": "SALEM GUGAI",
+		      "cusmobile": "",
+		      "custin": "33AABCR11",
+		      "cusaddress": "JN MAIN ROAD",
+		      "cusstate": "Tamil Nadu",
+		      "cuspincode": "636001",
+		      "cusemail": "",
+		      "cusremarks": ""
+		    }
 ]}).write();
 
 var productpath = process.env.APPDATA+'/VEGFRUIT/Product.json';
@@ -490,7 +503,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"43",
-			"producthsn" : "",
+			"producthsn" : "468",
       "prodtamil": "செல்லரி"
     },
     {
@@ -499,7 +512,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"38",
-			"producthsn" : "",
+			"producthsn" : "468",
       "prodtamil": "லீக்ஸ்"
     },
     {
@@ -508,7 +521,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"92",
-			"producthsn" : "",
+			"producthsn" : "468",
       "prodtamil": "கீரை"
     },
     {
@@ -517,7 +530,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"36",
-			"producthsn" : "",
+			"producthsn" : "468",
       "prodtamil": "லெட்யூஸ்"
     },
     {
@@ -526,7 +539,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"88",
-			"producthsn" : "",
+			"producthsn" : "468",
       "prodtamil": "மாங்காய்"
     },
     {
@@ -535,7 +548,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"44",
-			"producthsn" : "",
+			"producthsn" : "468",
       "prodtamil": "சேப்பக்கிழங்கு"
     },
     {
@@ -544,7 +557,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"55",
-			"producthsn" : "",
+			"producthsn" : "4684",
       "prodtamil": "கருனைக்கிழங்கு"
     },
     {
@@ -553,7 +566,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"40",
-			"producthsn" : "",
+			"producthsn" : "4684",
       "prodtamil": "மலைபூண்டு"
     },
     {
@@ -562,7 +575,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"50",
-			"producthsn" : "",
+			"producthsn" : "4684",
       "prodtamil": "அமெரிக்க ஸ்வீட்கான்"
     },
     {
@@ -571,7 +584,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"60",
-			"producthsn" : "",
+			"producthsn" : "468",
       "prodtamil": "ப்ரஷ் க்ரீம்"
     },
     {
@@ -580,7 +593,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"70",
-			"producthsn" : "",
+			"producthsn" : "875",
       "prodtamil": "பன்னிர்"
     },
     {
@@ -589,7 +602,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"80",
-			"producthsn" : "",
+			"producthsn" : "485548",
       "prodtamil": "பட்டர்"
     },
     {
@@ -598,7 +611,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"90",
-			"producthsn" : "",
+			"producthsn" : "4585",
       "prodtamil": "கோவா"
     },
     {
@@ -607,7 +620,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"89",
-			"producthsn" : "",
+			"producthsn" : "5484",
       "prodtamil": "சீஸ்"
     },
     {
@@ -616,7 +629,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"12",
-			"producthsn" : "",
+			"producthsn" : "458",
       "prodtamil": "தயிர்"
     },
     {
@@ -625,7 +638,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"22",
-			"producthsn" : "",
+			"producthsn" : "758",
       "prodtamil": "வாழைப்பழம்"
     },
     {
@@ -634,7 +647,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"22",
-			"producthsn" : "",
+			"producthsn" : "5733",
       "prodtamil": "ஆப்பிள்"
     },
     {
@@ -643,7 +656,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"44",
-			"producthsn" : "",
+			"producthsn" : "795",
       "prodtamil": "ஆரஞ்ச்"
     },
     {
@@ -652,7 +665,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"24",
-			"producthsn" : "",
+			"producthsn" : "579",
       "prodtamil": "சாத்துக்குடி"
     },
     {
@@ -661,7 +674,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"42",
-			"producthsn" : "",
+			"producthsn" : "579557",
       "prodtamil": "மாதுளை"
     },
     {
@@ -670,7 +683,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"46",
-			"producthsn" : "",
+			"producthsn" : "795",
       "prodtamil": "திராட்சை"
     },
     {
@@ -679,7 +692,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"65",
-			"producthsn" : "",
+			"producthsn" : "879",
       "prodtamil": "சப்போட்டா"
     },
     {
@@ -688,7 +701,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"80",
-			"producthsn" : "",
+			"producthsn" : "2334",
       "prodtamil": "அன்னாசி"
     },
     {
@@ -697,7 +710,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"33",
-			"producthsn" : "",
+			"producthsn" : "6464",
       "prodtamil": "தர்பூசணி"
     },
     {
@@ -706,7 +719,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"45",
-			"producthsn" : "",
+			"producthsn" : "464",
       "prodtamil": "மொழாம்பழம்"
     },
     {
@@ -715,7 +728,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"45",
-			"producthsn" : "",
+			"producthsn" : "4635",
       "prodtamil": "பப்பாளி"
     },
     {
@@ -723,7 +736,7 @@ db1.defaults({ product: [
       "productname": "Banana Red",
       "mrp": "0",
       "rate": "0",
-			"quantity":"",
+			"quantity":"462",
 			"producthsn" : "59",
       "prodtamil": "செவ்வாழை"
     },
@@ -733,7 +746,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"",
-			"producthsn" : "",
+			"producthsn" : "3535",
       "prodtamil": "வாழைப்பூ"
     },
     {
@@ -742,7 +755,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"",
-			"producthsn" : "",
+			"producthsn" : "646",
       "prodtamil": "ரஸ்தாளி"
     },
     {
@@ -751,7 +764,7 @@ db1.defaults({ product: [
       "mrp": "0",
       "rate": "0",
 			"quantity":"",
-			"producthsn" : "",
+			"producthsn" : "35",
       "prodtamil": "தேன் வாழை"
     }
 ]}).write();
@@ -773,8 +786,11 @@ db2.defaults({ settings: [{
 	"gstphno" : "",
 	"gsttinno": "",
 	"gstmail" : "",
-	"gstinvoiceno":"1000"
+	"gstinvoiceno":"1000",
+	"tamilEnglish":"tamil",
+	"currentdate":"09/22/2018"
 }]}).write();
+
 
 
 var spath;
@@ -992,3 +1008,10 @@ db3.defaults({ savemaster: [
       "date": "09/15/2018"
     }
 ]}).write();
+
+var spath;
+var mastersavepath = process.env.APPDATA+'/VEGFRUIT/saveinvoice.json';
+spath = new FileSync(mastersavepath);
+const db4 = low(spath);
+db4.defaults({ invoice: [
+	]}).write();

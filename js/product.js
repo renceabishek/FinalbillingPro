@@ -18,6 +18,7 @@
     document.getElementById("productreportFrom").setAttribute("class", "");
     document.getElementById("revenuereportFrom").setAttribute("class", "");
     document.getElementById("settingFrom").setAttribute("class", "");
+    document.getElementById("ViewbillingFrom").setAttribute("class", "");
 }
 
 
@@ -137,12 +138,12 @@ function getProductTable(){
 
 
 function addRowproduct() {
+
     var table = document.getElementById("dataTablePro");
     var rowCount = table.rows.length;
     var row = table.insertRow(rowCount);
     row.id = rowCount;
-    var idcount=1300 + rowCount;
-    idcount++;
+    var setting =db2.get('settings').value();
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
@@ -150,11 +151,11 @@ function addRowproduct() {
     var cell5 = row.insertCell(4);
     var cell6 = row.insertCell(5);
     var cell7 = row.insertCell(6);
-      var cell8 = row.insertCell(7);
+    var cell8 = row.insertCell(7);
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
-    element.setAttribute("value", idcount);
+    element.setAttribute("value", ++setting[0].productno);
     element.setAttribute("style", "text-align:left");
     element.setAttribute("class", "form-control");
     element.setAttribute("id", "productid" + rowCount);
@@ -162,21 +163,21 @@ function addRowproduct() {
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
-    element.setAttribute("style", "text-align:right");
+    element.setAttribute("style", "text-align:left");
     element.setAttribute("class", "form-control");
     element.setAttribute("id", "productval" + rowCount);
     cell2.appendChild(element);
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
-    element.setAttribute("style", "text-align:right");
+    element.setAttribute("style", "text-align:left");
     element.setAttribute("class", "form-control");
     element.setAttribute("id", "producthsn" + rowCount);
     cell3.appendChild(element);
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
-    element.setAttribute("style", "text-align:left");
+    element.setAttribute("style", "text-align:right");
     element.setAttribute("class", "form-control");
     element.setAttribute("id", "prodmrp" + rowCount);
     cell4.appendChild(element);
@@ -197,7 +198,7 @@ function addRowproduct() {
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
-    element.setAttribute("style", "text-align:right");
+    element.setAttribute("style", "text-align:left");
     element.setAttribute("class", "form-control");
     element.setAttribute("id", "prodtamil" + rowCount);
     cell7.appendChild(element);
@@ -297,6 +298,12 @@ function addintoProduct() {
     "producthsn": $('#producthsn'+i).val(),"mrp":$('#prodmrp'+i).val(),
    "rate":$('#prodrate'+i).val(),"quantity":$('#prodquan'+i).val(), "prodtamil":$('#prodtamil'+i).val() };
      db1.get('product').push(obj).write();
+
+     var setting =db2.get('settings').value();
+     var objset={"productno": ++setting[0].productno};
+
+     db2.get('settings').nth(0).assign(objset).value();
+     db2.write();
   }
 //  $("#proDTableBody").empty();
 //  getProductTable();
@@ -342,11 +349,11 @@ function myReadyFilter(){
 }
 
 function prodAddAction() {
-  //document.getElementById('product').reset();
-
+  document.getElementById('productform').reset();
+  var settings=db2.get("settings").value();
+  document.getElementById('productid0').value=settings[0].productno;
   $('#modalCompose').modal('show');
 }
-
 
 //Validation for empty
 function saveEditProductVal(){
@@ -406,7 +413,7 @@ function saveEditProduct(){
   var rows = document.getElementById("proDTableBody").rows.length;
   var y;
   for(i = 0; i <  rows; i++)
-  {    for(j = 0; j < 5; j++)
+  {    for(j = 0; j < 6; j++)
        {
            y = table[i].cells;
            //do something with cells in a row
@@ -479,20 +486,22 @@ function DelteProduct(){
   var index;
   var obj;
   for(i = 0; i <  rows; i++)
-  {    for(j = 0; j < 5; j++)
+  {    for(j = 0; j < 7; j++)
        {
            y = table[i].cells;
            //do something with cells in a row
            if(y[0].innerHTML==document.getElementById("span_delete").innerHTML){
              obj={
-             "productid":y[0].innerHTML,
-             "productname":y[1].innerHTML,
-               "producthsn":y[2].innerHTML,
-             "mrp":y[3].innerHTML,
-             "rate":y[4].innerHTML,
-           "quantity":y[5].innerHTML };
+             "productid":y[0].innerHTML
+             // "productname":y[1].innerHTML,
+             // "mrp":y[2].innerHTML,
+             // "rate":y[3].innerHTML,
+             // "quantity":y[4].innerHTML,
+             // "producthsn":y[5].innerHTML,
+             // "prodtamil":y[6].innerHTML
+             };
              index=i;
-
+             console.log('inside delete if'+obj);
              break;
            }
        }

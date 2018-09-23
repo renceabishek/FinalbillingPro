@@ -61,6 +61,7 @@ function wloadInitalRows(){
   element.setAttribute("onfocusout","wcalculatePerAMT(this)");
   element.setAttribute("onkeypress","return isNumberKey(event,this.id)");
   element.setAttribute("id", "wproductqty0" + rowCount1);
+  element.setAttribute("maxlength","10");
   cell3.width="150px";
   cell3.appendChild(element);
 
@@ -70,6 +71,7 @@ function wloadInitalRows(){
   element.setAttribute("id", "wproductrate0" + rowCount1);
   element.setAttribute("onkeypress","return isNumberKeyFloat(event,this.id)");
   element.setAttribute("onfocusout","wonFocust(this);");
+  element.setAttribute("maxlength","10");
   cell4.width="150px";
   cell4.appendChild(element);
 
@@ -103,11 +105,11 @@ function wcalculatePerAMT(event){
 function wfocusproductName(event){
   var id=event.id;
   var tr=$(event).closest('tr').attr('id');
-  console.log('id'+id);
+
   var productvalues = (db1.get('product').value());
   for(var i=0;i<productvalues.length;i++) {
     if(productvalues[i].productname==$('#'+id).val()){
-      console.log(tr);
+
       if(tr==0){
           document.getElementById('wproductrate0').value=productvalues[i].rate;
       } else{
@@ -117,7 +119,7 @@ function wfocusproductName(event){
     }
 
     if(productvalues[i].productid==$('#'+id).val()){
-      console.log(tr);
+
       if(tr==0){
           document.getElementById('wproductrate0').value=productvalues[i].rate;
           document.getElementById('wproductname0').value=productvalues[i].productname;
@@ -151,13 +153,11 @@ function wcalculatTotalSum() {
 
            }
   }
-  console.log('sum'+sum);
+
   if(sum <=0){
-    console.log('zero');
     document.getElementById('wprodTotalGrand').innerHTML="0.00";
 
   } else{
-    console.log('not zero');
     document.getElementById('wprodTotalGrand').innerHTML=parseFloat(sum).toFixed(2);
   }
 
@@ -208,7 +208,7 @@ function wonFocust(event){
  }
 }
 
-function wonbillAdd(event){
+function wonbillAdd(){
    var table1 = document.getElementById("wdataTableBill");
    var rowCount1 = table1.rows.length;
    var row = table1.insertRow(rowCount1);
@@ -239,6 +239,7 @@ function wonbillAdd(event){
    element.setAttribute("style", "height: 30px !important;");
    element.setAttribute("onfocusout","wfocusproductName(this);");
    element.setAttribute("id", "wproductname0"+rowCount1);
+   cell2.width="400px";
    cell2.appendChild(element);
 
 
@@ -246,14 +247,20 @@ function wonbillAdd(event){
    element.setAttribute("class", "rightalign inpText");
    element.setAttribute("style", "text-align:right");
    element.setAttribute("onfocusout","wcalculatePerAMT(this)");
+   element.setAttribute("onkeypress","return isNumberKey(event,this.id)");
    element.setAttribute("id", "wproductqty0" + rowCount1);
+   element.setAttribute("maxlength","10");
+   cell3.width="150px";
    cell3.appendChild(element);
 
    var element = document.createElement("input");
    element.setAttribute("class", "rightalign inpText");
    element.setAttribute("style", "text-align: right; height: 30px !important;");
    element.setAttribute("id", "wproductrate0" + rowCount1);
+   element.setAttribute("onkeypress","return isNumberKeyFloat(event,this.id)");
    element.setAttribute("onfocusout","wonFocust(this);");
+   element.setAttribute("maxlength","10");
+   cell4.width="150px";
    cell4.appendChild(element);
 
    var element = document.createElement("input");
@@ -273,11 +280,13 @@ function wsetPrinttablevalues(){
     var rowCount = table.rows.length;
     var obj=1;
     var qty=0;
+    var tamileng=db2.get('settings').value();
+    var tamilenglish=tamileng[0].tamilEnglish;
 
     $("#wp_tablebody tr:gt(0)").remove();
     console.log('count '+rowCount)
     var countitems=0;
-    for(var i=0;rowCount>i;i++){
+    for(var i=0;20>i;i++){
 
         var table1 = document.getElementById("wp_tablebody");
        var rowCount1 = table1.rows.length;
@@ -302,7 +311,13 @@ function wsetPrinttablevalues(){
          }
          else{
            countitems++;
-            cell2.innerHTML=db1.get('product').find({"productname":$('#wproductname0').val()}).value().prodtamil;
+           var vv=db1.get('product').find({"productname":$('#wproductname0').val()}).value();
+
+           if(tamilenglish=='tamil' && typeof vv !='undefined' && vv!=''){
+             cell2.innerHTML=db1.get('product').find({"productname":$('#wproductname0').val()}).value().prodtamil;
+           } else{
+             cell2.innerHTML=$('#wproductname0').val();
+           }
          }
          cell3.innerHTML=$('#wproductqty0').val();
          cell4.innerHTML=$('#wproductrate0').val();
@@ -310,22 +325,66 @@ function wsetPrinttablevalues(){
          cell5.innerHTML=$('#wprodval0').val();
          cell5.align="right";
          qty=+qty+ +$('#wproductqty0').val();
-       } else{
-       console.log('1 value'+$('#wprodsn0'+i).val()) ;
-       cell1.innerHTML=obj;
-       if($('#wproductname0'+i).val()==''){
-         cell2.innerHTML="";
-       } else{
-         countitems++;
-      cell2.innerHTML=db1.get('product').find({"productname":$('#wproductname0'+i).val()}).value().prodtamil;
-       }
 
-       cell3.innerHTML=$('#wproductqty0'+i).val();
-       cell4.innerHTML=$('#wproductrate0'+i).val();
-       cell4.align="right"
-       cell5.innerHTML=$('#wprodval0'+i).val();
-       cell5.align="right";
-       qty=+qty+ +$('#wproductqty0'+i).val();
+         var productvalues = (db1.get('product').value());
+         var index;
+         var proqty;
+         for(var ii=0;ii<productvalues.length;ii++) {
+           if(productvalues[ii].productname==$('#wproductname0').val()){
+              proqty=productvalues[ii].quantity;
+             index=ii;
+          //   break;
+           }
+         }
+         var c=proqty-$('#wproductqty0').val();
+         var obj1={"quantity":c.toString()};
+         db1.get('product').nth(index).assign(obj1).value();
+         db1.write();
+
+
+       } else{
+           console.log('1 value'+$('#wprodsn0'+i).val()) ;
+           cell1.innerHTML=obj;
+           if($('#wproductname0'+i).val()==''){
+             cell2.innerHTML="";
+           } else{
+             countitems++;
+             var vv=db1.get('product').find({"productname":$('#wproductname0'+i).val()}).value();
+             console.log('vv-->'+vv);
+             if(tamilenglish=='tamil' && typeof vv !='undefined' && vv!=''){
+               cell2.innerHTML=db1.get('product').find({"productname":$('#wproductname0'+i).val()}).value().prodtamil;
+             } else{
+               cell2.innerHTML=$('#wproductname0'+i).val();
+             }
+           }
+
+           cell3.innerHTML=$('#wproductqty0'+i).val();
+           cell4.innerHTML=$('#wproductrate0'+i).val();
+           cell4.align="right"
+           cell5.innerHTML=$('#wprodval0'+i).val();
+           cell5.align="right";
+           qty=+qty+ +$('#wproductqty0'+i).val();
+
+
+           if($('#wproductname0'+i).val() !=null && $('#wproductname0'+i).val().length>0) {
+           var productvalues = (db1.get('product').value());
+           var index;
+           var proqty;
+           for(var ii=0;ii<productvalues.length;ii++) {
+             if(productvalues[ii].productname==$('#wproductname0'+i).val()){
+                proqty=productvalues[ii].quantity;
+               index=ii;
+            //   break;
+             }
+           }
+
+           var c=proqty-$('#wproductqty0'+i).val();
+           var obj1={"quantity":c.toString()};
+           console.log('obj-->'+JSON.stringify(obj1));
+           console.log('index-->'+index);
+           db1.get('product').nth(index).assign(obj1).value();
+           db1.write();
+         }
        }
      // }
        document.getElementById("wp_totalitems").innerHTML=countitems;
@@ -354,7 +413,7 @@ function wgetdates(){
 }
 
 function wprintFunc(times) {
-    if(times<=20) {
+    if(times<=19) {
       console.log('--------->'+document.getElementById('hidecusId').innerHTML);
       var cuscity=db.get('customer').find({"customerid":document.getElementById('hidecusId').innerHTML}).value().cusarea;
       var setting =db2.get('settings').value();
@@ -376,13 +435,13 @@ function wprintFunc(times) {
       }
       wsetPrinttablevalues();
       document.getElementById("wprintmeMultiple").style.display="none";
-      document.getElementById("wp_totalvalue").innerHTML="&#8377;"+document.getElementById('wprodTotalGrand').innerHTML;
+      document.getElementById("wp_totalvalue").innerHTML="&#8377;"+parseFloat(document.getElementById('wprodTotalGrand').innerHTML).toFixed(2);
       document.getElementById("nettvalue").innerHTML="&#8377;"+document.getElementById('wprodTotalGrand').innerHTML;
       var printContents = document.getElementById('wprintme').innerHTML;
       var originalContents = document.body.innerHTML;
 
       document.body.innerHTML = printContents;
-
+      saveinvoicedata('no',printContents);
       window.print();
 
       document.body.innerHTML = originalContents;
@@ -393,8 +452,11 @@ function wprintFunc(times) {
 
       document.getElementById('wprodTotalGrand').innerHTML="0.00";
       document.getElementById('prodTotalGrand').innerHTML="0.00";
+      document.getElementById('span_customername').innerHTML="";
+
     } else {
       document.getElementById("wprintmeMultiple").style.display="";
       wprintMultiple(times);
+      $("#wp_tablebody1 tr:gt(0)").remove();
     }
 }

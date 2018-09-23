@@ -50,6 +50,7 @@
 					$('#drop').toggleClass('open')
 			 }
 			 });
+
 		 });
 </script>
 <style type="text/css">
@@ -92,7 +93,7 @@
 										INVOICE RECEIPT
 								    </div>
 									<div class="col-sm-6 text-center">
-										<span id="span_vesselname"  style="font-size: 25px"></span>
+										<span id="span_customername"  style="font-size: 18px;text-transform:uppercase;color:yellow;"></span>
 									</div>
 								</div>
 								<div class="col-sm-12" id="table-wrapper" style="top:50px" >
@@ -137,32 +138,32 @@
 												<td><span  class="text" id="info_bunstem"></span></td>
 												<td><span  class="text" id="info_bunstem"></span></td>
 												<td><span  class="text" id="info_bunstem"></span></td>
-												<td><span  class="text" id="info_bunstem">Sub Total</span></td>
-												<td align="center"><span  class="text" id="prodTotal">0.00</span></td>
+												<td><span  class="text" id="info_bunstem" style="font-size:15px;color:blue;font-weight:bold">SUB TOTAL</span></td>
+												<td align="center"><span  class="text" id="prodTotal"  style="font-weight:bold">0.00</span></td>
 											</tr>
 											<tr>
 												<td><span  class="text1" id="info_fuelrequirement"></span></td>
 												<td><span  class="text1" id="info_bunstem"></span></td>
 												<td><span  class="text" id="info_bunstem"></span></td>
-												<td><span  class="text1" id="info_bunstem">SGST</span></td>
+												<td><span  class="text1" id="info_bunstem" style="font-size:15px;color:blue;font-weight:bold">SGST</span></td>
 												<td><span  class="text1" id="info_bunstem"></span></td>
-												<td align="center"><span  class="text1" id="prodsgst">0.00</span></td>
+												<td align="center"><span  class="text1" id="prodsgst"  style="font-weight:bold">0.00</span></td>
 											</tr>
 											<tr>
 												<td><span  class="text2" id="info_fuelrequirement"></span></td>
 												<td><span  class="text2" id="info_bunstem"></span></td>
 												<td><span  class="text" id="info_bunstem"></span></td>
-												<td><span  class="text2" id="info_bunstem">CGST</span></td>
+												<td><span  class="text2" id="info_bunstem" style="font-size:15px;color:blue;font-weight:bold">CGST</span></td>
 												<td><span  class="text2" id="info_bunstem"></span></td>
-												<td align="center"><span  class="text2" id="prodcgst">0.00</span></td>
+												<td align="center"><span  class="text2" id="prodcgst"  style="font-weight:bold">0.00</span></td>
 											</tr>
 											<tr>
 												<td><span  class="text3" id="info_fuelrequirement"></span></td>
 												<td><span  class="text3" id="info_bunstem"></span></td>
 												<td><span  class="text" id="info_bunstem"></span></td>
-												<td><span  class="text3" id="info_bunstem">ROUND OFF</span></td>
+												<td><span  class="text3" id="info_bunstem" style="font-size:15px;color:blue;font-weight:bold">ROUND OFF</span></td>
 												<td><span  class="text3" id="info_bunstem"></span></td>
-												<td align="center"><span  class="text3" id="prodrn">0.00</span></td>
+												<td align="center"><span  class="text3" id="prodrn" style="font-weight:bold">0.00</span></td>
 											</tr
 										</tfoot>
 								</table>
@@ -209,7 +210,7 @@
 								</div>
 								</div>
 
-								<div class="col-lg-12" style="top:133px">
+								<div class="col-lg-12" style="top:143px">
 									<div class="col-lg-4" style="text-align: right;">
 									</div>
 									<div class="col-lg-4" style="text-align: right;">
@@ -341,7 +342,7 @@
             </div>
         </div>
     </div>
-		<div id='printme' style="display: none"  > <!--style="display: none"-->
+		<div id='printme' style="display: none"> <!--style="display: none"-->
 			<!-- <div style="border:1px solid">
 				<span id="p_customername" style="text-align:center"></span>
 			</div> -->
@@ -424,9 +425,11 @@
 						<td style="border-right:1px solid;border-bottom:1px solid" align="right" width="148px"><span id="tobodytotalAmt" style="font-size:20px"></span></td>
 					</tr>
 					<tr>
-						<th width="30px" style="height:32px"></th>
-						<th width="250px">Tax Chargeable (in words)</th>
-						<th width="520px" colspan="6"><span id="wordings"></span></th>
+						<!-- <th width="30px" style="height:32px"></th> -->
+						<!-- <th width="250px">Tax Chargeable (in words)</th> -->
+						<th width="800px" style="height:32px" colspan="8"> Tax Chargeable (in words)  :
+							<span id="wordings" style="text-transform: uppercase;font-size:12px"></span>
+						</th>
 					</tr>
 				</tfoot>
 			</table>
@@ -440,9 +443,9 @@
 						<td style="border-right:1px solid" width="160px" rowspan="2" align="center">Total Tax Amount</td>
 					</tr>
 					<tr>
-						<td style="border-right:1px solid" align="center" width="70px">Rate</td>
+						<td style="border-right:1px solid" align="center" width="70px">Rate (%)</td>
 						<td style="border-right:1px solid" align="center" width="70px">Amount</td>
-						<td style="border-right:1px solid" align="center" width="85px">Rate</td>
+						<td style="border-right:1px solid" align="center" width="85px">Rate (%)</td>
 						<td style="border-right:1px solid" align="center" width="85px">Amount</td>
 					</tr>
 				</thead>
@@ -468,9 +471,11 @@
 							<span id="ttamount"></span>
 						</td>
 					</tr>
-					<tr>
-						<td width="280px" style="border-bottom:1px solid;height:32px">Tax Amount (in words)</td>
-						<td width="520px"  style="border-bottom:1px solid;border-right:1px solid" colspan="6"><span id="wordingstax"></span></td>
+					<tr >
+						<!-- <td width="180px" style="border-bottom:1px solid;height:32px">Tax Amount (in words) : </td> -->
+						<td width="900px"  style="border-bottom:1px solid;border-right:1px solid" colspan="7">
+							<span>Tax Amount (in words) :</span>
+							<span id="wordingstax" style="text-transform: uppercase;font-weight:bold"></span></td>
 					</tr>
 					<tr>
 						<td width="280px" style="border-bottom:1px solid;border-right:1px" colspan="4" >&nbsp;</td>
@@ -480,7 +485,8 @@
 							Branch & IFSC Code: <span style="font-weight:bold">SEVAPET & SYNB0006290</span></td>
 					</tr>
 					<tr>
-						<td width="280px" style="border-bottom:1px solid; border-right:1px solid" colspan="4" rowspan="4">Declaration:<br>We Hereby certify that the foods mentioned in <br>
+						<td width="280px" style="border-bottom:1px solid; border-right:1px solid" colspan="4" rowspan="4">
+							Declaration:<br>We Hereby certify that the foods mentioned in <br>
 						this invoice is/are warranted to be of the <br>nature and which these purport to be</td>
 						<td width="520px" style="border-bottom:1px solid;border-right:1px;text-align:right;padding-top:38px" colspan="4" rowspan="4">
 

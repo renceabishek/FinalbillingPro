@@ -1,3 +1,10 @@
+// $(document).ready(function () {
+//     var info = (db.get('customer').value());
+//     console.log('inital value---->'+info[0].customerid);
+//      makeActiveSidebar();
+//     document.getElementById("cus_code").value=info[0].customerid;
+// });
+
 $(document).ready(function() {
   console.log('insie inn');
     makeActiveSidebar();
@@ -267,12 +274,13 @@ function myFilter() {
 
  function makeActiveSidebar(){
    document.getElementById("customerFrom").setAttribute("class", "active");
-   document.getElementById("productFrom").setAttribute("class", "");
-   document.getElementById("billingFrom").setAttribute("class", "");
-   document.getElementById("stockreportFrom").setAttribute("class", "");
-   document.getElementById("productreportFrom").setAttribute("class", "");
-   document.getElementById("revenuereportFrom").setAttribute("class", "");
-   document.getElementById("settingFrom").setAttribute("class", "");
+  document.getElementById("productFrom").setAttribute("class", "");
+  document.getElementById("billingFrom").setAttribute("class", "");
+  document.getElementById("stockreportFrom").setAttribute("class", "");
+  document.getElementById("productreportFrom").setAttribute("class", "");
+  document.getElementById("revenuereportFrom").setAttribute("class", "");
+  document.getElementById("settingFrom").setAttribute("class", "");
+  document.getElementById("ViewbillingFrom").setAttribute("class", "");
 }
 
 
@@ -297,14 +305,8 @@ function getCustomerTable(){
     var cell7 = row.insertCell(6);
     var cell8 = row.insertCell(7);
     var cell9 = row.insertCell(8);
-
-
-
-
-
         console.log("------fuel value s "+ customervalues[i].customerid)
         console.log("------fuel value s "+ customervalues[i].custin)
-
     cell1.innerHTML= customervalues[i].customerid;
     cell1.id="CUS_ID" + i;
 
@@ -358,10 +360,14 @@ function getCustomerTable(){
 
 
 function addRowcustomer() {
-    var table = document.getElementById("customer_form");
+var customervalues = (db.get('customer').value());
+  for(var i=0;i<customervalues.length;i++) {
+    var table = document.getElementById("customerTableBody");
     var rowCount = table.rows.length;
     var row = table.insertRow(rowCount);
     row.id = rowCount;
+    row.style.textAlign="center";
+
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
@@ -370,47 +376,80 @@ function addRowcustomer() {
     var cell6 = row.insertCell(5);
     var cell7 = row.insertCell(6);
 
-    var element = document.createElement("input");
-    element.setAttribute("type", "text");
-    element.setAttribute("style", "text-align:left");
-    element.setAttribute("class", "form-control");
-    element.setAttribute("id", "customerid" + rowCount);
-    cell1.appendChild(element);
+    cell1.innerHTML= customervalues[i].customerid;
+   cell1.id="CUS_ID" + i;
 
-    var element = document.createElement("input");
-    element.setAttribute("type", "text");
+    cell2.innerHTML=customervalues[i].customername;
+    cell2.id="CUS_NAME" + i;
+
+    cell3.innerHTML=customervalues[i].buyerscode;
+    cell3.id="CUS_BCODE" + i;
+
+    cell4.innerHTML=customervalues[i].cusarea;
+    cell4.id="CUS_AREA" + i;
+
+    cell5.innerHTML=customervalues[i].cusmobile;
+    cell5.id="CUS_MOBILE" + i;
+
+    cell6.innerHTML=customervalues[i].custin;
+    cell6.id="CUS_TIN" + i;
+
+    // var element = document.createElement("input");
+    // // element.setAttribute("type", "text");
+    // // element.setAttribute("style", "text-align:left");
+    // // element.setAttribute("class", "form-control");
+    // cell1.innerHTML= customervalues[i].customerid;
+    // cell1.id="CUS_ID" + i;
+    // element.setAttribute("id", "customerid" + rowCount);
+    // cell1.appendChild(element);
+    //
+    // var element = document.createElement("input");
+    // element.setAttribute("type", "text");
+    // element.setAttribute("style", "text-align:right");
+    // element.setAttribute("class", "form-control");
+    // element.setAttribute("id", "customername" + rowCount);
+    // cell2.appendChild(element);
+    //
+    // var element = document.createElement("input");
+    // element.setAttribute("type", "text");
+    // element.setAttribute("style", "text-align:right");
+    // element.setAttribute("class", "form-control");
+    // element.setAttribute("id", "buyerscode" + rowCount);
+    // cell3.appendChild(element);
+    //
+    // var element = document.createElement("input");
+    // element.setAttribute("type", "text");
+    // element.setAttribute("style", "text-align:left");
+    // element.setAttribute("class", "form-control");
+    // element.setAttribute("id", "cusarea" + rowCount);
+    // cell4.appendChild(element);
+    //
+    // var element = document.createElement("input");
+    // element.setAttribute("type", "text");
+    // element.setAttribute("style", "text-align:right");
+    // element.setAttribute("class", "form-control");
+    // element.setAttribute("id", "cusmobile" + rowCount);
+    // cell5.appendChild(element);
+    //
+    // var element = document.createElement("input");
+    // element.setAttribute("type", "text");
+    // element.setAttribute("style", "text-align:right");
+    // element.setAttribute("class", "form-control");
+    // element.setAttribute("id", "custin" + rowCount);
+    // cell6.appendChild(element);
+    element.setAttribute("style", "text-align:center");
+    element.setAttribute("id", i);
+    element.setAttribute("type", "button");
+    element.setAttribute("onclick", "btnMoreInfoaction(this);");
+    cell7.appendChild(element);
+
+    var element = document.createElement("button");
+    element.setAttribute("class", "fa fa-edit  prod_edit");
     element.setAttribute("style", "text-align:right");
-    element.setAttribute("class", "form-control");
-    element.setAttribute("id", "customername" + rowCount);
-    cell2.appendChild(element);
-
-    var element = document.createElement("input");
-    element.setAttribute("type", "text");
-    element.setAttribute("style", "text-align:right");
-    element.setAttribute("class", "form-control");
-    element.setAttribute("id", "buyerscode" + rowCount);
-    cell3.appendChild(element);
-
-    var element = document.createElement("input");
-    element.setAttribute("type", "text");
-    element.setAttribute("style", "text-align:left");
-    element.setAttribute("class", "form-control");
-    element.setAttribute("id", "cusarea" + rowCount);
-    cell4.appendChild(element);
-
-    var element = document.createElement("input");
-    element.setAttribute("type", "text");
-    element.setAttribute("style", "text-align:right");
-    element.setAttribute("class", "form-control");
-    element.setAttribute("id", "cusmobile" + rowCount);
-    cell5.appendChild(element);
-
-    var element = document.createElement("input");
-    element.setAttribute("type", "text");
-    element.setAttribute("style", "text-align:right");
-    element.setAttribute("class", "form-control");
-    element.setAttribute("id", "custin" + rowCount);
-    cell6.appendChild(element);
+    element.setAttribute("id", i);
+    element.setAttribute("type", "button");
+    element.setAttribute("onclick", "btnEditaction(this);");
+    cell8.appendChild(element);
 
     var element = document.createElement("button");
     element.setAttribute("style", "text-align:center;height: 30px !important; ");
@@ -418,8 +457,9 @@ function addRowcustomer() {
     element.setAttribute("class", "btn btn-danger fa fa fa-remove");
     element.setAttribute("id", "cusaction" + rowCount);
     element.setAttribute("onclick","onCusremove(event)");
-    cell7.appendChild(element);
+    cell9.appendChild(element);
 
+}
 }
 
 function onCusremove(event){
@@ -440,7 +480,7 @@ function savenewCusValidation(){
   var table = document.getElementById("customer_form").elements.length;
   //var rowCount = table;
 
-    console.log("Cus code "+ cus_code);
+    // console.log("Cus code "+ cus_code);
     console.log("Cus tin" + cus_tin);
     // if($.trim($('#cus_code').val())==''){
     //   alert('Customer Id should not be Empty');
@@ -512,6 +552,7 @@ function saveeditCusValidation(){
 function addintoCustomer() {
   var customervalues = (db.get('customer').value());
   var count=customervalues.length+1;
+
   var t = $('#customerTable').DataTable();
 
 
@@ -534,8 +575,8 @@ function addintoCustomer() {
         var val10="<span id=CUS_REM"+count+">"+$('#cus_remarks').val()+"</span>";**/
 
     var val7="<button id='CUS_INFO' type='button'  style='text-align:center' class='glyphicon glyphicon-info-sign  prod_moreinfo' onclick=btnMoreInfoaction(this);></button>";
-    var val8="<button id='CUS_EDIT' type='button' class='fa fa-edit prod_edit' onclick=btnEditaction(this);></button>";
-    var val9="<button id='CUS_DEL' type='button' class='fa fa-trash prod_trash' onclick=btnDeleteAction(this);></button>";
+    var val8="<button id='CUS_EDIT' type='button' style='text-align:center' class='fa fa-edit prod_edit' onclick=btnEditaction(this);></button>";
+    var val9="<button id='CUS_DEL' type='button' style='text-align:center' class='fa fa-trash prod_trash' onclick=btnDeleteAction(this);></button>";
     console.log(val1);
      t.row.add( [
            val1,
@@ -550,14 +591,21 @@ function addintoCustomer() {
        ] ).draw( false );
 
 
-     var obj = { "customerid": $('#cus_code').val(), "customername": $('#cus_name').val(),"cusarea":$('#cus_area').val(),
+     var obj = {"customerid":$('#cus_code').val(),"customername": $('#cus_name').val(),"cusarea":$('#cus_area').val(),
       "buyerscode": $('#cus_bcode').val(),"cusarea":$('#cus_area').val(),
    "cusmobile":$('#cus_mobile').val(), "custin":$('#cus_tin').val(),"cusaddress":$('#cus_address').val(),
  "cusstate":$('#cus_state').val(),"cuspincode":$('#cus_pincode').val(),"cusemail":$('#cus_email').val(),
 "cusremarks":$('#cus_remarks').val() };
-     db.get('customer').push(obj).write();
 
+     //var obj1 = {"customerid":document.getElementById('cus_code').value};
+     db.get('customer').push(obj).value();
+     db.write();
 
+     var setting =db2.get('settings').value();
+     var objset={"customerno": ++setting[0].customerno};
+
+     db2.get('settings').nth(0).assign(objset).value();
+     db2.write();
 
   $('#customer_form').find("tr:gt(0)").remove();
   $('#cus_code').val('');
@@ -573,8 +621,9 @@ function addintoCustomer() {
 
 
 function cusAddAction() {
-  //document.getElementById('product').reset();
-
+  document.getElementById('customer_form').reset();
+  var settings=db2.get("settings").value();
+  document.getElementById('cus_code').value=settings[0].customerno;
   $('#modalCompose').modal('show');
 }
 
@@ -635,6 +684,8 @@ function saveMoreinfoValCustomer(){
 function savemoreinfoValidation(){
   var table = document.getElementById("customer_form").elements.length;
   //var rowCount = table;
+
+    //
 
     console.log("Cus code "+ cus_code);
     console.log("Cus tin" + cus_tin);

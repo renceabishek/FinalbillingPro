@@ -22,6 +22,7 @@ function makeActiveSidebar(){
  document.getElementById("productreportFrom").setAttribute("class", "active");
  document.getElementById("revenuereportFrom").setAttribute("class", "");
  document.getElementById("settingFrom").setAttribute("class", "");
+ document.getElementById("ViewbillingFrom").setAttribute("class", "");
 }
 
 

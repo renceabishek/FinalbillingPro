@@ -38,6 +38,13 @@
       document.getElementById("gstinno_gst").value=info[0].gsttinno;
       document.getElementById("gstemailgst").value=info[0].gstmail;
       document.getElementById("gstinvoiceno").value=info[0].gstinvoiceno;
+      if(info[0].tamilEnglish=='tamil') {
+          document.getElementById("messageCheckbox").checked=true;
+      } else {
+          document.getElementById("messageCheckbox").checked=false;
+      }
+      document.getElementById("cus_code").value=info[0].customerno;
+      document.getElementById("productid0").value=info[0].productno;
 
   });
 
@@ -50,6 +57,7 @@
     document.getElementById("productreportFrom").setAttribute("class", "");
     document.getElementById("revenuereportFrom").setAttribute("class", "");
     document.getElementById("settingFrom").setAttribute("class", "active");
+    document.getElementById("ViewbillingFrom").setAttribute("class", "");
 
  }
 
@@ -73,6 +81,18 @@ function savetoLowdb(){
   db2.write();
 }
 
+function checkTamil(){
+  var checkedValue = $('#messageCheckbox:checked').val();
+  var obj;
+  if(checkedValue!='tamil'){
+    obj={"tamilEnglish":''};
+  } else{
+    obj={"tamilEnglish":checkedValue};
+  }
+
+  db2.get('settings').nth(0).assign(obj).value();
+  db2.write();
+}
 
 function onSaveAction(){
     var obj={"ownername":document.getElementById("Ownersname").value};
@@ -171,4 +191,148 @@ function gstsavevalidation(){
   else {
     return true;
   }
+}
+
+function onSaveActionCusId(){
+  if(document.getElementById('cus_code').value==""){
+    alert('values cannot be empty');
+  } else{
+    var obj={"customerno":document.getElementById('cus_code').value};
+    db2.get('settings').nth(0).assign(obj).value();
+    db2.write();
+    alert('saved');
+  }
+}
+
+function onSaveActionProdId(){
+  if(document.getElementById('productid0').value==""){
+    alert('values cannot be empty');
+  } else{
+    var obj={"productno":document.getElementById('productid0').value};
+    db2.get('settings').nth(0).assign(obj).value();
+    db2.write();
+    alert('saved');
+  }
+}
+
+function onSaveBackup()
+{
+  const fs = require('fs-extra')
+  const URL = require('url').URL;
+  const URL1 = require('url').URL;
+  var fss = require('fs');
+  var dir = 'F:/Backup/'
+  var date = new Date();
+  var n = date.toDateString();
+  var time = date.toLocaleTimeString();
+
+  const myFileURL = new URL('file://'+process.env.APPDATA+'/VEGFRUIT/Customer.JSON');
+  const myFileURL1 = new URL('file://'+process.env.APPDATA+'/VEGFRUIT/Product.JSON');
+  const myFileURL2 = new URL('file://'+process.env.APPDATA+'/VEGFRUIT/savedata.JSON');
+  const myFileURL3 = new URL('file://'+process.env.APPDATA+'/VEGFRUIT/settings.JSON');
+
+  if (!fss.existsSync(dir)){
+     fss.mkdirSync(dir);
+
+ }
+ else {
+
+   fs.readFile(myFileURL,'utf8', function(err,data){
+     fs.writeFile(dir+'Customer.JSON',data);
+          if(err){
+       console.log(err);
+     }
+     else
+       {
+         console.log('success!')
+       }
+       });
+
+       fs.readFile(myFileURL1,'utf8', function(err,data){
+         fs.writeFile(dir+'Product.JSON',data);
+         if(err){
+           console.log(err);
+              }
+              else
+              {
+                console.log('success!')
+              }
+            });
+              fs.readFile(myFileURL2,'utf8', function(err,data){
+                fs.writeFile(dir+'savedata.JSON',data);
+                if(err){
+                  console.log(err);
+
+                }
+                else
+                {
+                  console.log('success!')
+                }
+              });
+              fs.readFile(myFileURL3,'utf8', function(err,data){
+                fs.writeFile(dir+'settings.JSON',data);
+                if(err){
+                  console.log(err);
+                }
+                else
+                {
+                  console.log('success!')
+                }
+              });
+ }
+
+//Send Backup file to gkcomputersolutions13@gmail.com
+const nodemailer = require('nodemailer');
+const xoauth2 = require('xoauth2');
+var transporter = nodemailer.createTransport({
+  service : "gmail",
+  auth : {
+    xoauth2:xoauth2.createXOAuth2Generator(
+      {
+        user : 'gkcomputersolutions13@gmail.com',
+        clientId : '62921149960-d8mhrlr5uchatuipaivfq0msdfglnl6h.apps.googleusercontent.com',
+        clientSecret :'dCNKGSOY62T9QwrokQrPBse8',
+        refreshToken:'1/tJeDSwtLP0KEn5RY8chf02Dtn_yEaOZEQONjG4J2WJk2lAv4Amy9ZMfsAOQjhVq5'
+      })
+  }
+})
+
+console.log('datge:',n);
+console.log('time:',time);
+var mailOptions = {
+  from : 'gkcomputersolutions13@gmail.com',
+  to : 'gkcomputersolutions13@gmail.com',
+  subject :'Backup Json File' + n + time,
+  text : 'Please find the backup file',
+  attachments: [
+    {   // file on disk as an attachment
+            filename: 'Customer.json',
+            path: process.env.APPDATA+'/VEGFRUIT/Customer.JSON' // stream this file
+        },
+        {   // file on disk as an attachment
+                filename: 'Product.json',
+                path: process.env.APPDATA+'/VEGFRUIT/Product.JSON' // stream this file
+            },
+            {   // file on disk as an attachment
+                    filename: 'savedata.json',
+                    path: process.env.APPDATA+'/VEGFRUIT/savedata.JSON' // stream this file
+                },
+                {   // file on disk as an attachment
+                        filename: 'settings.json',
+                        path: process.env.APPDATA+'/VEGFRUIT/settings.JSON' // stream this file
+                    },
+  ]
+}
+
+transporter.sendMail(mailOptions,function(err,res){
+  if(err)
+  {
+      alert('Please connect to Internet and Try to Backup');
+    console.log('Error');
+  }
+  else {
+      console.log('Email sent');
+    }
+})
+
 }

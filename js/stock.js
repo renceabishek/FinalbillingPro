@@ -13,6 +13,7 @@ function makeActiveSidebar(){
   document.getElementById("productreportFrom").setAttribute("class", "");
   document.getElementById("revenuereportFrom").setAttribute("class", "");
   document.getElementById("settingFrom").setAttribute("class", "");
+  document.getElementById("ViewbillingFrom").setAttribute("class", "");
 }
 
 function getstockvalues(){
