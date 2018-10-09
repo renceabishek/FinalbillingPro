@@ -9,186 +9,324 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Product Information</title>
 
 
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page
-	 via file:// -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<link href="../css/progressbar.css" rel="stylesheet" type="text/css">
+    <link href="../css/progressbar.css" rel="stylesheet" type="text/css">
+		<!-- <link rel="stylesheet" href="../css/print.css"> -->
+		<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<!-- <link href="../css/ibsstyle.css" rel="stylesheet" type="text/css"> -->
+		<link href="../css/billing.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/jquery-ui.css">
+		<link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!-- <script src="../vendor/jquery/jquery.js"></script> -->
 
-	<link href="../css/bdn.css" rel="stylesheet" type="text/css">
-	<script src="../js/datatable.js"></script>
-	<link href="../css/datatable.css" rel="stylesheet" type="text/css">
-	<link href="../css/productcss.css" rel="stylesheet" type="text/css">
-	<script src="../js/product.js"></script>
-	<script src="../js/common.js"></script>
+	<!-- <script src="../js/jquery-3.2.1.min.js"></script> -->
+	<script src="../js/jquery-3.3.1.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<script src="../js/billing.js"></script> <script
+	src="../js/wbilling.js"></script> <script src="../js/common.js"></script>
+	<script src="../js/print.js"></script>
 
 
 
+
+
+<script>
+    $("document").ready(function() {
+			$('#drop').on('click', function(e) {
+			 if($(this).hasClass('open')) {
+					$('#drop').removeClass('open')
+				}
+			 else{
+					$('#drop').toggleClass('open')
+			 }
+			 });
+
+		 });
+</script>
+<style type="text/css">
+         /* .pageBreak {page-break-after: always;} */
+		.pageBreak {
+				 page-break-after: always;
+        page-break-inside: avoid;
+			}
+</style>
 </head>
-<div id="page-content-wrapper">
-	<form id="productform">
+	<div class="col-sm-12">
+		<div id="page-content-wrapper" class="col-sm-12">
+			<div class="col-sm-12">
+				<div class="col-sm-4">
+					 <input id="myCustomer" type="text" class="searchInput1" name="myCountry" onfocusout="focusCusName(this);"
+					 placeholder="Enter the Customer">
+					 <span id="hidecusId" style="display:none"></span>
 
-		<div class="container-fluid">
-			<div class="row">
-
-			<div style="background:white;border: 1px solid #ffffff;box-shadow: 5px 5px 27px #8f8e8e;border-radius: 10px;margin:0 auto;Z-INDEX: 2000; margin-top: -15px;">
-
-			<div class="col-sm-12" style="font-size:16px;color:#00b6e3;margin-top: 5px;font-weight:bold;background-color: darkblue !important;margin-top: 0px; color:white;padding:5px;border-radius:10px 10px 0 0">
-
-				<div class="col-sm-3  text-left"  style="padding-top: 7px !important;" >Product Information </div>
-				<div class="col-sm-6  text-center">
-	                <span  maxlength="200" style="font-size: 25px !important;" id="span_vesselname" readonly> </span>
-	            </div>
+				</div>
+				<div class="col-sm-4" style="margin-left: -29px;margin-top: 9px;">
+					 <button style="height: 30px !important;" onclick="onViewCustomer('nofocus')"  type="button"
+					class="btn btn-primary " id="bdn_productremaction0"> View Customer</button>
+				</div>
+			</div>
+			<div class="col-sm-12">
 
 
-            </div>
+		</div>
+			<div class="col-sm-12" style="top:20px">
+				<form id="billingForm">
+
+					<div class="container-fluid col-sm-12">
+
 						<div class="row">
-							<div class="col-sm-12" style="padding:18px; width:99%; margin-left:7px;">
-				      <div class="panel panel-info highlighter">
-				      <div class="panel-body" style="padding:6px">
 
-							<table id="proDTable" class="display" style="margin-left:8px;">
-				          	<thead>
-				            	<tr>
-							             <th class="text-center">Product ID</th>
-							             <th class="text-center">Product Name </th>
-										  <th class="text-center">HSN Code</th>
-							             <th class="text-center">M.R.P</th>
-							             <th class="text-center">RATE</th>
-													 <th class="text-center">Total Product Quantity</th>
-													 <th class="text-center">Product Name in Tamil</th>
-													 <th class="text-center">Edit </th>
-							             <th class="text-center">Delete </th>
-				              </tr>
-				            </thead>
-										<tbody id="proDTableBody">
+							<div style="background:white;border: 1px solid #ffffff;box-shadow: 5px 5px 27px #8f8e8e;border-radius: 10px;margin:0 auto;Z-INDEX: 2000; margin-top: -15px; height:580px">
+								<div class="col-sm-12" style="font-size:16px;color:#00b6e3;margin-top: 5px;font-weight:bold;background-color: darkblue;margin-top: 0px; color:white;padding:5px;border-radius:10px 10px 0 0">
+
+								    <div class="col-sm-3 text-left" style="padding-top: 7px">
+										INVOICE RECEIPT
+								    </div>
+									<div class="col-sm-6 text-center">
+										<span id="span_customername"  style="font-size: 18px;text-transform:uppercase;color:yellow;"></span>
+									</div>
+								</div>
+								<div class="col-sm-12" id="table-wrapper" style="top:50px" >
+									<div  id="table-scroll">
+									<table id="billTable">
+										<thead>
+											<tr>
+												<th ><span  class="text" id="info_fuelrequirement">S.NO</span></th>
+												<th style="text-align:center"><span  class="text" id="info_bunstem">Product Name</span></th>
+												<th style="text-align:center"><span  class="text" id="info_bunstem">GST (%)</span></th>
+												<th style="text-align:center"><span  class="text" id="info_bunstem">Qty</span></th>
+												<th style="text-align:center"><span  class="text" id="info_bunstem">RATE</span></th>
+												<th style="text-align:center"><span  class="text" id="info_bunstem">VALUE</span></th>
+											</tr>
+										</thead>
+										<tbody id="dataTableBill">
+											<tr id=0>
+												<td width="50px">
+													<input style="text-align: left;" readonly  class="inpTextsno rightalign"
+													id="prodsn0" value="1">
+												</td>
+												<td width="450px">
+														<input   onfocusout="focusproductName(this);" style="height: 30px !important;"  class="inpTextPname searchInput" id="productname0">
+												</td>
+												<td width="150px">
+														<input maxlength="2" onkeypress="return isNumberKeyFloat(event,this.id)"  onfocusout="gstcalculation()" style="height: 30px !important; text-align: right;"  class="inpTextPname" id="productgst0">
+												</td>
+												<td width="150px">
+													<input maxlength="15"  onkeypress="return isNumberKey(event,this.id)" style="text-align: right;" onfocusout="calculatePerAMT(this)" class="inpText rightalign" id="productqty0">
+												</td>
+												<td width="150px">
+													<input maxlength="10"   onkeypress="return isNumberKeyFloat(event,this.id)" style="text-align: right; " class="inpText rightalign" onfocusout="onFocust(this);" id="productrate0">
+												</td>
+												<td width="150px">
+													<input  style="text-align: right;"  readonly class="inpText rightalign" id="prodval0">
+												</td>
+										</tr>
+										</tbody>
+										<tfoot>
+											<tr>
+												<td><label  class="text" id="info_fuelrequirement"></span></td>
+												<td><span  class="text" id="info_bunstem"></span></td>
+												<td><span  class="text" id="info_bunstem"></span></td>
+												<td><span  class="text" id="info_bunstem"></span></td>
+												<td><span  class="text" id="info_bunstem" style="font-size:15px;color:blue;font-weight:bold">SUB TOTAL</span></td>
+												<td align="center"><span  class="text" id="prodTotal"  style="font-weight:bold">0.00</span></td>
+											</tr>
+											<tr>
+												<td><span  class="text1" id="info_fuelrequirement"></span></td>
+												<td><span  class="text1" id="info_bunstem"></span></td>
+												<td><span  class="text" id="info_bunstem"></span></td>
+												<td><span  class="text1" id="info_bunstem" style="font-size:15px;color:blue;font-weight:bold">SGST</span></td>
+												<td><span  class="text1" id="info_bunstem"></span></td>
+												<td align="center"><span  class="text1" id="prodsgst"  style="font-weight:bold">0.00</span></td>
+											</tr>
+											<tr>
+												<td><span  class="text2" id="info_fuelrequirement"></span></td>
+												<td><span  class="text2" id="info_bunstem"></span></td>
+												<td><span  class="text" id="info_bunstem"></span></td>
+												<td><span  class="text2" id="info_bunstem" style="font-size:15px;color:blue;font-weight:bold">CGST</span></td>
+												<td><span  class="text2" id="info_bunstem"></span></td>
+												<td align="center"><span  class="text2" id="prodcgst"  style="font-weight:bold">0.00</span></td>
+											</tr>
+											<tr>
+												<td><span  class="text3" id="info_fuelrequirement"></span></td>
+												<td><span  class="text3" id="info_bunstem"></span></td>
+												<td><span  class="text" id="info_bunstem"></span></td>
+												<td><span  class="text3" id="info_bunstem" style="font-size:15px;color:blue;font-weight:bold">ROUND OFF</span></td>
+												<td><span  class="text3" id="info_bunstem"></span></td>
+												<td align="center"><span  class="text3" id="prodrn" style="font-weight:bold">0.00</span></td>
+											</tr
+										</tfoot>
+								</table>
+
+								</div>
+								</div>
+								<!--without GST Table Begins -->
+
+								<div class="col-sm-12" id="table-wrapper1" style="top:50px" >
+									<div  id="table-scroll">
+									<table id="wbillTable">
+										<thead>
+											<tr>
+												<th><span  class="text" id="info_fuelrequirement">S.NO</span></th>
+												<th style="text-align:center"><span  class="text" id="info_bunstem">PRODUCT NAME</span></th>
+												<th style="text-align:center"><span  class="text" id="info_bunstem">QTY</span></th>
+												<th style="text-align:center"><span  class="text" id="info_bunstem">RATE</span></th>
+												<th style="text-align:center"><span  class="text" id="info_bunstem">VALUE</span></th>
+											</tr>
+										</thead>
+										<tbody id="wdataTableBill">
+											<tr id=0>
+												<td width="50px">
+													<input style="text-align: left;" readonly  class="inpTextsno rightalign"
+													id="wprodsn0" value="1">
+												</td>
+												<td width="400px">
+														<input  onfocusout="wfocusproductName(this);" style="height: 30px !important;"  class="inpTextPname searchInput" id="wproductname0">
+												</td>
+												<td width="150px">
+													<input  maxlength="10" onkeypress="return isNumberKey(event,this.id)" style="text-align: right;" onfocusout="wcalculatePerAMT(this)" class="inpText rightalign" id="wproductqty0">
+												</td>
+												<td width="150px">
+													<input   maxlength="10" onkeypress="return isNumberKeyFloat(event,this.id)"  style="text-align: right; " class="inpText rightalign" onfocusout="wonFocust(this);" id="wproductrate0">
+												</td>
+												<td width="150px">
+													<input  style="text-align: right;" readonly class="inpText rightalign" id="wprodval0">
+												</td>
+										</tr>
 										</tbody>
 
-				      </table>
+								</table>
+
+								</div>
+								</div>
+
+								<div class="col-lg-12" style="top:143px">
+									<div class="col-lg-4" style="text-align: right;">
+									</div>
+									<div class="col-lg-4" style="text-align: right;">
+										<span style="font-size:30px">TOTAL: </span>
+										<span style=" font-weight:bold;font-size:30px" >&#8377;</span>
+										<span id="prodTotalGrand" style="color: red; font-weight:bold;font-size:30px">0.00</span>
+										<span id="wprodTotalGrand" style="color: red; font-weight:bold;font-size:30px">0.00</span>
+										<span id="productqty" style="color: red; font-weight:bold;font-size:30px;display:none"></span>
+									</div>
+									<div class="col-lg-4" style="text-align: right;">
+										<button type="button" class="btn btn-success" onclick="onbillAdd(event)"> 	<i class="fa fa-plus-circle "> </i> Add Product</button>
+										<button type="button" class="btn btn-success" onclick="printFuntion()"> <i class="glyphicon glyphicon-print"> </i> Print</button>
+										<button type="button" class="btn btn-danger" onclick="resetaction()" > <i class="fa fa-undo"> </i> Reset</button>
+									</div>
+
+
+
+									</div>
+
+
+							</div>
+
 						</div>
-						</div>
-						</div>
-						</div>
+
+
+
+
+
+					</div>
+
+
+				</form>
+		</div>
+
+			</div>
+
 
 	</div>
 
-	<br/>
-					<!-----------/buttons-------------->
-					<!-- /.row -->
-
-	<div class="form-group">
-						<div class="col-lg-6" >
-							<!-- <button type="button" class="btn btn-success" id="prodEditAll" onclick="prodEditAllAction();"> <i class="fa fa-paper-plane-o"> </i> Edit All
-							</button>
-							<button type="button" class="btn btn-success" id="sendMail" onclick="mailSend();"> <i class="fa fa-paper-plane-o"> </i> Save
-							</button> -->
-						</div>
-            <div class="col-lg-6" style="text-align: right;">
-
-               <!--<button type="button" class="btn btn-primary" onclick="return sendAction('arr')">Send</button>-->
-               <!-- <button type="button" class="btn btn-primary" id="saveFile" onclick="lowDBvalidation();">Save</button> -->
-							 <button type="button" class="btn btn-success" id="prodAdd" onclick="prodAddAction();"> <i class="fa fa-paper-plane-o"> </i> Add New Product
-							 </button>
-                <!-- <button type="button" class="btn btn-danger" onclick="resetarrAction()" > <i class="fa fa-undo"> </i> Cancel</button> -->
-            </div>
-  </div>
-		<br/><br/>
-
-	</div>
-</div>
-
-</div>
-</form>
-
-	</div>
-
-	<!-- <footer class="main-footer">
-  <strong> Copyright © 2017 <a href="http://www.solverminds.com" target="_blank">www.solverminds.com</a>.</strong> All rights reserved.
-  </footer>	 -->
-
-
-
-	<div class="modal fade" id="modalCompose" >
-        <div class="modal-dialog" style="width: 1000px">
-            <div class="modal-content" id="formModel">
+		<div class="modal fade" id="modalCustomer">
+        <div class="modal-dialog" style="width: 636px">
+            <div class="modal-content">
                 <div class="modal-header modal-header-info">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h4 class="modal-title">
-                        <span class="glyphicon glyphicon-envelope"></span> Add New Product Details</h4>
+                        <span class="glyphicon glyphicon-envelope"></span> Customer Details</h4>
                 </div>
                 <div class="modal-body">
-                    <form role="form" id="productform"  class="form-horizontal">
-											<div class="col-sm-12 form-group">
-												<div class="col-sm-1 text-right" >
+                    <form role="form" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2" for="inputFrom">
+                                Customer ID</label>
+                            <div class="col-sm-4">
+                                <span id="c_cusid"></span>
+                            </div>
+														<label class="col-sm-2" for="inputTo">
+                                Customer Name</label>
+                            <div class="col-sm-4">
+                                <span id="c_cusname"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2" for="inputTo">
+                                Customer Area</label>
+                            <div class="col-sm-4">
+                                <span id="c_cusarea"></span>
+                            </div>
+														<label class="col-sm-2" for="inputTo">
+                                Customer Mobile</label>
+                            <div class="col-sm-4">
+                                <span id="c_cusmobile"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+													<label class="col-sm-2" for="inputTo">
+															Customer TIN</label>
+													<div class="col-sm-4">
+															<span id="c_custin"></span>
+													</div>
+													<label class="col-sm-2" for="inputTo">
+															Customer Address</label>
+													<div class="col-sm-4">
+															<span id="c_cusaddress"></span>
+													</div>
+                        </div>
+                        <div class="form-group">
+													<label class="col-sm-2" for="inputTo">
+															Customer State</label>
+													<div class="col-sm-4">
+															<span id="c_cusstate"></span>
+													</div>
+													<label class="col-sm-2" for="inputTo">
+															Customer PinCode</label>
+													<div class="col-sm-4">
+															<span id="c_cusPincode"></span>
+													</div>
+                        </div>
 
-											    </div>
-											    <div class="col-sm-9 productdetails">
-												  <table id="product" class="table table-bordered" style="margin-left: 2px width:150px">
-													<thead>
-														<th style="padding:10px !important;text-align:center;" id="info_fuelrequirement">Product ID</th>
-														<th style="padding:10px !important;text-align:center;" id="info_bunstem">Product Name</th>
-															<th style="padding:10px !important;text-align:center;" id="info_bunstem">HSN Code</th>
-														<th style="padding:10px !important;text-align:center;" id="info_bunstem">M.R.P</th>
-														<th style="padding:10px !important;text-align:center;" id="info_bunstem">RATE</th>
-														<th style="padding:10px !important;text-align:center;" id="info_bunstem">Total Product Quantity</th>
-														<th style="padding:10px !important;text-align:center;" id="info_bunstem">Product Name(தமிழ்)</th>
-														<th style="padding:10px !important;text-align:center;" id="info_maxintake">Action</th>
-														<a>
-															<i class="fa fa-plus-circle "> </i>
-														</a>
-													</thead>
-													<tbody id="dataTablePro1">
-														<td >
-															<input style="text-align: left; height: 30px !important;" readonly class="form-control rightalign"
+                        <div class="form-group">
+													<label class="col-sm-2" for="inputTo">
+															Customer Email</label>
+													<div class="col-sm-4">
+															<span id="c_cusemail"></span>
+													</div>
+													<label class="col-sm-2" for="inputTo">
+															Customer Remarks</label>
+													<div class="col-sm-4">
+															<span id="c_cusremarks"></span>
+													</div>
+                        </div>
 
-															disabled id="productid0">
-														</td>
-														<td>
-															<input style="text-align: left; height: 30px !important;" class="form-control rightalign" id="productval0" >
-															<!-- onkeypress="return isalphabetsKey(event)" -->
-														</td>
-														<td>
-															<input style="text-align: left; height: 30px !important;" class="form-control rightalign" id="producthsn0" onkeypress="return isNumberKey(event)">
-														</td>
-														<td>
-															<input style="text-align: right; height: 30px !important;" class="form-control rightalign" id="prodmrp0" onkeypress="return isNumberKey(event)">
-														</td>
-														<td>
-															<input style="text-align: right; height: 30px !important;" class="form-control rightalign" id="prodrate0" onkeypress="return isNumberKey(event)">
-														</td>
-														<td>
-															<input style="text-align: right; height: 30px !important;" class="form-control rightalign" id="prodquan0" onkeypress="return isNumberKey(event)">
-														</td>
-														<td>
-															<input style="text-align: left; height: 30px !important;" class="form-control rightalign" id="prodtamil0" >
-															<!-- onkeypress="return isalphabetsKey(event)" -->
-														</td>
-														<td>
-															 <button style="text-align: right; height: 30px !important;" onclick="onProdremove(event)"
-															class="btn btn-danger" id="bdn_productaction"> <i class="fa fa-remove"> </i> </button>
-														</td>
-
-													</tbody>
-												</table>
-
-											   </div>
-											   <div class="col-sm-1" style="margin-top:15px; margin-left: 5px">
-												   <button type="button"  style="padding: 4px;" class="btn btn-primary" onclick="addRowproduct('dataTablePro')">
-													<i class="fa fa-plus-circle "> </i> ADD</button>
-											   </div>
-											</div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-                    <button type="button" id="ModelSend" class="btn btn-primary" onclick="saveNewProduct()">Save
+                    <button type="button" class="btn btn-default pull-left" onclick="onhideCustomerdetail()" data-dismiss="modal">Cancel</button>
+                    <button type="button"  id="ModelSend" class="btn btn-primary" onclick="onhideCustomerdetail()">OK
                         <i class="fa fa-arrow-circle-right fa-lg"></i>
                     </button>
                 </div>
@@ -203,141 +341,274 @@
                 </div>
             </div>
         </div>
-
     </div>
+		<div id='printme' style="display: none"> <!--style="display: none"-->
+			<!-- <div style="border:1px solid">
+				<span id="p_customername" style="text-align:center"></span>
+			</div> -->
 
-		<div class="modal fade" id="modalEditCompose" >
-	        <div class="modal-dialog" style="width: 636px">
-	            <div class="modal-content" id="formModel">
-	                <div class="modal-header modal-header-info">
-	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	                    <h4 class="modal-title">
-	                        <span class="glyphicon glyphicon-envelope"></span> Edit Product Details</h4>
-	                </div>
-	                <div class="modal-body">
-	                    <form role="form" id="productEditform"  class="form-horizontal">
-												<div class="col-sm-12 form-group">
-													<div class="col-sm-1 text-right" >
+			<table border="1" id="p_table" style="width: 800px !important;">
+    	 	<tbody>
+					<tr>
+						<td colspan="4"  rowspan="3">
+							<span><b>MARIYAMMAL FOOD PRODUCTS</b></span><br>
+							<span>55/10-B,Kuppusamy Street</span><br>
+							<span>Shevapet,Salem - 636 002</span><br>
+							<span>GSTIN/UIN: 33AWXPM0330N1Z6</span><br>
+							<span>State Name: Tamil Nadu, Code: 33</span><br>
+							<span>E-Mail: prakash.7984@gmail.com</span>
+						</td>
+						<td  colspan="2">
+							Invoice No <br>
+							<span id="p_invoiceno" style="font-weight:bold"></span>
+						</td>
+						<td  colspan="2">
+							Dated</br>
+							<span id="p_dated" style="font-weight:bold"></span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							Supplier's Ref
+						</td>
+						<td colspan="2">
+							Other References(s)
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							Buyer's Order No <br>
+							<span id="byuersorderno" style="font-weight:bold"></span>
+						</td>
+						<td colspan="2">
+							Dated
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" rowspan="3">
+							<span >Buyer</span></br>
+							<span id="p_customername" style="font-weight:bold" ></span><br>
+							GSTIN/UIN: <span id="prodgsttiin"></span>  <Br>
+							STATE NAME: <span id="prodst"></span> <BR>
+						</td>
+						<td colspan="4" rowspan="3">
 
-												    </div>
-												    <div class="col-sm-9 productdetails">
-													  <table id="product" class="table table-bordered" style="margin-left: 5px;width:547px">
-														<thead>
-															<th style="padding:5px !important;text-align:center;" id="info_fuelrequirement">Product ID</th>
-															<th style="padding:5px !important;text-align:center;" id="info_bunstem">Product Name</th>
-															<th style="padding:5px !important;text-align:center;" id="info_bunstem">HSN Code</th>
-															<th style="padding:5px !important;text-align:center;" id="info_bunstem">M.R.P</th>
-															<th style="padding:5px !important;text-align:center;" id="info_bunstem">RATE</th>
-																<th style="padding:5px !important;text-align:center;" id="info_bunstem">Total Product Quantity</th>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table    style="width: 800px !important; border-right: 1px solid">
+				<thead style="border:1px solid" >
+					<tr>
+						<th style="border-right:1px solid;text-align: center;" width="30px">Sl No</th>
+						<th style="border-right:1px solid;text-align: center;" width="250px">Description of Goods</th>
+						<th style="border-right:1px solid;text-align: center;" width="150px">HSN/SAC</th>
+						<th style="border-right:1px solid;text-align: center;" width="60px">GST Rate % </th>
+						<th  style="border-right:1px solid;text-align: center;" width="100px">MRP/Marginal</th>
+						<th  style="border-right:1px solid;text-align: center;" width="60px">Quantity</th>
+						<th style="border-right:1px solid;text-align: center;" width="100px">Rate</th>
+						<th style="border-right:1px solid;text-align: center;" width="148px">Amount</th>
+					</tr>
+				</thead>
+				<tbody class="roundedCorners" id="p_tablebody"  >
+				</tbody>
+				<tfoot style="border:1px solid">
+					<tr colspan="5" style="font-weight:bold">
+						<td style="border-right:1px solid;border-bottom:1px solid" width="30px" ></td>
 
-															<a>
-																<i class="fa fa-plus-circle "> </i>
-															</a>
-														</thead>
-														<tbody id="dataTablePro">
-															<td>
-																<input style="text-align: left; height: 30px !important;" readonly class="form-control rightalign"
-																disabled id="eproductide0">
-															</td>
-															<td>
-																<input style="text-align: left; height: 30px !important;" class="form-control rightalign" id="eproductvale0" readonly >
-																<!-- onkeypress="return isalphabetsKey(event)" -->
-																</td>
-															<td>
-																<input style="text-align: left; height: 30px !important;" class="form-control rightalign" id="eproducthsne0"  onkeypress="return isNumberKey(event)">
-															</td>
-															<td>
-																<input style="text-align: right; height: 30px !important;" class="form-control rightalign" id="eprodmrpe0">
-															</td>
-															<td>
-																<input style="text-align: right; height: 30px !important;" class="form-control rightalign" id="eprodratee0">
-															</td>
-															<td>
-																<input style="text-align: left; height: 30px !important;" class="form-control rightalign" id="eprodquane0"  onkeypress="return isNumberKey(event)">
-															</td>
+						<td style="border-right:1px solid;border-bottom:1px solid" width="250px" align="right">Total</td>
+						<td style="border-right:1px solid;border-bottom:1px solid" width="150px"></td>
+						<td style="border-right:1px solid;border-bottom:1px solid" width="60px"></td>
+						<td  style="border-right:1px solid;border-bottom:1px solid" width="100px"></td>
+						<td  style="border-right:1px solid;border-bottom:1px solid" align="right" width="60px"><span id="tbodytotalQty"></span></td>
+						<td style="border-right:1px solid;border-bottom:1px solid" width="100px"></td>
+						<td style="border-right:1px solid;border-bottom:1px solid" align="right" width="148px"><span id="tobodytotalAmt" style="font-size:20px"></span></td>
+					</tr>
+					<tr>
+						<!-- <th width="30px" style="height:32px"></th> -->
+						<!-- <th width="250px">Tax Chargeable (in words)</th> -->
+						<th width="800px" style="height:32px" colspan="8"> Tax Chargeable (in words)  :
+							<span id="wordings" style="text-transform: uppercase;font-size:12px"></span>
+						</th>
+					</tr>
+				</tfoot>
+			</table>
+			<table style="width: 800px !important; border-right: 1px solid">
+				<thead  style="border:1px solid">
+					<tr colspan="5">
+						<td style="border-right:1px solid" align="center"  width="280px" rowspan="2" > HSN/SAC</td>
+						<td  style="border-right:1px solid" width="150px" align="center" rowspan="2">Taxable Value</td>
+						<td style="border-right:1px solid;border-bottom:1px solid" align="center" width="140px" rowspan="1" colspan="2">Central Tax</td>
+						<td style="border-right:1px solid;border-bottom:1px solid" width="170px" align="center" rowspan="1" colspan="2">State Tax</td>
+						<td style="border-right:1px solid" width="160px" rowspan="2" align="center">Total Tax Amount</td>
+					</tr>
+					<tr>
+						<td style="border-right:1px solid" align="center" width="70px">Rate (%)</td>
+						<td style="border-right:1px solid" align="center" width="70px">Amount</td>
+						<td style="border-right:1px solid" align="center" width="85px">Rate (%)</td>
+						<td style="border-right:1px solid" align="center" width="85px">Amount</td>
+					</tr>
+				</thead>
+				<tbody class="roundedCorners" id="p_tablebodyTax"  >
+				</tbody>
+				<tfoot style="border:1px solid;">
+					<tr colspan="5" style="font-weight:bold">
+						<td width="280px" style="border-right:1px solid;border-bottom:1px solid"
+								align="right">Total
+					  </td>
+						<td width="150px" style="border-right:1px solid;border-bottom:1px solid" align="right">
+							<span id="taxablevalue"></span>
+						</td>
+						<td width="70px" style="border-right:1px solid;border-bottom:1px solid"></td>
+						<td width="70px" style="border-right:1px solid;border-bottom:1px solid" align="right">
+							<span id="cgstamount"></span>
+						</td>
+						<td width="85px" style="border-right:1px solid;border-bottom:1px solid"></td>
+						<td width="85px" style="border-right:1px solid;border-bottom:1px solid" align="right">
+							<span id="sgstamount"></span>
+						</td>
+						<td width="160px" style="border-right:1px solid;border-bottom:1px solid" align="right">
+							<span id="ttamount"></span>
+						</td>
+					</tr>
+					<tr >
+						<!-- <td width="180px" style="border-bottom:1px solid;height:32px">Tax Amount (in words) : </td> -->
+						<td width="900px"  style="border-bottom:1px solid;border-right:1px solid" colspan="7">
+							<span>Tax Amount (in words) :</span>
+							<span id="wordingstax" style="text-transform: uppercase;font-weight:bold"></span></td>
+					</tr>
+					<tr>
+						<td width="280px" style="border-bottom:1px solid;border-right:1px" colspan="4" >&nbsp;</td>
+						<td width="520px" style="border-bottom:1px solid;border-right:1px " colspan="4">Company's Bank details<br>
+							Bank Name: <span style="font-weight:bold"></span> <br>
+							A/C No: <span style="font-weight:bold">629014000000166</span><br>
+							Branch & IFSC Code: <span style="font-weight:bold">SEVAPET & SYNB0006290</span></td>
+					</tr>
+					<tr>
+						<td width="280px" style="border-bottom:1px solid; border-right:1px solid" colspan="4" rowspan="4">
+							Declaration:<br>We Hereby certify that the foods mentioned in <br>
+						this invoice is/are warranted to be of the <br>nature and which these purport to be</td>
+						<td width="520px" style="border-bottom:1px solid;border-right:1px;text-align:right;padding-top:38px" colspan="4" rowspan="4">
 
-														</tbody>
-													</table>
-
-												   </div>
-
-												</div>
-	                    </form>
-	                </div>
-	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-	                    <button type="button" id="ModelSend" class="btn btn-primary" onclick="saveEditProductVal()">Save
-	                        <i class="fa fa-arrow-circle-right fa-lg"></i>
-	                    </button>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="hide-Progress-overlay show-Progress-overlay">
-	            <div class="glassPane">
-	                <div class="progress-bar">
-	                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-	                    <span class="sr-only">Loading...</span>
-	                    <!--md-progress-circle mode="indeterminate" color="primary"></md-progress-circle-->
-	                </div>
-	            </div>
-	        </div>
-
-	    </div>
-
-			<!--delete-->
-			<div class="modal fade" id="modalDeleteCompose" >
-		        <div class="modal-dialog" style="width: 440px">
-		            <div class="modal-content" id="formModel" style="height: 97px; border: 7px solid">
-
-		                <div >
-													<div class="col-sm-12 form-group" style="text-align:center">
-														<div class="col-sm-12" >
-															<span style="font-size: 18px">Are you sure to delete&nbsp;</span><span style="font-size:18px;color:red">Product</span>
-															<span style="font-size: 18px;color:red" id="span_delete"></span> <span style="font-size:18px;color:red">&nbsp; ?</span>
-													   </div>
-													</div>
-		                </div>
-		                <div >
-											<div class="col-sm-3"></div>
-											<div class="col-sm-6" >
-
-
-													<button type="button" id="DelSend" class="btn btn-danger fa fa-trash" onclick="DelteProduct()" > &nbsp;Delete &nbsp;
-													</button>
-												<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
-											</div>
-											<div class="col-sm-3"></div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-<script type="text/javascript">
-
-
-
-
-
-
-
-
-	function mailSend(){
-		 if(bdnARRsavevalidation()){
-		saveAndSendAction("sendMail")
-	     }
-	}
+							<span id="sign">
+							Authorised Signature</span></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
 
 
-	 function bdnARRsavevalidation(){
-            return true;
-  }
+		<div id='wprintme' style="display: none"  > <!--style="display: none"-->
+			<!-- <div style="border:1px solid">
+				<span id="p_customername" style="text-align:center"></span>
+			</div> -->
+			<div>
+				<table border="1" id="wp_table" style="width:100%" >
+	    	 	<thead>
+						<tr>
+							<td align="center" colspan="8">
+								<span id="wp_ownername" style="font-size:21px" ></span>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" >
+								<span id="wp_address1" style="text-transform:uppercase">VEGETABLE SHOP</span><br>
+								<span  id="wp_address2" style="text-transform:uppercase">142,PAL MARKET,SHEVAPET</span><br>
+								<span  id="wp_address3" style="text-transform:uppercase" >SALEM-636002</span><br>
+							</td>
+							<td colspan="6" >
+								<span>TIN :</span> <span id="wp_tin"></span><br>
+								<span>CGT :</span> <span id="wp_cgt"></span><br>
+								<span>PH: </span> <span id="wp_ph">93621-10739 / 0427-2212917</span><br>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" >
+								<span id="wp_customershopname"></span><br><br>
+								<span id="wp_customercity"></span><br>
+							</td>
+							<td colspan="6">
+								<span><b>No : </b></span><span id="wp_no"></span><br>
+	 						 <span><b>Date : </b></span><span id="wp_date"></span><br>
+							 <span><b>Term : </b></span><span id="wp_term"></span><br>
+							 <span><b>PO No : </b></span><span id="wp_pono"></span><br>
+							</td>
+						</tr>
 
-function saveAndSendAction(type) {
-        }
+						</thead>
+						<tbody  id="wp_tablebody" >
+							<tr>
+								<th>S No</th>
+								<th width="200px">Product name</th>
+								<th>Qty</th>
+								<th>Rate</th>
+								<th>Value</th>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr >
+								<td colspan="8" rowspan="1">
+		 						<span> Total Items: </span>
+								<span id="wp_totalitems"></span>
+								<span style="padding-left:75px">Total Qty: </span>
+								<span id="wp_totalqty"></span>
+								<span id="wp_totalvalue" style="padding-left:114px;font-weight: bold"></span>
+								</td>
+							</tr>
+							<tr id="wprintNettvalue">
+								<td colspan="5" rowspan="1" align="right">
+										Nett value:
+									<!-- <span style=" font-weight:bold;font-size:15px" >₹</span> -->
+									<span id="nettvalue" style="font-size:20px; font-weight:bold"></span>
+								</td>
+							</tr>
+						</tfoot>
+
+				</table>
+			</div>
+			<div id='wprintmeMultiple' >
+				<table border="1" id="wp_table1"  style="width:100%">
+					<tbody  id="wp_tablebody1" >
+						<tr>
+							<th>S No</th>
+							<th width="200px">Product name</th>
+							<th>Qty</th>
+							<th>Rate</th>
+							<th>Value</th>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr >
+							<td colspan="8" rowspan="1">
+							<span> Total Items: </span>
+							<span id="wp_totalitems1"></span>
+							<span style="padding-left:75px">Total Qty: </span>
+							<span id="wp_totalqty1"></span>
+							<span id="wp_totalvalue1" style="padding-left:114px;font-weight: bold"></span>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="5" rowspan="1" align="right">
+									Nett value:
+								<!-- <span style=" font-weight:bold;font-size:15px" >₹</span> -->
+								<span id="nettvalue1" style="font-size:20px; font-weight:bold"></span>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
 
 
 
- </script>
-
+<!-- /#wrapper -->
+<!-- <script>
+	$("#menu-toggle").click(function (e) {
+		e.preventDefault();
+		$("#wrapper").toggleClass("toggled");
+	});
+</script> -->
+<!-- jQuery -->
 <!-- <script src="../vendor/jquery/jquery.min.js"></script> -->
 
 <!-- Bootstrap Core JavaScript -->

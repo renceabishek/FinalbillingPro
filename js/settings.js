@@ -221,7 +221,7 @@ function onSaveBackup()
   const URL = require('url').URL;
   const URL1 = require('url').URL;
   var fss = require('fs');
-  var dir = 'F:/Backup/'
+  var dir = 'D:/Backup/'
   var date = new Date();
   var n = date.toDateString();
   var time = date.toLocaleTimeString();
@@ -230,6 +230,7 @@ function onSaveBackup()
   const myFileURL1 = new URL('file://'+process.env.APPDATA+'/VEGFRUIT/Product.JSON');
   const myFileURL2 = new URL('file://'+process.env.APPDATA+'/VEGFRUIT/savedata.JSON');
   const myFileURL3 = new URL('file://'+process.env.APPDATA+'/VEGFRUIT/settings.JSON');
+  const myFileURL4 = new URL('file://'+process.env.APPDATA+'/VEGFRUIT/saveinvoice.JSON');
 
   if (!fss.existsSync(dir)){
      fss.mkdirSync(dir);
@@ -271,6 +272,16 @@ function onSaveBackup()
               });
               fs.readFile(myFileURL3,'utf8', function(err,data){
                 fs.writeFile(dir+'settings.JSON',data);
+                if(err){
+                  console.log(err);
+                }
+                else
+                {
+                  console.log('success!')
+                }
+              });
+              fs.readFile(myFileURL4,'utf8', function(err,data){
+                fs.writeFile(dir+'saveinvoice.JSON',data);
                 if(err){
                   console.log(err);
                 }
@@ -321,6 +332,10 @@ var mailOptions = {
                         filename: 'settings.json',
                         path: process.env.APPDATA+'/VEGFRUIT/settings.JSON' // stream this file
                     },
+                    {   // file on disk as an attachment
+                            filename: 'settings.json',
+                            path: process.env.APPDATA+'/VEGFRUIT/saveinvoice.JSON' // stream this file
+                        },
   ]
 }
 
@@ -328,7 +343,7 @@ transporter.sendMail(mailOptions,function(err,res){
   if(err)
   {
       alert('Please connect to Internet and Try to Backup');
-    console.log('Error');
+    console.log('Error'+ err);
   }
   else {
       console.log('Email sent');

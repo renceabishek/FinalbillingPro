@@ -56,7 +56,7 @@ function print2050() {
     document.getElementById('wp_address3').innerHTML=fields[2];
   }
   wsetPrinttablevalues2050();
-  document.getElementById("wprintmeMultiple").style.paddingTop="110px";
+  document.getElementById("wprintmeMultiple").style.paddingTop="200px";
   document.getElementById('wprintNettvalue').style.display="none";
   document.getElementById("wp_totalvalue").innerHTML="&#8377;"+totalperpage;
   document.getElementById("wp_totalvalue1").innerHTML="&#8377;"+parseFloat(totalperpage1).toFixed(2);

@@ -34,13 +34,15 @@
     "electron-package": "^0.1.0",
     "electron-terminal-open": "^0.1.1",
     "emailjs": "^2.2.0",
+    "fs-extra": "^7.0.0",
     "jspdf": "^1.4.1",
     "lodash": "^4.17.5",
     "lowdb": "^1.0.0",
     "lowdb-adapter": "^0.1.3",
     "node-printer": "^1.0.3",
-    "nodemailer": "^4.6.3",
+    "nodemailer": "^4.6.8",
     "package": "^1.0.1",
-    "quickly-copy-file": "^1.0.0"
+    "quickly-copy-file": "^1.0.0",
+    "xoauth2": "^1.2.0"
   }
 }
