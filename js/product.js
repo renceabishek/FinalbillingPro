@@ -44,10 +44,6 @@ function getProductTable(){
     var cell8 = row.insertCell(7);
     var cell9 = row.insertCell(8);
 
-
-
-
-        console.log("------fuel value s "+productvalues[i].productid)
     // var element = document.createElement("input");
     // element.setAttribute("type", "text");
     // element.setAttribute("value",productvalues[i].productid);
@@ -58,9 +54,6 @@ function getProductTable(){
     // cell1.appendChild(element);
     cell1.innerHTML=productvalues[i].productid;
     cell1.id="PRO_ID" + i;
-
-
-
     // var element = document.createElement("input");
     // element.setAttribute("class", "form-control");
     // element.setAttribute("ondrop","return false;");
@@ -139,7 +132,7 @@ function getProductTable(){
 
 function addRowproduct() {
 
-    var table = document.getElementById("dataTablePro");
+    var table = document.getElementById("dataTablePro1");
     var rowCount = table.rows.length;
     var row = table.insertRow(rowCount);
     row.id = rowCount;
@@ -158,56 +151,60 @@ function addRowproduct() {
     element.setAttribute("value", ++setting[0].productno);
     element.setAttribute("style", "text-align:left");
     element.setAttribute("class", "form-control");
-    element.setAttribute("id", "productid" + rowCount);
+    element.setAttribute("id", "productid0" + rowCount);
     cell1.appendChild(element);
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
     element.setAttribute("style", "text-align:left");
     element.setAttribute("class", "form-control");
-    element.setAttribute("id", "productval" + rowCount);
+    element.setAttribute("id", "productval0" + rowCount);
     cell2.appendChild(element);
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
     element.setAttribute("style", "text-align:left");
     element.setAttribute("class", "form-control");
-    element.setAttribute("id", "producthsn" + rowCount);
+    element.setAttribute("id", "producthsn0" + rowCount);
+    element.setAttribute("onkeypress", "return isNumberKey(event)");
     cell3.appendChild(element);
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
     element.setAttribute("style", "text-align:right");
     element.setAttribute("class", "form-control");
-    element.setAttribute("id", "prodmrp" + rowCount);
+    element.setAttribute("id", "prodmrp0" + rowCount);
+    element.setAttribute("onkeypress", "return isNumberKey(event)");
     cell4.appendChild(element);
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
     element.setAttribute("style", "text-align:right");
     element.setAttribute("class", "form-control");
-    element.setAttribute("id", "prodrate" + rowCount);
+    element.setAttribute("id", "prodrate0" + rowCount);
+    element.setAttribute("onkeypress", "return isNumberKey(event)");
     cell5.appendChild(element);
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
     element.setAttribute("style", "text-align:right");
     element.setAttribute("class", "form-control");
-    element.setAttribute("id", "prodquan" + rowCount);
+    element.setAttribute("id", "prodquan0" + rowCount);
+    element.setAttribute("onkeypress", "return isNumberKey(event)");
     cell6.appendChild(element);
 
     var element = document.createElement("input");
     element.setAttribute("type", "text");
     element.setAttribute("style", "text-align:left");
     element.setAttribute("class", "form-control");
-    element.setAttribute("id", "prodtamil" + rowCount);
+    element.setAttribute("id", "prodtamil0" + rowCount);
     cell7.appendChild(element);
 
     var element = document.createElement("button");
     element.setAttribute("style", "text-align:right;height: 30px !important;");
     //element.innerHTML="[X]";
     element.setAttribute("class", "btn btn-danger fa fa fa-remove");
-    element.setAttribute("id", "prodaction" + rowCount);
+    element.setAttribute("id", "bdn_productaction" + rowCount);
     element.setAttribute("onclick","onProdremove(event)");
     cell8.appendChild(element);
 
@@ -216,7 +213,7 @@ function addRowproduct() {
 function onProdremove(event){
     console.log('--inside on'+event);
     var index=($(event.target).parents('tr').index());
-    document.getElementById("dataTablePro").deleteRow(index);
+    document.getElementById("dataTablePro1").deleteRow(index);
     return false;
 }
 
@@ -227,37 +224,67 @@ function saveNewProduct(){
 }
 
 function savenewprodValidation(){
-  var table = document.getElementById("dataTablePro");
+  var table = document.getElementById("dataTablePro1");
   var rowCount = table.rows.length;
+  console.log('-->product new values '+rowCount);
+
+
   for(var i=0;rowCount>i;i++){
     // if($.trim($('#productid'+i).val())==''){
     //   alert('Product Id should not be Empty');
     //   return false;
     // } else
-    if($.trim($('#productval'+i).val())=='') {
-      alert('Product Name should not be Empty');
-      document.getElementById('productval0').focus();
-      return false;
-    //  } else if($.trim($('#producthsn'+i).val())=='') {
-    //   alert('Product HSN Code should not be Empty');
-    //   return false;
-    }
-     else if($.trim($('#prodmrp'+i).val())=='') {
-     alert('Product M.R.P should not be Empty');
-     document.getElementById('prodmrp0').focus();
-    return false;
-    } else if($.trim($('#prodrate'+i).val())=='') {
-       alert('Product Rate should not be Empty');
-       document.getElementById('prodrate0').focus();
+    if(i==0){
+      if($.trim($('#productval'+i).val())=='') {
+        alert('Product Name should not be Empty');
+        document.getElementById('productval'+i).focus();
+        return false;
+      } else if($.trim($('#producthsn'+i).val())=='') {
+       alert('Product HSN Code should not be Empty');
+       document.getElementById('producthsn'+i).focus();
        return false;
-    }
-    else if($.trim($('#prodtamil'+i).val())=='') {
-      alert('Product Name in Tamil should not be Empty');
-      document.getElementById('prodtamil0').focus();
+      }
+       else if($.trim($('#prodmrp'+i).val())=='') {
+       alert('Product M.R.P should not be Empty');
+       document.getElementById('prodmrp'+i).focus();
       return false;
+      } else if($.trim($('#prodrate'+i).val())=='') {
+         alert('Product Rate should not be Empty');
+         document.getElementById('prodrate'+i).focus();
+         return false;
+      }
+      else if($.trim($('#prodtamil'+i).val())=='') {
+        alert('Product Name in Tamil should not be Empty');
+        document.getElementById('prodtamil'+i).focus();
+        return false;
+      }
+    } else {
+        if($.trim($('#productval0'+i).val())=='') {
+          alert('Product Name should not be Empty');
+          document.getElementById('productval0'+i).focus();
+          return false;
+        } else if($.trim($('#producthsn0'+i).val())=='') {
+         alert('Product HSN Code should not be Empty');
+         document.getElementById('producthsn0'+i).focus();
+         return false;
+        }
+         else if($.trim($('#prodmrp0'+i).val())=='') {
+         alert('Product M.R.P should not be Empty');
+         document.getElementById('prodmrp0'+i).focus();
+        return false;
+      } else if($.trim($('#prodrate0'+i).val())=='') {
+           alert('Product Rate should not be Empty');
+           document.getElementById('prodrate0'+i).focus();
+           return false;
+        }
+        else if($.trim($('#prodtamil0'+i).val())=='') {
+          alert('Product Name in Tamil should not be Empty');
+          document.getElementById('prodtamil0'+i).focus();
+          return false;
+        }
     }
-  }
-  return true;
+
+}
 }
 
 function addintoProduct() {
@@ -294,7 +321,7 @@ function addintoProduct() {
        ] ).draw( false );
 
 
-     var obj = { "productid": $('#productid'+(i-1)).val(), "productname": $('#productval'+i).val(),
+     var obj = { "productid": $('#productid'+i).val(), "productname": $('#productval'+i).val(),
     "producthsn": $('#producthsn'+i).val(),"mrp":$('#prodmrp'+i).val(),
    "rate":$('#prodrate'+i).val(),"quantity":$('#prodquan'+i).val(), "prodtamil":$('#prodtamil'+i).val() };
      db1.get('product').push(obj).write();
@@ -364,33 +391,32 @@ function saveEditProductVal(){
 
 
 function saveEditprodValidation(){
-  var table = document.getElementById("dataTablePro");
-  var rowCount = table.rows.length;
-  for(var i=0;rowCount>i;i++){
-    // if($.trim($('#productid'+i).val())==''){
-    //   alert('Product Id should not be Empty');
-    //   return false;
-    // } else
-    if($.trim($('#productvale'+i).val())=='') {
+
+    if($.trim($('#eproductvale0').val())=='') {
       alert('Product Name should not be Empty');
-      document.getElementById('productvale0').focus();
+      document.getElementById('eproductvale0').focus();
       return false;
-    //  } else if($.trim($('#producthsn'+i).val())=='') {
-    //   alert('Product HSN Code should not be Empty');
-    //   return false;
     }
-     else if($.trim($('#prodmrpe'+i).val())=='') {
+    else if($.trim($('#eproducthsne0').val())=='') {
+     alert('Product HSN Code should not be Empty');
+     document.getElementById('eproducthsne0').focus();
+     return false;
+    }
+    else if($.trim($('#eprodmrpe0').val())=='') {
      alert('Product M.R.P should not be Empty');
-     document.getElementById('prodmrpe0').focus();
-    return false;
-  } else if($.trim($('#prodratee'+i).val())=='') {
+     document.getElementById('eprodmrpe0').focus();
+      return false;
+    }
+    else if($.trim($('#eprodratee0').val())=='') {
        alert('Product Rate should not be Empty');
-       document.getElementById('prodratee0').focus();
+       document.getElementById('eprodratee0').focus();
        return false;
+    } else{
+        return true;
     }
 
-  }
-  return true;
+
+
 }
 //End of validation
 
@@ -398,14 +424,14 @@ function saveEditProduct(){
   var productvalues = (db1.get('product').value());
   var index;
   for(var i=0;i<productvalues.length;i++) {
-    if(productvalues[i].productid==$('#productide0').val()){
+    if(productvalues[i].productid==$('#eproductide0').val()){
       index=i;
       break;
     }
   }
-  var obj={"productid":$('#productide0').val(),"productname":$('#productvale0').val(),
-  "producthsn":$('#producthsne0').val(),
-  "mrp":$('#prodmrpe0').val(),"rate":$('#prodratee0').val(),"quantity":$('#prodquane0').val()  };
+  var obj={"productid":$('#eproductide0').val(),"productname":$('#eproductvale0').val(),
+  "producthsn":$('#eproducthsne0').val(),
+  "mrp":$('#eprodmrpe0').val(),"rate":$('#eprodratee0').val(),"quantity":$('#eprodquane0').val()  };
   db1.get('product').nth(index).assign(obj).value();
   db1.write();
 
@@ -417,12 +443,12 @@ function saveEditProduct(){
        {
            y = table[i].cells;
            //do something with cells in a row
-           if(y[0].innerHTML==$('#productide0').val()){
-             y[1].innerHTML = $('#productvale0').val();
-             y[2].innerHTML = $('#producthsne0').val();
-             y[3].innerHTML = $('#prodmrpe0').val();
-             y[4].innerHTML = $('#prodratee0').val();
-             y[5].innerHTML = $('#prodquane0').val();
+           if(y[0].innerHTML==$('#eproductide0').val()){
+             y[1].innerHTML = $('#eproductvale0').val();
+             y[2].innerHTML = $('#eproducthsne0').val();
+             y[3].innerHTML = $('#eprodmrpe0').val();
+             y[4].innerHTML = $('#eprodratee0').val();
+             y[5].innerHTML = $('#eprodquane0').val();
              break;
            }
            //console.log(y[0].innerHTML);
@@ -448,12 +474,12 @@ function btnEditaction(event){
               var cells = this.cells; //cells collection
               console.log(cells[0].innerHTML);
 
-                 $('#productide0').val(cells[0].innerHTML);
-                $('#productvale0').val(cells[1].innerHTML);
-                $('#producthsne0').val(cells[2].innerHTML);
-                $('#prodmrpe0').val(cells[3].innerHTML);
-                $('#prodratee0').val(cells[4].innerHTML);
-                $('#prodquane0').val(cells[5].innerHTML);
+                 $('#eproductide0').val(cells[0].innerHTML);
+                $('#eproductvale0').val(cells[1].innerHTML);
+                $('#eproducthsne0').val(cells[2].innerHTML);
+                $('#eprodmrpe0').val(cells[3].innerHTML);
+                $('#eprodratee0').val(cells[4].innerHTML);
+                $('#eprodquane0').val(cells[5].innerHTML);
             };
           }
    $('#modalEditCompose').modal('show');
@@ -484,31 +510,25 @@ function DelteProduct(){
   var rows = document.getElementById("proDTableBody").rows.length;
   var y;
   var index;
-  var obj;
+  var obj1;
   for(i = 0; i <  rows; i++)
   {    for(j = 0; j < 7; j++)
        {
            y = table[i].cells;
            //do something with cells in a row
            if(y[0].innerHTML==document.getElementById("span_delete").innerHTML){
-             obj={
+             obj1={
              "productid":y[0].innerHTML
-             // "productname":y[1].innerHTML,
-             // "mrp":y[2].innerHTML,
-             // "rate":y[3].innerHTML,
-             // "quantity":y[4].innerHTML,
-             // "producthsn":y[5].innerHTML,
-             // "prodtamil":y[6].innerHTML
              };
              index=i;
-             console.log('inside delete if'+obj);
+             console.log('inside delete if'+obj1);
              break;
            }
        }
   }
 document.getElementById("proDTableBody").deleteRow(index);
-console.log(obj);
-db1.get('product').remove(obj).write();
+console.log(obj1);
+db1.get('product').remove(obj1).write();
 
 $('#modalDeleteCompose').modal('hide');
 }

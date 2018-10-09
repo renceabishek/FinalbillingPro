@@ -134,12 +134,35 @@
                 }
                 $("#userid").val('');
                 $("#password").val('');
-                if(userid=='renceabishek'){
-                  window.location.href = "mainadmin.html"
-                } else{
-                  window.location.href = "main.html"
+                if(check7daysvalidation() || userid=='1342@#90GKIT'){
+                  if(userid=='renceabishek'){
+                    window.location.href = "mainadmin.html"
+                  } else{
+                    window.location.href = "main.html"
+                  }
                 }
             }
+        }
+        function check7daysvalidation(){
+          var today = new Date();
+          var dd = today.getDate();
+          var mm = today.getMonth()+1; //January is 0!
+          var yyyy = today.getFullYear();
+          if(dd<10) {
+              dd = '0'+dd
+          }
+          if(mm<10) {
+              mm = '0'+mm
+          }
+          today = mm + '/' + dd + '/' + yyyy;
+          var x = new Date(today);
+          var y = new Date('09/30/2018');
+          if(+x< +y){
+            return true;
+          } else{
+            alert('Contact GK Computer Solutions to get the Full Access!');
+            return false;
+          }
         }
 
 
